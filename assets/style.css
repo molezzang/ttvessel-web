@@ -4,6 +4,7 @@
    Light, readable, fast, AdSense-friendly. No frameworks.
    =========================================================== */
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;900&display=swap");
 
 :root {
   --coral: #E8503A;
@@ -224,3 +225,32 @@ footer.site .copy { margin-top: 24px; padding-top: 18px; border-top: 1px solid v
 .linkcard .txt span { font-size: 13.5px; color: var(--gray); line-height: 1.5; display:block; }
 .linkcard .soon { margin-left:auto; flex-shrink:0; }
 .soon { font-size: 11.5px; font-weight:800; background: var(--bg-soft); color:#9aa3ac; border:1px solid var(--line); padding: 4px 10px; border-radius: 999px; }
+
+/* ===========================================================
+   v2 — HAMLOG-inspired editorial refresh
+   =========================================================== */
+.brand .logo { width: 30px; height: 30px; display: block; }
+.brand { letter-spacing: -.01em; }
+
+.menu a { font-size: 13.5px; letter-spacing: .05em; }
+
+/* eyebrow section label */
+.eyebrow { display: block; font-size: 12px; font-weight: 700; letter-spacing: .32em;
+  text-transform: uppercase; color: #9aa3ac; margin-bottom: 14px; }
+.eyebrow.red { color: var(--coral); }
+
+.serif { font-family: "Noto Serif KR", "Pretendard", serif; }
+
+.section-head h2 { font-size: 30px; letter-spacing: -.03em; }
+.section-head { flex-wrap: wrap; gap: 8px; }
+
+/* contact channel cards (HAMLOG-style bordered row) */
+.chan-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+@media (max-width: 960px){ .chan-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px){ .chan-grid { grid-template-columns: repeat(2, 1fr); } }
+.chan { display: flex; flex-direction: column; gap: 8px; border: 1px solid var(--line);
+  background: #fff; padding: 20px 18px; border-radius: 4px; transition: border-color .2s, transform .15s; }
+.chan:hover { border-color: var(--ink); transform: translateY(-2px); text-decoration: none; }
+.chan .ci { font-size: 18px; line-height: 1; }
+.chan b { font-size: 14px; color: var(--ink); letter-spacing: .02em; }
+.chan span { font-size: 12.5px; color: var(--gray); word-break: break-all; }
