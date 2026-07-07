@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#E8503A">
+<title>LDL 콜레스테롤 계산기 — 검진표에 LDL이 없을 때 | 튼튼혈관연구소</title>
+<meta name="description" content="총콜레스테롤·HDL·중성지방 3가지로 LDL 콜레스테롤을 계산하고, 내 위험군별 목표 수치까지 확인하세요. 프리드왈드 공식 기반 무료 계산기.">
+<meta name="author" content="튼튼혈관연구소">
+<link rel="canonical" href="https://www.ttvessel.com/ldl.html">
+<meta property="og:title" content="LDL 콜레스테롤 계산기 | 튼튼혈관연구소">
+<meta property="og:description" content="검진표에 LDL이 안 나와도 괜찮아요. 숫자 3개만 넣으면 LDL과 목표 수치를 바로 계산해드립니다.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"LDL 콜레스테롤 계산기",
+  "url":"https://www.ttvessel.com/ldl.html",
+  "applicationCategory":"HealthApplication",
+  "operatingSystem":"Any",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},
+  "publisher":{"@type":"Organization","name":"튼튼혈관연구소"}
+}
+</script>
+<style>
+/* ---- LDL 계산기 전용 (모바일 우선) ---- */
+.calc-hero { padding: 40px 0 32px; }
+.calc-hero h1 { font-size: 30px; }
+@media (max-width: 720px){ .calc-hero h1 { font-size: 24px; } .calc-hero { padding: 30px 0 24px; } }
+
+.tool .field-help { font-size: 12.5px; color: #9aa3ac; margin-top: 4px; line-height: 1.4; }
+.tool select {
+  width: 100%; padding: 13px 14px; border: 1px solid var(--line); border-radius: 10px;
+  font-size: 16px; font-family: inherit; background: #fff; color: var(--ink);
+  -webkit-appearance: none; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235b656f' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+}
+.tool select:focus { outline: 2px solid #f6c9bf; border-color: var(--coral); }
+
+/* 큰 결과 숫자 */
+.big-num { text-align: center; padding: 10px 0 14px; }
+.big-num .label { font-size: 13px; font-weight: 700; color: var(--gray); letter-spacing: .02em; }
+.big-num .val { font-size: 52px; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; }
+.big-num .val small { font-size: 18px; font-weight: 600; color: var(--gray); margin-left: 4px; }
+.big-num .val.g { color: #279067; }
+.big-num .val.y { color: #a97c0a; }
+.big-num .val.r { color: var(--coral-dark); }
+.big-num .grade { margin-top: 4px; }
+
+/* 목표 대비 게이지 */
+.gauge { margin: 14px 0 6px; }
+.gauge .bar { position: relative; height: 12px; border-radius: 999px; overflow: hidden;
+  background: linear-gradient(90deg, #46c98b 0%, #46c98b 34%, #f2c94c 34%, #f2c94c 60%, #E8503A 60%); }
+.gauge .marker { position: absolute; top: -5px; width: 4px; height: 22px; background: var(--ink); border-radius: 2px; box-shadow: 0 0 0 2px #fff; }
+.gauge .scale { display: flex; justify-content: space-between; font-size: 11.5px; color: #9aa3ac; margin-top: 8px; }
+
+/* 배지·버튼 줄바꿈 방지 */
+.result .badge { white-space: nowrap; flex-shrink: 0; }
+
+/* 결과 액션 버튼 */
+.result-actions { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+.result-actions .btn { font-size: 14px; padding: 10px 20px; white-space: nowrap; }
+.btn.sub { background: #fff; color: var(--ink); border: 1.5px solid var(--line); }
+.btn.sub:hover { background: var(--bg-soft); }
+
+/* 모바일: 버튼 풀폭 + 입력 크게 */
+@media (max-width: 560px) {
+  .tool { padding: 20px 16px; }
+  .tool .row { flex-direction: column; gap: 14px; }
+  .tool .field { min-width: 100%; }
+  .tool input[type="number"], .tool select { padding: 15px 14px; font-size: 17px; }
+  .tool button.btn { width: 100%; padding: 15px; font-size: 16px; }
+  .result-actions .btn { flex: 1; text-align: center; }
+  .big-num .val { font-size: 44px; }
+}
+
+/* FAQ */
+.faq { margin-top: 8px; }
+.faq details { border: 1px solid var(--line); border-radius: 12px; background: #fff; margin-bottom: 10px; }
+.faq summary { cursor: pointer; font-weight: 700; font-size: 15px; padding: 15px 18px; list-style: none; position: relative; }
+.faq summary::after { content: "+"; position: absolute; right: 18px; color: var(--coral); font-size: 18px; }
+.faq details[open] summary::after { content: "–"; }
+.faq .a { padding: 0 18px 15px; font-size: 14.5px; color: #353c44; line-height: 1.7; }
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><span class="dot"></span>튼튼혈관연구소</a>
+    <button class="menu-toggle" aria-label="메뉴" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    <nav class="menu" id="menu">
+      <a href="index.html">홈</a>
+      <a href="index.html#articles">건강정보</a>
+      <a href="tools.html">혈관 툴</a>
+      <a href="community.html">커뮤니티</a>
+      <a href="about.html">소개</a>
+      <a href="contact.html">문의</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero calc-hero">
+  <div class="wrap">
+    <span class="tag">혈관 툴 · LDL 계산기</span>
+    <h1>검진표에 <span class="hl">LDL</span>이 없다면,<br>여기서 3초 만에 계산하세요</h1>
+    <p>국가건강검진 결과지에 총콜레스테롤·HDL·중성지방만 있고 LDL이 비어 있는 경우가 많습니다. 전 세계 병원에서 쓰는 프리드왈드(Friedewald) 공식으로 계산해드립니다. 입력한 숫자는 어디에도 저장되지 않습니다.</p>
+  </div>
+</div>
+
+<main>
+<section>
+  <div class="wrap" style="max-width:760px;">
+
+    <div class="tool" id="ldlcalc">
+      <h2>🧮 LDL 콜레스테롤 계산기</h2>
+      <p class="desc">검진표의 숫자 3개를 그대로 넣어주세요. (단위: mg/dL — 국내 검진표 기본 단위)</p>
+      <div class="row">
+        <div class="field">
+          <label for="tc">총콜레스테롤 (Total Cholesterol)</label>
+          <input type="number" id="tc" inputmode="numeric" min="50" max="600" placeholder="예: 220">
+          <div class="field-help">검진표에서 '총콜레스테롤' 항목</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="hdl">HDL (좋은 콜레스테롤)</label>
+          <input type="number" id="hdl" inputmode="numeric" min="10" max="150" placeholder="예: 50">
+          <div class="field-help">'HDL-콜레스테롤' 항목</div>
+        </div>
+        <div class="field">
+          <label for="tg">중성지방 (Triglyceride)</label>
+          <input type="number" id="tg" inputmode="numeric" min="20" max="2000" placeholder="예: 150">
+          <div class="field-help">'중성지방' 또는 'TG' 항목</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="risk">나에게 해당하는 것 (선택 — 목표 수치 계산용)</label>
+          <select id="risk">
+            <option value="">선택 안 함 — 일반 기준으로만 볼게요</option>
+            <option value="55">심근경색·협심증(스텐트 시술 포함) 병력이 있다</option>
+            <option value="70">뇌졸중·경동맥질환·말초혈관질환 병력이 있다</option>
+            <option value="100">당뇨병이 있다</option>
+            <option value="130">위험요인이 2개 이상 (흡연·고혈압·가족력·낮은 HDL·나이*)</option>
+            <option value="160">위험요인이 0~1개다</option>
+          </select>
+          <div class="field-help">*나이: 남성 45세 이상, 여성 55세 이상. 한국지질·동맥경화학회 진료지침 위험군 분류를 간단히 한 것입니다.</div>
+        </div>
+      </div>
+      <button class="btn" onclick="calcLDL()">LDL 계산하기</button>
+      <div class="result" id="ldlResult"></div>
+    </div>
+
+    <div class="ad-slot">광고 영역 (승인 후 표시)</div>
+
+    <div class="faq">
+      <h2 style="font-size:21px; margin:28px 0 14px;">자주 묻는 질문</h2>
+      <details>
+        <summary>이 계산, 병원 검사랑 같은 건가요?</summary>
+        <div class="a">네, 같은 방식입니다. 많은 검사실에서 LDL을 직접 측정하는 대신 프리드왈드 공식(LDL = 총콜레스테롤 − HDL − 중성지방÷5)으로 계산해서 결과지에 적습니다. 다만 중성지방이 400 mg/dL 이상이면 공식의 오차가 커져서 계산값을 쓰지 않습니다 — 이 계산기도 똑같이 안내해드립니다.</div>
+      </details>
+      <details>
+        <summary>공복이 아니었는데 괜찮나요?</summary>
+        <div class="a">중성지방은 식사에 크게 영향을 받습니다. 식후에 쟀다면 중성지방이 높게 나와 LDL 계산값이 실제보다 낮게 나올 수 있습니다. 정확한 값은 8~12시간 공복 후 검사한 수치로 계산하는 게 좋습니다.</div>
+      </details>
+      <details>
+        <summary>non-HDL 콜레스테롤은 뭔가요?</summary>
+        <div class="a">총콜레스테롤에서 HDL(좋은 콜레스테롤)을 뺀 값으로, '혈관에 나쁜 콜레스테롤 전부'를 뜻합니다. 중성지방이 높아 LDL 계산이 부정확할 때 대신 보는 지표이며, 목표 수치는 보통 LDL 목표보다 30 높게 잡습니다.</div>
+      </details>
+      <details>
+        <summary>LDL이 높게 나왔어요. 당장 약을 먹어야 하나요?</summary>
+        <div class="a">수치 하나만으로 결정하지 않습니다. 나이·혈압·흡연·당뇨·가족력 등 위험요인을 종합해서 의사와 상의해 결정합니다. 다만 LDL 190 이상이면 위험요인과 무관하게 진료가 필요한 수치입니다. 운영자도 LDL 250에서 시작해 지금 관리 중입니다 — 늦은 때는 없습니다.</div>
+      </details>
+    </div>
+
+    <div class="disclaimer">
+      ⚠️ 이 계산기는 교육·참고 목적이며 의학적 진단·처방을 대체하지 않습니다. 프리드왈드 공식은 중성지방 400 mg/dL 이상, 비공복 검사 등에서 오차가 커질 수 있습니다. 정확한 평가와 치료 방침은 반드시 의료기관에서 상담하세요. 입력값은 서버로 전송·저장되지 않고 브라우저 안에서만 계산됩니다.
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg-soft);">
+  <div class="wrap">
+    <div class="cta-box">
+      <h3>LDL과 HDL, 아직 헷갈린다면</h3>
+      <p>나쁜 콜레스테롤과 좋은 콜레스테롤, 검사실 17년차가 쉽게 구별해드립니다.</p>
+      <a class="btn" href="posts/cholesterol-ldl-hdl.html">LDL·HDL 구별법 읽으러 가기</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="index.html"><span class="dot"></span>튼튼혈관연구소</a>
+        <p>심혈관조영실 17년차 방사선사가 운영하는 혈관 건강 정보 미디어입니다. 본 사이트의 정보는 교육 목적이며 의학적 진단을 대체하지 않습니다.</p>
+      </div>
+      <div class="links">
+        <a href="tools.html">혈관 툴</a>
+        <a href="community.html">커뮤니티</a>
+        <a href="about.html">소개</a>
+        <a href="contact.html">문의</a>
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="terms.html">이용약관</a>
+      </div>
+    </div>
+    <div class="copy">© 2026 튼튼혈관연구소 (ttvessel.com). All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+function gradeLDL(v) {
+  if (v < 100) return { g: 0, txt: "적정 (100 미만)" };
+  if (v < 130) return { g: 0, txt: "정상 근접 (100~129)" };
+  if (v < 160) return { g: 1, txt: "경계 (130~159)" };
+  if (v < 190) return { g: 2, txt: "높음 (160~189)" };
+  return { g: 2, txt: "매우 높음 (190 이상)" };
+}
+function badge(g) {
+  if (g === 0) return "<span class='badge g'>적정</span>";
+  if (g === 1) return "<span class='badge y'>경계</span>";
+  return "<span class='badge r'>높음/주의</span>";
+}
+var lastResultText = "";
+
+function calcLDL() {
+  var tc = parseFloat(document.getElementById("tc").value);
+  var hdl = parseFloat(document.getElementById("hdl").value);
+  var tg = parseFloat(document.getElementById("tg").value);
+  var target = parseFloat(document.getElementById("risk").value);
+  var el = document.getElementById("ldlResult");
+
+  function show(cls, html) {
+    el.className = "result show " + cls;
+    el.innerHTML = html;
+    el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  if (isNaN(tc) || isNaN(hdl) || isNaN(tg)) {
+    show("warn", "<b class='level'>숫자 3개가 모두 필요해요</b>총콜레스테롤·HDL·중성지방을 검진표에서 찾아 입력해주세요. 셋 다 있어야 LDL을 계산할 수 있습니다.");
+    return;
+  }
+  if (tc < 50 || tc > 600 || hdl < 10 || hdl > 150 || tg < 20 || tg > 2000 || hdl >= tc) {
+    show("warn", "<b class='level'>입력값을 다시 확인해주세요</b>일반적인 범위를 벗어난 숫자가 있습니다. 단위가 mg/dL인지, 자릿수가 맞는지 확인해주세요. (예: 총콜레스테롤 220 / HDL 50 / 중성지방 150)");
+    return;
+  }
+
+  var nonHDL = Math.round(tc - hdl);
+
+  /* TG 400 이상 → 프리드왈드 계산 불가, non-HDL로 안내 */
+  if (tg >= 400) {
+    var nhTarget = isNaN(target) ? null : target + 30;
+    show("bad",
+      "<b class='level'>중성지방이 " + tg + "으로 너무 높아 LDL을 계산할 수 없어요</b>" +
+      "중성지방 400 이상에서는 프리드왈드 공식의 오차가 커져서, 병원에서도 계산값을 쓰지 않습니다. 대신 <b>non-HDL 콜레스테롤</b>로 볼 수 있어요." +
+      "<div class='item'><span>non-HDL 콜레스테롤 (총콜레스테롤 − HDL) — <b>" + nonHDL + " mg/dL</b></span>" + badge(nonHDL < 160 ? (nonHDL < 130 ? 0 : 1) : 2) + "</div>" +
+      (nhTarget ? "<div class='item'><span>선택하신 위험군의 non-HDL 목표 — <b>" + nhTarget + " 미만</b></span>" + badge(nonHDL < nhTarget ? 0 : 2) + "</div>" : "") +
+      "<p style='margin:10px 0 0;'>그리고 중성지방 500 이상은 췌장염 위험까지 있는 수치입니다. 미루지 말고 내과 진료를 받아보세요. 공복(8~12시간) 상태에서 재검사하면 수치가 달라질 수 있습니다.</p>" +
+      "<a href='posts/cholesterol-ldl-hdl.html'>→ 콜레스테롤 수치 읽는 법 자세히 보기</a>");
+    lastResultText = "[튼튼혈관연구소 LDL 계산기]\n중성지방 " + tg + " → LDL 계산 불가(TG 400↑)\nnon-HDL: " + nonHDL + " mg/dL\nttvessel.com/ldl.html";
+    return;
+  }
+
+  var ldl = Math.round(tc - hdl - tg / 5);
+  var gr = gradeLDL(ldl);
+  var cls = gr.g === 0 ? "good" : (gr.g === 1 ? "warn" : "bad");
+  var colorCls = gr.g === 0 ? "g" : (gr.g === 1 ? "y" : "r");
+
+  /* 게이지: 0~250 스케일에 마커 */
+  var pos = Math.min(Math.max(ldl / 250 * 100, 1), 99);
+
+  var html =
+    "<div class='big-num'>" +
+      "<div class='label'>계산된 LDL 콜레스테롤</div>" +
+      "<div class='val " + colorCls + "'>" + ldl + "<small>mg/dL</small></div>" +
+      "<div class='grade'>" + badge(gr.g) + " <span style='font-size:13.5px;color:var(--gray);'>" + gr.txt + "</span></div>" +
+    "</div>" +
+    "<div class='gauge'><div class='bar'><div class='marker' style='left:calc(" + pos + "% - 2px);'></div></div>" +
+    "<div class='scale'><span>0</span><span>적정 &lt;130</span><span>경계 130~159</span><span>높음 160+</span><span>250</span></div></div>" +
+    "<div class='item'><span>non-HDL 콜레스테롤 — <b>" + nonHDL + " mg/dL</b></span>" + badge(nonHDL < 160 ? (nonHDL < 130 ? 0 : 1) : 2) + "</div>";
+
+  var advice;
+  if (!isNaN(target)) {
+    var ok = ldl < target;
+    html += "<div class='item'><span>선택하신 위험군의 LDL 목표 — <b>" + target + " 미만</b></span>" +
+      (ok ? "<span class='badge g'>목표 달성 👏</span>" : "<span class='badge r'>목표 초과 +" + (ldl - target) + "</span>") + "</div>";
+    advice = ok
+      ? "지금 위험군 기준 목표 안에 들어와 있습니다. 습관을 유지하면서 정기 검진으로 확인해주세요."
+      : "위험군 목표까지 " + (ldl - target) + " 남았습니다. 위험군이 높을수록 목표가 엄격한 이유는, 같은 수치라도 혈관이 받는 부담이 다르기 때문입니다. 검진 결과지를 들고 진료 시 상담해보세요.";
+  } else {
+    advice = gr.g === 0
+      ? "적정 범위입니다. 지금 습관이 최고의 예방약이에요. 1년에 한 번 검진으로 확인해주세요."
+      : (gr.g === 1
+        ? "경계 구간입니다. 아직 약보다 습관으로 되돌릴 수 있는 시기 — 포화지방 줄이기, 주 3회 걷기부터 시작해보세요."
+        : "주의가 필요한 수치입니다. 당뇨·가족력 등에 따라 개인별 목표는 더 낮아질 수 있으니 진료 상담을 권합니다. 운영자도 LDL 250에서 시작해 관리 중입니다 — 같이 해봐요.");
+    if (tg >= 200) advice += " 참고로 중성지방이 200 이상이라 계산값의 오차가 다소 있을 수 있습니다. 공복 재검사 수치로 다시 계산해보세요.";
+  }
+
+  html += "<p style='margin:10px 0 0;'>" + advice + "</p>" +
+    "<div class='result-actions'>" +
+    "<button class='btn sub' onclick='copyResult(this)'>결과 복사하기</button>" +
+    "<a class='btn' href='tools.html'>다른 혈관 툴 보기</a></div>" +
+    "<a href='posts/cholesterol-ldl-hdl.html' style='display:inline-block;margin-top:10px;'>→ LDL·HDL 구별법 자세히 보기</a>";
+
+  show(cls, html);
+  lastResultText = "[튼튼혈관연구소 LDL 계산기]\n총콜레스테롤 " + tc + " / HDL " + hdl + " / 중성지방 " + tg +
+    "\n계산된 LDL: " + ldl + " mg/dL (" + gr.txt + ")\nnon-HDL: " + nonHDL + " mg/dL" +
+    (!isNaN(target) ? "\n내 목표: LDL " + target + " 미만" : "") + "\nttvessel.com/ldl.html";
+}
+
+function copyResult(btn) {
+  if (!lastResultText) return;
+  function done() { btn.textContent = "복사 완료 ✓"; setTimeout(function(){ btn.textContent = "결과 복사하기"; }, 2000); }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(lastResultText).then(done);
+  } else {
+    var ta = document.createElement("textarea");
+    ta.value = lastResultText; document.body.appendChild(ta); ta.select();
+    document.execCommand("copy"); document.body.removeChild(ta); done();
+  }
+}
+</script>
+</body>
+</html>
