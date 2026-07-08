@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#E8503A">
+<title>심방세동 뇌졸중 위험도 계산기 (CHA₂DS₂-VASc) | 튼튼혈관연구소</title>
+<meta name="description" content="심방세동이 있다면 뇌졸중 위험이 최대 5배. 전 세계 병원에서 쓰는 CHA₂DS₂-VASc 점수로 내 뇌졸중 위험도를 30초 만에 확인하세요. 무료 자가계산기.">
+<meta name="author" content="튼튼혈관연구소">
+<link rel="canonical" href="https://www.ttvessel.com/afib.html">
+<meta property="og:title" content="심방세동 뇌졸중 위험도 계산기 | 튼튼혈관연구소">
+<meta property="og:description" content="체크 몇 개로 CHA₂DS₂-VASc 점수와 연간 뇌졸중 위험도를 바로 계산해드립니다.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"심방세동 뇌졸중 위험도 계산기 (CHA₂DS₂-VASc)",
+  "url":"https://www.ttvessel.com/afib.html",
+  "applicationCategory":"HealthApplication",
+  "operatingSystem":"Any",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},
+  "publisher":{"@type":"Organization","name":"튼튼혈관연구소"}
+}
+</script>
+<style>
+/* ---- 계산기 공통 (LDL 계산기와 동일 톤) ---- */
+.calc-hero { padding: 40px 0 32px; }
+.calc-hero h1 { font-size: 30px; }
+@media (max-width: 720px){ .calc-hero h1 { font-size: 24px; } .calc-hero { padding: 30px 0 24px; } }
+.tool .field-help { font-size: 12.5px; color: #9aa3ac; margin-top: 4px; line-height: 1.4; }
+
+/* 성별 세그먼트 */
+.seg { display:flex; gap:0; border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+.seg label { flex:1; margin:0; }
+.seg input { position:absolute; opacity:0; pointer-events:none; }
+.seg span { display:block; text-align:center; padding:13px 0; font-size:15px; font-weight:600;
+  color:var(--gray); background:#fff; cursor:pointer; transition: background .15s, color .15s; }
+.seg label + label span { border-left:1px solid var(--line); }
+.seg input:checked + span { background:var(--coral); color:#fff; }
+
+/* 점수 체크리스트 */
+.score-checks { display:grid; gap:10px; margin: 6px 0 18px; }
+.score-checks label { display:flex; align-items:flex-start; gap:12px; cursor:pointer;
+  border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin:0;
+  font-weight:500; font-size:15px; transition: border-color .15s, background .15s; }
+.score-checks label:has(input:checked) { border-color:var(--coral); background:#fff7f5; }
+.score-checks input { width:19px; height:19px; accent-color:var(--coral); margin-top:2px; flex-shrink:0; }
+.score-checks .t b { display:block; font-weight:700; color:var(--ink); font-size:15px; }
+.score-checks .t small { color:#8a949d; font-size:13px; line-height:1.5; display:block; margin-top:2px; }
+.score-checks .pt { margin-left:auto; flex-shrink:0; font-size:12px; font-weight:800;
+  background:#fdeae6; color:var(--coral-dark); border-radius:999px; padding:3px 10px; align-self:center; }
+
+/* 큰 결과 숫자 */
+.big-num { text-align:center; padding:10px 0 14px; }
+.big-num .label { font-size:13px; font-weight:700; color:var(--gray); letter-spacing:.02em; }
+.big-num .val { font-size:52px; font-weight:800; letter-spacing:-.03em; line-height:1.1; }
+.big-num .val small { font-size:18px; font-weight:600; color:var(--gray); margin-left:4px; }
+.big-num .val.g { color:#279067; } .big-num .val.y { color:#a97c0a; } .big-num .val.r { color:var(--coral-dark); }
+.big-num .grade { margin-top:4px; }
+
+/* 게이지 */
+.gauge { margin:14px 0 6px; }
+.gauge .bar { position:relative; height:12px; border-radius:999px; overflow:hidden;
+  background: linear-gradient(90deg,#46c98b 0%,#46c98b 22%,#f2c94c 22%,#f2c94c 40%,#E8503A 40%); }
+.gauge .marker { position:absolute; top:-5px; width:4px; height:22px; background:var(--ink); border-radius:2px; box-shadow:0 0 0 2px #fff; }
+.gauge .scale { display:flex; justify-content:space-between; font-size:11.5px; color:#9aa3ac; margin-top:8px; }
+
+.result .badge { white-space:nowrap; flex-shrink:0; }
+.result-actions { display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; }
+.result-actions .btn { font-size:14px; padding:10px 20px; white-space:nowrap; }
+.btn.sub { background:#fff; color:var(--ink); border:1.5px solid var(--line); }
+.btn.sub:hover { background:var(--bg-soft); }
+
+@media (max-width: 560px) {
+  .tool { padding:20px 16px; }
+  .tool .row { flex-direction:column; gap:14px; }
+  .tool .field { min-width:100%; }
+  .tool input[type="number"] { padding:15px 14px; font-size:17px; }
+  .tool button.btn { width:100%; padding:15px; font-size:16px; }
+  .result-actions .btn { flex:1; text-align:center; }
+  .big-num .val { font-size:44px; }
+}
+
+/* FAQ */
+.faq { margin-top:8px; }
+.faq details { border:1px solid var(--line); border-radius:12px; background:#fff; margin-bottom:10px; }
+.faq summary { cursor:pointer; font-weight:700; font-size:15px; padding:15px 18px; list-style:none; position:relative; }
+.faq summary::after { content:"+"; position:absolute; right:18px; color:var(--coral); font-size:18px; }
+.faq details[open] summary::after { content:"–"; }
+.faq .a { padding:0 18px 15px; font-size:14.5px; color:#353c44; line-height:1.7; }
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><img class="logo" src="assets/logo.svg" alt="">튼튼혈관연구소</a>
+    <button class="menu-toggle" aria-label="메뉴" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    <nav class="menu" id="menu">
+      <a href="index.html">Home</a>
+      <a href="index.html#library">Library</a>
+      <a href="tools.html">tt_vessel_toolbox</a>
+      <a href="community.html">Community</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero calc-hero">
+  <div class="wrap">
+    <span class="tag">혈관 툴 · 심방세동 뇌졸중 위험도</span>
+    <h1>심방세동이 있다면,<br>내 <span class="hl">뇌졸중 위험</span>부터 확인하세요</h1>
+    <p>심방세동은 뇌졸중 위험을 최대 5배 높입니다. 전 세계 순환기내과에서 항응고 치료를 결정할 때 쓰는 CHA₂DS₂-VASc 점수를 그대로 계산해드립니다. 입력한 내용은 어디에도 저장되지 않습니다.</p>
+  </div>
+</div>
+
+<main>
+<section>
+  <div class="wrap" style="max-width:760px;">
+
+    <div class="tool" id="afibcalc">
+      <h2>🫀 CHA₂DS₂-VASc 점수 계산기</h2>
+      <p class="desc">심방세동을 진단받은 분을 위한 도구입니다. 나이·성별을 넣고, 해당하는 항목을 모두 체크해주세요.</p>
+      <div class="row">
+        <div class="field">
+          <label for="age">나이 (만 나이)</label>
+          <input type="number" id="age" inputmode="numeric" min="18" max="120" placeholder="예: 68">
+          <div class="field-help">65~74세는 1점, 75세 이상은 2점으로 자동 계산됩니다</div>
+        </div>
+        <div class="field">
+          <label>성별</label>
+          <div class="seg" id="sexSeg">
+            <label><input type="radio" name="sex" value="m"><span>남성</span></label>
+            <label><input type="radio" name="sex" value="f"><span>여성 (+1점)</span></label>
+          </div>
+        </div>
+      </div>
+      <div class="score-checks" id="afChecks">
+        <label><input type="checkbox" value="1" data-name="심부전">
+          <span class="t"><b>심부전 (C)</b><small>심부전 진단을 받았거나, 심장 수축 기능이 떨어졌다는 말을 들었다</small></span>
+          <span class="pt">+1</span></label>
+        <label><input type="checkbox" value="1" data-name="고혈압">
+          <span class="t"><b>고혈압 (H)</b><small>고혈압이 있거나 혈압약을 복용 중이다</small></span>
+          <span class="pt">+1</span></label>
+        <label><input type="checkbox" value="1" data-name="당뇨병">
+          <span class="t"><b>당뇨병 (D)</b><small>당뇨병이 있거나 혈당강하제·인슐린을 사용 중이다</small></span>
+          <span class="pt">+1</span></label>
+        <label><input type="checkbox" value="2" data-name="뇌졸중·TIA 병력">
+          <span class="t"><b>뇌졸중·일과성허혈발작 병력 (S)</b><small>뇌졸중, 미니뇌졸중(TIA), 혈전색전증을 겪은 적이 있다</small></span>
+          <span class="pt">+2</span></label>
+        <label><input type="checkbox" value="1" data-name="혈관질환">
+          <span class="t"><b>혈관질환 (V)</b><small>심근경색 병력, 말초동맥질환, 대동맥 죽상반 중 하나라도 있다</small></span>
+          <span class="pt">+1</span></label>
+      </div>
+      <button class="btn" onclick="calcAF()">위험도 계산하기</button>
+      <div class="result" id="afResult"></div>
+    </div>
+
+    <div class="ad-slot">광고 영역 (승인 후 표시)</div>
+
+    <div class="faq">
+      <h2 style="font-size:21px; margin:28px 0 14px;">자주 묻는 질문</h2>
+      <details>
+        <summary>CHA₂DS₂-VASc가 뭔가요?</summary>
+        <div class="a">심방세동 환자의 뇌졸중 위험을 점수화하는 국제 표준 도구입니다. 심부전(C)·고혈압(H)·나이(A)·당뇨(D)·뇌졸중 병력(S)·혈관질환(V)·성별(Sc)의 앞글자를 딴 이름으로, 유럽·미국·한국 진료지침 모두 이 점수로 항응고제(피 묽게 하는 약) 치료 여부를 결정합니다.</div>
+      </details>
+      <details>
+        <summary>심방세동이 없어도 이 점수가 의미 있나요?</summary>
+        <div class="a">이 점수는 심방세동 환자의 뇌졸중 위험을 예측하도록 만들어진 도구라, 심방세동이 없는 분에게는 그대로 적용되지 않습니다. 다만 가슴 두근거림·불규칙한 맥박이 자주 느껴진다면 심전도 검사를 먼저 받아보세요. 심방세동은 자각 증상 없이 지나가는 경우도 많습니다.</div>
+      </details>
+      <details>
+        <summary>점수가 높으면 무조건 약을 먹어야 하나요?</summary>
+        <div class="a">점수는 치료 결정의 출발점이지 전부가 아닙니다. 출혈 위험(HAS-BLED 점수), 신장 기능, 다른 복용 약물까지 종합해서 의사가 결정합니다. 일반적으로 남성 2점·여성 3점 이상이면 항응고 치료가 권고되지만, 최종 판단은 반드시 주치의와 하세요.</div>
+      </details>
+      <details>
+        <summary>조영실에서는 심방세동 환자를 어떻게 만나나요?</summary>
+        <div class="a">심방세동 환자분들이 전극도자절제술(시술로 부정맥의 원인 부위를 지지는 치료)이나 좌심방이폐색술을 받으러 오십니다. 안타까운 건, 뇌졸중이 먼저 오고 나서야 심방세동을 알게 되는 분들이 적지 않다는 것 — 그래서 이 계산기를 만들었습니다.</div>
+      </details>
+    </div>
+
+    <div class="cafe-cta">
+      <span class="ci">☕</span>
+      <span class="tx"><b>내 점수, 다른 사람들은 어떻게 관리할까?</b>
+      <span>심방세동·항응고제 경험담과 질문이 모이는 곳 — 튼튼혈관연구소 네이버 카페에서 같이 이야기해요.</span></span>
+      <a class="btn naver" href="https://cafe.naver.com/cardiovascularlab" target="_blank" rel="noopener">카페에서 같이 관리하기</a>
+    </div>
+
+    <div class="disclaimer">
+      ⚠️ 이 계산기는 교육·참고 목적이며 의학적 진단·처방을 대체하지 않습니다. 연간 뇌졸중 위험도는 대규모 연구의 평균값으로, 개인의 실제 위험과 다를 수 있습니다. 항응고제 시작·중단은 반드시 의사와 상의하세요. 입력값은 서버로 전송·저장되지 않고 브라우저 안에서만 계산됩니다.
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg-soft);">
+  <div class="wrap">
+    <div class="cta-box">
+      <h3>심방세동, 아직 낯설다면</h3>
+      <p>가슴이 두근, 심장이 제멋대로? 조영실 17년차가 쉽게 풀어드립니다.</p>
+      <a class="btn" href="posts/atrial-fibrillation.html">심방세동 이야기 읽으러 가기</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="index.html"><img class="logo" src="assets/logo.svg" alt="">튼튼혈관연구소</a>
+        <p>심혈관조영실 17년차 방사선사가 운영하는 혈관 건강 정보 미디어입니다. 본 사이트의 정보는 교육 목적이며 의학적 진단을 대체하지 않습니다.</p>
+      </div>
+      <div class="links">
+        <a href="tools.html">tt_vessel_toolbox</a>
+        <a href="community.html">Community</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+    <div class="copy">© 2026 튼튼혈관연구소 (ttvessel.com). All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+/* Friberg 2012 (스웨덴 코호트) 기반 연간 뇌졸중 위험 근사치 */
+var RISK = [0.2, 0.6, 2.2, 3.2, 4.8, 7.2, 9.7, 11.2, 10.8, 12.2];
+var lastResultText = "";
+
+function badge(g) {
+  if (g === 0) return "<span class='badge g'>낮음</span>";
+  if (g === 1) return "<span class='badge y'>중간</span>";
+  return "<span class='badge r'>높음</span>";
+}
+
+function calcAF() {
+  var age = parseFloat(document.getElementById("age").value);
+  var sexEl = document.querySelector("#sexSeg input:checked");
+  var el = document.getElementById("afResult");
+
+  function show(cls, html) {
+    el.className = "result show " + cls;
+    el.innerHTML = html;
+    el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  if (isNaN(age) || age < 18 || age > 120) { show("warn", "<b class='level'>나이를 입력해주세요</b>만 나이를 숫자로 넣어주세요. (예: 68)"); return; }
+  if (!sexEl) { show("warn", "<b class='level'>성별을 선택해주세요</b>여성은 점수 체계상 1점이 추가됩니다."); return; }
+
+  var female = sexEl.value === "f";
+  var parts = [];
+  var score = 0;
+
+  if (age >= 75) { score += 2; parts.push(["나이 " + age + "세 (75세 이상)", 2]); }
+  else if (age >= 65) { score += 1; parts.push(["나이 " + age + "세 (65~74세)", 1]); }
+  else { parts.push(["나이 " + age + "세 (65세 미만)", 0]); }
+
+  if (female) { score += 1; parts.push(["여성", 1]); }
+
+  document.querySelectorAll("#afChecks input:checked").forEach(function (b) {
+    var v = parseInt(b.value, 10);
+    score += v;
+    parts.push([b.getAttribute("data-name"), v]);
+  });
+
+  var risk = RISK[Math.min(score, 9)];
+  /* 성별 점수를 뺀 실효 점수로 치료 권고 구간 판단 (지침 방식) */
+  var eff = score - (female ? 1 : 0);
+  var g = eff === 0 ? 0 : (eff === 1 ? 1 : 2);
+  var cls = g === 0 ? "good" : (g === 1 ? "warn" : "bad");
+  var colorCls = g === 0 ? "g" : (g === 1 ? "y" : "r");
+
+  var rows = parts.map(function (p) {
+    return "<div class='item'><span>" + p[0] + "</span><span class='badge " + (p[1] > 0 ? "r" : "g") + "'>" + (p[1] > 0 ? "+" + p[1] : "0") + "점</span></div>";
+  }).join("");
+
+  var advice;
+  if (g === 0) {
+    advice = "현재 점수 기준으로는 뇌졸중 위험이 낮은 편이라, 일반적으로 항응고 치료 없이 경과를 지켜봅니다. 다만 나이가 들거나 고혈압·당뇨가 생기면 점수가 올라가니 1년에 한 번은 다시 확인해주세요.";
+  } else if (g === 1) {
+    advice = "항응고 치료를 '고려'하는 구간입니다. 출혈 위험, 생활 패턴에 따라 판단이 달라지니 순환기내과에서 상담해보세요. 지금이 뇌졸중을 예방할 수 있는 가장 좋은 시점입니다.";
+  } else {
+    advice = "진료지침상 항응고 치료가 권고되는 구간입니다(남성 2점·여성 3점 이상). 조영실에서 뇌졸중이 먼저 오고서야 심방세동을 알게 된 분들을 많이 만났습니다 — 아직 항응고제를 복용하지 않는다면, 미루지 말고 순환기내과 진료를 받아보세요.";
+  }
+
+  var pos = Math.min(Math.max(score / 9 * 100, 1), 99);
+  var html =
+    "<div class='big-num'>" +
+      "<div class='label'>내 CHA₂DS₂-VASc 점수</div>" +
+      "<div class='val " + colorCls + "'>" + score + "<small>점 / 9점</small></div>" +
+      "<div class='grade'>" + badge(g) + " <span style='font-size:13.5px;color:var(--gray);'>연간 뇌졸중 위험 약 " + risk + "%</span></div>" +
+    "</div>" +
+    "<div class='gauge'><div class='bar'><div class='marker' style='left:calc(" + pos + "% - 2px);'></div></div>" +
+    "<div class='scale'><span>0</span><span>낮음</span><span>중간</span><span>높음</span><span>9</span></div></div>" +
+    rows +
+    "<p style='margin:10px 0 0;'>" + advice + "</p>" +
+    "<div class='result-actions'>" +
+    "<button class='btn sub' onclick='copyResult(this)'>결과 복사하기</button>" +
+    "<a class='btn' href='tools.html'>다른 혈관 툴 보기</a></div>" +
+    "<a href='posts/atrial-fibrillation.html' style='display:inline-block;margin-top:10px;'>→ 심방세동이 뇌졸중 위험을 5배 높이는 이유</a>";
+
+  show(cls, html);
+  lastResultText = "[튼튼혈관연구소 심방세동 위험도 계산기]\nCHA₂DS₂-VASc " + score + "점 / 연간 뇌졸중 위험 약 " + risk + "%\n" +
+    parts.filter(function(p){ return p[1] > 0; }).map(function(p){ return "· " + p[0] + " +" + p[1]; }).join("\n") +
+    "\nttvessel.com/afib.html";
+}
+
+function copyResult(btn) {
+  if (!lastResultText) return;
+  function done() { btn.textContent = "복사 완료 ✓"; setTimeout(function(){ btn.textContent = "결과 복사하기"; }, 2000); }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(lastResultText).then(done);
+  } else {
+    var ta = document.createElement("textarea");
+    ta.value = lastResultText; document.body.appendChild(ta); ta.select();
+    document.execCommand("copy"); document.body.removeChild(ta); done();
+  }
+}
+</script>
+</body>
+</html>

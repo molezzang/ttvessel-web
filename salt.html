@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#E8503A">
+<title>오늘 나트륨 계산기 — 한 끼 메뉴로 확인하는 내 소금 섭취량 | 튼튼혈관연구소</title>
+<meta name="description" content="라면, 김치찌개, 국밥… 오늘 먹은 메뉴를 누르기만 하면 나트륨 섭취량이 계산됩니다. WHO 하루 권장량 2,000mg과 비교해서 내 혈압 관리 상태를 확인하세요.">
+<meta name="author" content="튼튼혈관연구소">
+<link rel="canonical" href="https://www.ttvessel.com/salt.html">
+<meta property="og:title" content="오늘 나트륨 계산기 | 튼튼혈관연구소">
+<meta property="og:description" content="오늘 먹은 메뉴만 눌러보세요. 나트륨 총량과 하루 권장량 대비 게이지를 바로 보여드립니다.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"오늘 나트륨 계산기",
+  "url":"https://www.ttvessel.com/salt.html",
+  "applicationCategory":"HealthApplication",
+  "operatingSystem":"Any",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},
+  "publisher":{"@type":"Organization","name":"튼튼혈관연구소"}
+}
+</script>
+<style>
+.calc-hero { padding: 40px 0 32px; }
+.calc-hero h1 { font-size: 30px; }
+@media (max-width: 720px){ .calc-hero h1 { font-size: 24px; } .calc-hero { padding: 30px 0 24px; } }
+
+/* 음식 버튼 그리드 */
+.food-cat { margin-bottom: 16px; }
+.food-cat h3 { font-size: 14px; font-weight: 800; color: var(--gray); letter-spacing: .04em; margin: 0 0 10px; }
+.food-grid { display:flex; flex-wrap:wrap; gap:8px; }
+.food-btn { position:relative; border:1px solid var(--line); background:#fff; border-radius:999px;
+  padding:9px 16px; font-size:14px; font-weight:600; color:var(--ink); cursor:pointer;
+  font-family:inherit; transition: border-color .15s, background .15s, transform .1s; }
+.food-btn:hover { border-color:var(--coral); }
+.food-btn:active { transform: scale(.96); }
+.food-btn small { color:#9aa3ac; font-weight:500; font-size:12px; margin-left:5px; }
+.food-btn.on { border-color:var(--coral); background:#fff7f5; }
+.food-btn .cnt { position:absolute; top:-8px; right:-6px; min-width:20px; height:20px; border-radius:999px;
+  background:var(--coral); color:#fff; font-size:11.5px; font-weight:800; display:flex; align-items:center;
+  justify-content:center; padding:0 5px; box-shadow:0 0 0 2px #fff; }
+
+/* 라이브 합계 바 */
+.salt-live { position:sticky; bottom:12px; z-index:5; margin-top:18px;
+  background:var(--ink); color:#fff; border-radius:14px; padding:14px 18px; box-shadow:0 8px 30px rgba(20,24,29,.25); }
+.salt-live .top { display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap; }
+.salt-live .sum { font-size:24px; font-weight:800; letter-spacing:-.02em; }
+.salt-live .sum small { font-size:13px; font-weight:600; color:rgba(255,255,255,.6); margin-left:3px; }
+.salt-live .pct { font-size:13px; font-weight:700; }
+.salt-live .pct.g { color:#6fe3ab; } .salt-live .pct.y { color:#ffd76b; } .salt-live .pct.r { color:#ff8a72; }
+.salt-live .track { height:10px; border-radius:999px; background:rgba(255,255,255,.16); overflow:hidden; margin-top:10px; }
+.salt-live .fill { height:100%; border-radius:999px; background:#46c98b; width:0%; transition: width .3s ease, background .3s ease; }
+.salt-live .lim { display:flex; justify-content:space-between; font-size:11px; color:rgba(255,255,255,.5); margin-top:6px; }
+
+/* 선택 목록 */
+.picked { margin-top:14px; }
+.picked .pi { display:flex; justify-content:space-between; align-items:center; gap:10px;
+  padding:8px 0; border-bottom:1px dashed var(--line); font-size:14.5px; }
+.picked .pi:last-of-type { border-bottom:0; }
+.picked .pi b { font-weight:700; }
+.picked .pi .mg { color:var(--gray); font-size:13px; white-space:nowrap; }
+.picked .rm { border:0; background:var(--bg-soft); color:var(--gray); border-radius:999px;
+  width:26px; height:26px; font-size:15px; cursor:pointer; line-height:1; flex-shrink:0; font-family:inherit; }
+.picked .rm:hover { background:#fdeae6; color:var(--coral-dark); }
+
+.result-actions { display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; }
+.result-actions .btn { font-size:14px; padding:10px 20px; white-space:nowrap; }
+.btn.sub { background:#fff; color:var(--ink); border:1.5px solid var(--line); }
+.btn.sub:hover { background:var(--bg-soft); }
+
+@media (max-width: 560px) {
+  .tool { padding:20px 16px; }
+  .tool button.btn.main { width:100%; padding:15px; font-size:16px; }
+  .result-actions .btn { flex:1; text-align:center; }
+}
+
+.faq { margin-top:8px; }
+.faq details { border:1px solid var(--line); border-radius:12px; background:#fff; margin-bottom:10px; }
+.faq summary { cursor:pointer; font-weight:700; font-size:15px; padding:15px 18px; list-style:none; position:relative; }
+.faq summary::after { content:"+"; position:absolute; right:18px; color:var(--coral); font-size:18px; }
+.faq details[open] summary::after { content:"–"; }
+.faq .a { padding:0 18px 15px; font-size:14.5px; color:#353c44; line-height:1.7; }
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><img class="logo" src="assets/logo.svg" alt="">튼튼혈관연구소</a>
+    <button class="menu-toggle" aria-label="메뉴" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    <nav class="menu" id="menu">
+      <a href="index.html">Home</a>
+      <a href="index.html#library">Library</a>
+      <a href="tools.html">tt_vessel_toolbox</a>
+      <a href="community.html">Community</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero calc-hero">
+  <div class="wrap">
+    <span class="tag">혈관 툴 · 나트륨 계산기</span>
+    <h1>오늘 먹은 메뉴,<br><span class="hl">소금</span>은 얼마나 들었을까요?</h1>
+    <p>한국인의 하루 나트륨 섭취는 권장량의 1.5배가 넘습니다. 혈압이 걱정된다면 첫걸음은 '내가 얼마나 먹는지 아는 것' — 오늘 먹은 메뉴를 누르기만 하면 바로 계산됩니다. 입력값은 어디에도 저장되지 않습니다.</p>
+  </div>
+</div>
+
+<main>
+<section>
+  <div class="wrap" style="max-width:760px;">
+
+    <div class="tool" id="saltcalc">
+      <h2>🧂 오늘 먹은 메뉴를 눌러보세요</h2>
+      <p class="desc">같은 메뉴를 두 번 먹었다면 두 번 누르면 됩니다. 수치는 식품의약품안전처 영양성분 DB 기반 1인분 평균값(근사치)입니다.</p>
+
+      <div id="foodArea"></div>
+
+      <div class="salt-live" id="saltLive" aria-live="polite">
+        <div class="top">
+          <span class="sum"><span id="liveSum">0</span><small>mg</small></span>
+          <span class="pct g" id="livePct">하루 권장량(2,000mg)의 0%</span>
+        </div>
+        <div class="track"><div class="fill" id="liveFill"></div></div>
+        <div class="lim"><span>0</span><span>권장 2,000mg</span><span>4,000mg+</span></div>
+      </div>
+
+      <div class="picked" id="pickedList"></div>
+
+      <button class="btn main" style="margin-top:16px;" onclick="saltReport()">결과 해석 보기</button>
+      <div class="result" id="saltResult"></div>
+    </div>
+
+    <div class="ad-slot">광고 영역 (승인 후 표시)</div>
+
+    <div class="faq">
+      <h2 style="font-size:21px; margin:28px 0 14px;">자주 묻는 질문</h2>
+      <details>
+        <summary>나트륨과 소금은 뭐가 다른가요?</summary>
+        <div class="a">소금(NaCl)의 약 40%가 나트륨입니다. 나트륨 2,000mg = 소금 약 5g(티스푼 1개)입니다. 식품 라벨에는 보통 '나트륨'으로 표기되니, 이 계산기도 나트륨 기준으로 계산합니다.</div>
+      </details>
+      <details>
+        <summary>나트륨이 혈압을 올리는 원리가 뭔가요?</summary>
+        <div class="a">나트륨이 많아지면 몸은 농도를 맞추려 물을 붙잡아 둡니다. 혈관 속 수분량이 늘면 혈관 벽이 받는 압력, 즉 혈압이 올라갑니다. 짜게 먹은 다음 날 얼굴이 붓고 몸이 무거운 게 바로 그 신호입니다.</div>
+      </details>
+      <details>
+        <summary>국물만 남겨도 효과가 있나요?</summary>
+        <div class="a">큽니다. 찌개·탕·면 요리 나트륨의 절반 이상이 국물에 있습니다. 라면 국물을 남기면 나트륨을 약 30~40% 줄일 수 있고, 국그릇을 작은 것으로 바꾸는 것만으로도 효과가 있습니다. 조영실에서 늘 드리는 첫 번째 처방이 "국물 반만 드세요"입니다.</div>
+      </details>
+      <details>
+        <summary>심부전이 있으면 기준이 더 엄격한가요?</summary>
+        <div class="a">네. 심부전 환자는 나트륨과 수분 모두 더 엄격하게 관리합니다. 보통 나트륨 2,000mg 미만에 수분 제한(하루 1.5~2L)이 함께 처방되는 경우가 많습니다. 정확한 목표는 주치의가 심장 기능에 맞춰 정하니 진료 시 확인하세요.</div>
+      </details>
+    </div>
+
+    <div class="cafe-cta">
+      <span class="ci">☕</span>
+      <span class="tx"><b>저염식, 혼자 하면 3일을 못 갑니다</b>
+      <span>저염 레시피, 외식 메뉴 고르는 법, 식단 인증 — 튼튼혈관연구소 네이버 카페에서 같이해요.</span></span>
+      <a class="btn naver" href="https://cafe.naver.com/cardiovascularlab" target="_blank" rel="noopener">카페에서 같이 저염하기</a>
+    </div>
+
+    <div class="disclaimer">
+      ⚠️ 이 계산기는 교육·참고 목적이며, 표시된 나트륨 수치는 1인분 평균 근사치로 실제 조리법·양에 따라 크게 달라질 수 있습니다. 고혈압·심부전·신장질환이 있다면 개인별 나트륨 목표를 의료진과 상의하세요. 입력값은 서버로 전송·저장되지 않습니다.
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg-soft);">
+  <div class="wrap">
+    <div class="cta-box">
+      <h3>혈압, 지금 어느 단계인지 아세요?</h3>
+      <p>나트륨 관리의 목표는 결국 혈압입니다. 30초 만에 확인해보세요.</p>
+      <a class="btn" href="tools.html#bp">혈압 단계 판정기 써보기</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="index.html"><img class="logo" src="assets/logo.svg" alt="">튼튼혈관연구소</a>
+        <p>심혈관조영실 17년차 방사선사가 운영하는 혈관 건강 정보 미디어입니다. 본 사이트의 정보는 교육 목적이며 의학적 진단을 대체하지 않습니다.</p>
+      </div>
+      <div class="links">
+        <a href="tools.html">tt_vessel_toolbox</a>
+        <a href="community.html">Community</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+    <div class="copy">© 2026 튼튼혈관연구소 (ttvessel.com). All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+/* 식약처 영양성분 DB 기반 1인분 평균 근사치 (mg) */
+var FOODS = {
+  "면 · 분식": [
+    ["라면 (국물 포함)", 1750], ["짬뽕", 4000], ["짜장면", 2400], ["칼국수", 2900],
+    ["냉면", 1800], ["떡볶이 1인분", 1300], ["김밥 1줄", 900], ["삼각김밥", 500]
+  ],
+  "찌개 · 국물": [
+    ["김치찌개", 1900], ["된장찌개", 1900], ["부대찌개", 2600], ["순두부찌개", 1700],
+    ["국밥·설렁탕 (간 맞춘 것)", 1600], ["어묵탕·오뎅국물", 1400], ["미역국", 800]
+  ],
+  "반찬 · 곁들임": [
+    ["배추김치 한 접시", 400], ["젓갈 한 젓가락", 300], ["단무지·장아찌", 200],
+    ["햄·소시지 2줄", 500], ["멸치볶음 등 밑반찬", 300]
+  ],
+  "외식 · 간편식": [
+    ["치킨 반 마리", 1400], ["피자 2조각", 1200], ["햄버거 세트", 1300],
+    ["편의점 도시락", 1300], ["카레라이스", 1000], ["감자칩 1봉", 400]
+  ]
+};
+var GOAL = 2000, MAXBAR = 4000;
+var picked = {};   /* name → { mg, cnt } */
+var lastResultText = "";
+
+/* 음식 버튼 렌더 */
+(function () {
+  var area = document.getElementById("foodArea");
+  Object.keys(FOODS).forEach(function (cat) {
+    var div = document.createElement("div");
+    div.className = "food-cat";
+    var h = document.createElement("h3"); h.textContent = cat; div.appendChild(h);
+    var grid = document.createElement("div"); grid.className = "food-grid";
+    FOODS[cat].forEach(function (f) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "food-btn";
+      b.setAttribute("data-name", f[0]);
+      b.innerHTML = f[0] + "<small>" + f[1].toLocaleString() + "mg</small>";
+      b.onclick = function () { addFood(f[0], f[1], b); };
+      grid.appendChild(b);
+    });
+    div.appendChild(grid);
+    area.appendChild(div);
+  });
+})();
+
+function addFood(name, mg, btn) {
+  if (!picked[name]) picked[name] = { mg: mg, cnt: 0, btn: btn };
+  picked[name].cnt++;
+  render();
+}
+function removeFood(name) {
+  if (!picked[name]) return;
+  picked[name].cnt--;
+  if (picked[name].cnt <= 0) delete picked[name];
+  render();
+}
+
+function total() {
+  var t = 0;
+  Object.keys(picked).forEach(function (n) { t += picked[n].mg * picked[n].cnt; });
+  return t;
+}
+
+function render() {
+  /* 버튼 카운트 배지 */
+  document.querySelectorAll(".food-btn").forEach(function (b) {
+    var item = picked[b.getAttribute("data-name")];
+    b.classList.toggle("on", !!item);
+    var badge = b.querySelector(".cnt");
+    if (item) {
+      if (!badge) { badge = document.createElement("span"); badge.className = "cnt"; b.appendChild(badge); }
+      badge.textContent = "×" + item.cnt;
+    } else if (badge) badge.remove();
+  });
+
+  /* 선택 목록 */
+  var list = document.getElementById("pickedList");
+  var names = Object.keys(picked);
+  list.innerHTML = names.length === 0 ? "" :
+    names.map(function (n) {
+      var it = picked[n];
+      return "<div class='pi'><span><b>" + n + "</b>" + (it.cnt > 1 ? " ×" + it.cnt : "") + "</span>" +
+        "<span class='mg'>" + (it.mg * it.cnt).toLocaleString() + "mg</span>" +
+        "<button class='rm' type='button' aria-label='빼기' onclick=\"removeFood('" + n.replace(/'/g, "\\'") + "')\">−</button></div>";
+    }).join("");
+
+  /* 라이브 게이지 */
+  var t = total();
+  var pct = Math.round(t / GOAL * 100);
+  document.getElementById("liveSum").textContent = t.toLocaleString();
+  var pctEl = document.getElementById("livePct");
+  pctEl.textContent = "하루 권장량(2,000mg)의 " + pct + "%";
+  pctEl.className = "pct " + (t <= GOAL ? "g" : (t <= 3000 ? "y" : "r"));
+  var fill = document.getElementById("liveFill");
+  fill.style.width = Math.min(t / MAXBAR * 100, 100) + "%";
+  fill.style.background = t <= GOAL ? "#46c98b" : (t <= 3000 ? "#f2c94c" : "#E8503A");
+
+  /* 결과 박스가 열려 있으면 최신 수치로 자동 갱신 (스크롤 없이) */
+  var res = document.getElementById("saltResult");
+  if (res.classList.contains("show")) {
+    if (t === 0) { res.className = "result"; res.innerHTML = ""; }
+    else saltReport(false);
+  }
+}
+
+function saltReport(scroll) {
+  if (scroll === undefined) scroll = true;
+  var t = total();
+  var el = document.getElementById("saltResult");
+  function show(cls, html) {
+    el.className = "result show " + cls;
+    el.innerHTML = html;
+    if (scroll) el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+  if (t === 0) { show("warn", "<b class='level'>먼저 오늘 먹은 메뉴를 눌러주세요</b>위의 메뉴 버튼을 누르면 자동으로 합산됩니다. 같은 메뉴는 여러 번 누를 수 있어요."); return; }
+
+  var saltG = (t * 2.54 / 1000).toFixed(1);
+  var pct = Math.round(t / GOAL * 100);
+  var cls, head, advice;
+  if (t <= GOAL) {
+    cls = "good"; head = "훌륭해요 — 권장량 안쪽입니다 👏";
+    advice = "이 정도면 혈관이 좋아할 하루입니다. 다만 여기에 안 잡힌 간식·소스(케첩, 쌈장 등)도 나트륨이 있으니, 지금 페이스를 유지하세요.";
+  } else if (t <= 3000) {
+    cls = "warn"; head = "권장량을 넘었어요 — 국물부터 줄여보세요";
+    advice = "한국인 평균 수준입니다만, 혈압 관리 중이라면 아쉬운 수치입니다. 가장 효과 큰 방법 하나만: 오늘부터 찌개·면 국물을 절반만 드세요. 그것만으로 하루 500~800mg이 줄어듭니다.";
+  } else {
+    cls = "bad"; head = "나트륨 과다 — 혈관이 버거워하는 하루입니다";
+    advice = "이런 날이 반복되면 혈압은 반드시 응답합니다. 조영실에서 만난 고혈압 환자분들의 공통점이 '국물+찌개+젓갈' 조합이었습니다. 내일은 국물 요리를 한 끼로 줄이고, 저녁은 싱겁게 — 물을 충분히 마시고 칼륨이 많은 바나나·토마토도 도움이 됩니다.";
+  }
+
+  show(cls,
+    "<b class='level'>" + head + "</b>" +
+    "<div class='item'><span>오늘 나트륨 합계</span><span class='mg'><b>" + t.toLocaleString() + "mg</b> (권장량의 " + pct + "%)</span></div>" +
+    "<div class='item'><span>소금으로 환산하면</span><span class='mg'><b>약 " + saltG + "g</b> (권장 5g)</span></div>" +
+    "<p style='margin:10px 0 0;'>" + advice + "</p>" +
+    "<div class='result-actions'>" +
+    "<button class='btn sub' onclick='copyResult(this)'>결과 복사하기</button>" +
+    "<a class='btn' href='tools.html#bp'>내 혈압 단계 확인하기</a></div>" +
+    "<a href='posts/heart-healthy-foods.html' style='display:inline-block;margin-top:10px;'>→ 혈관 청소부 음식 vs 혈관 망치는 음식</a>");
+
+  lastResultText = "[튼튼혈관연구소 나트륨 계산기]\n오늘 나트륨: " + t.toLocaleString() + "mg (권장량 2,000mg의 " + pct + "%)\n소금 환산: 약 " + saltG + "g\n" +
+    Object.keys(picked).map(function (n) { return "· " + n + (picked[n].cnt > 1 ? " ×" + picked[n].cnt : ""); }).join("\n") +
+    "\nttvessel.com/salt.html";
+}
+
+function copyResult(btn) {
+  if (!lastResultText) return;
+  function done() { btn.textContent = "복사 완료 ✓"; setTimeout(function(){ btn.textContent = "결과 복사하기"; }, 2000); }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(lastResultText).then(done);
+  } else {
+    var ta = document.createElement("textarea");
+    ta.value = lastResultText; document.body.appendChild(ta); ta.select();
+    document.execCommand("copy"); document.body.removeChild(ta); done();
+  }
+}
+</script>
+</body>
+</html>

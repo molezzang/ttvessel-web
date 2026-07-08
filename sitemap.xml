@@ -3,6 +3,10 @@
   <url><loc>https://www.ttvessel.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://www.ttvessel.com/tools.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.ttvessel.com/ldl.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.ttvessel.com/afib.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.ttvessel.com/medtime.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.ttvessel.com/pulse.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.ttvessel.com/salt.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.ttvessel.com/community.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.ttvessel.com/about.html</loc><priority>0.7</priority></url>
   <url><loc>https://www.ttvessel.com/contact.html</loc><priority>0.5</priority></url>
