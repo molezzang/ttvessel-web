@@ -7,19 +7,19 @@
 <title>LDL 콜레스테롤 계산기 — 검진표에 LDL이 없을 때 | 튼튼혈관연구소</title>
 <meta name="description" content="총콜레스테롤·HDL·중성지방 3가지로 LDL 콜레스테롤을 계산하고, 내 위험군별 목표 수치까지 확인하세요. 프리드왈드 공식 기반 무료 계산기.">
 <meta name="author" content="튼튼혈관연구소">
-<link rel="canonical" href="https://www.ttvessel.com/ldl.html">
+<link rel="canonical" href="https://www.ttvessellab.com/ldl.html">
 <meta property="og:title" content="LDL 콜레스테롤 계산기 | 튼튼혈관연구소">
 <meta property="og:description" content="검진표에 LDL이 안 나와도 괜찮아요. 숫자 3개만 넣으면 LDL과 목표 수치를 바로 계산해드립니다.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.ttvessel.com/ldl.html">
-<meta property="og:image" content="https://molezzang.github.io/ttvessel-web/assets/og-image.png">
+<meta property="og:url" content="https://www.ttvessellab.com/ldl.html">
+<meta property="og:image" content="https://www.ttvessellab.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="튼튼혈관연구소 TT VESSEL LAB">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="LDL 콜레스테롤 계산기 — 검진표에 LDL이 없을 때 | 튼튼혈관연구소">
 <meta name="twitter:description" content="총콜레스테롤·HDL·중성지방 3가지로 LDL 콜레스테롤을 계산하고, 내 위험군별 목표 수치까지 확인하세요. 프리드왈드 공식 기반 무료 계산기.">
-<meta name="twitter:image" content="https://molezzang.github.io/ttvessel-web/assets/og-image.png">
+<meta name="twitter:image" content="https://www.ttvessellab.com/assets/og-image.png">
 <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 <link rel="stylesheet" href="assets/style.css">
 <script type="application/ld+json">
@@ -27,7 +27,7 @@
   "@context":"https://schema.org",
   "@type":"WebApplication",
   "name":"LDL 콜레스테롤 계산기",
-  "url":"https://www.ttvessel.com/ldl.html",
+  "url":"https://www.ttvessellab.com/ldl.html",
   "applicationCategory":"HealthApplication",
   "operatingSystem":"Any",
   "offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},
@@ -225,7 +225,7 @@
         <a href="terms.html">Terms</a>
       </div>
     </div>
-    <div class="copy">© 2026 튼튼혈관연구소 (ttvessel.com). All rights reserved.</div>
+    <div class="copy">© 2026 튼튼혈관연구소 (ttvessellab.com). All rights reserved.</div>
   </div>
 </footer>
 
@@ -278,7 +278,7 @@ function calcLDL() {
       (nhTarget ? "<div class='item'><span>선택하신 위험군의 non-HDL 목표 — <b>" + nhTarget + " 미만</b></span>" + badge(nonHDL < nhTarget ? 0 : 2) + "</div>" : "") +
       "<p style='margin:10px 0 0;'>그리고 중성지방 500 이상은 췌장염 위험까지 있는 수치입니다. 미루지 말고 내과 진료를 받아보세요. 공복(8~12시간) 상태에서 재검사하면 수치가 달라질 수 있습니다.</p>" +
       "<a href='posts/cholesterol-ldl-hdl.html'>→ 콜레스테롤 수치 읽는 법 자세히 보기</a>");
-    lastResultText = "[튼튼혈관연구소 LDL 계산기]\n중성지방 " + tg + " → LDL 계산 불가(TG 400↑)\nnon-HDL: " + nonHDL + " mg/dL\nttvessel.com/ldl.html";
+    lastResultText = "[튼튼혈관연구소 LDL 계산기]\n중성지방 " + tg + " → LDL 계산 불가(TG 400↑)\nnon-HDL: " + nonHDL + " mg/dL\nttvessellab.com/ldl.html";
     return;
   }
 
@@ -326,7 +326,7 @@ function calcLDL() {
   show(cls, html);
   lastResultText = "[튼튼혈관연구소 LDL 계산기]\n총콜레스테롤 " + tc + " / HDL " + hdl + " / 중성지방 " + tg +
     "\n계산된 LDL: " + ldl + " mg/dL (" + gr.txt + ")\nnon-HDL: " + nonHDL + " mg/dL" +
-    (!isNaN(target) ? "\n내 목표: LDL " + target + " 미만" : "") + "\nttvessel.com/ldl.html";
+    (!isNaN(target) ? "\n내 목표: LDL " + target + " 미만" : "") + "\nttvessellab.com/ldl.html";
 }
 
 function copyResult(btn) {

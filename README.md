@@ -84,8 +84,8 @@ ttvessel-web/
 3. (권장) 도메인 구매 후 Pages의 Custom domain에 연결 → 자동 HTTPS
 
 ### B. 도메인 구매 (연 1~2만원)
-- 가비아/후이즈/Cloudflare 등에서 `ttvessel.com` 류 구매
-- 코드 곳곳의 `https://www.ttvessel.com/` 를 실제 도메인으로 일괄 치환
+- 가비아/후이즈/Cloudflare 등에서 `ttvessellab.com` 류 구매
+- 코드 곳곳의 `https://www.ttvessellab.com/` 를 실제 도메인으로 일괄 치환
   (canonical, og, sitemap.xml, robots.txt 안의 주소)
 
 ### C. 대안 호스팅

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.ttvessel.com/sitemap.xml
+Sitemap: https://www.ttvessellab.com/sitemap.xml
