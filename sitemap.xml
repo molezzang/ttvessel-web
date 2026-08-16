@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.ttvessellab.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.ttvessellab.com/archive.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.ttvessellab.com/tools.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.ttvessellab.com/ldl.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.ttvessellab.com/afib.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
@@ -12,24 +13,58 @@
   <url><loc>https://www.ttvessellab.com/contact.html</loc><priority>0.5</priority></url>
   <url><loc>https://www.ttvessellab.com/privacy.html</loc><priority>0.3</priority></url>
   <url><loc>https://www.ttvessellab.com/terms.html</loc><priority>0.3</priority></url>
-  <url><loc>https://www.ttvessellab.com/posts/coronary-angiography.html</loc><priority>0.9</priority></url>
-  <url><loc>https://www.ttvessellab.com/posts/heart-attack-warning.html</loc><priority>0.9</priority></url>
-  <url><loc>https://www.ttvessellab.com/posts/hypertension-basics.html</loc><priority>0.9</priority></url>
-  <url><loc>https://www.ttvessellab.com/posts/cholesterol-ldl-hdl.html</loc><priority>0.9</priority></url>
-  <url><loc>https://www.ttvessellab.com/posts/atrial-fibrillation.html</loc><priority>0.9</priority></url>
-  <url><loc>https://www.ttvessellab.com/posts/stent-aftercare.html</loc><priority>0.9</priority></url>
-  <url><loc>https://www.ttvessellab.com/posts/smoking-blood-vessels.html</loc><priority>0.9</priority></url>
-  <url><loc>https://www.ttvessellab.com/posts/heart-healthy-foods.html</loc><priority>0.9</priority></url>
-  <url><loc>https://www.ttvessellab.com/posts/pci-procedure.html</loc><priority>0.8</priority></url>
-  <url><loc>https://www.ttvessellab.com/posts/ivus-imaging.html</loc><priority>0.8</priority></url>
-  <url><loc>https://www.ttvessellab.com/posts/tevar-guide.html</loc><priority>0.8</priority></url>
-  <url><loc>https://www.ttvessellab.com/posts/evar-guide.html</loc><priority>0.8</priority></url>
-  <url><loc>https://www.ttvessellab.com/posts/carotid-stenting.html</loc><priority>0.8</priority></url>
-  <url><loc>https://www.ttvessellab.com/posts/carotid-stenosis-symptoms.html</loc><priority>0.8</priority></url>
-  <url><loc>https://www.ttvessellab.com/posts/pad-symptoms.html</loc><priority>0.8</priority></url>
-  <url><loc>https://www.ttvessellab.com/posts/peripheral-angioplasty.html</loc><priority>0.8</priority></url>
-  <url><loc>https://www.ttvessellab.com/posts/pacemaker-insertion.html</loc><priority>0.8</priority></url>
-  <url><loc>https://www.ttvessellab.com/posts/ep-study-ablation.html</loc><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/coronary-angiography.html</loc><lastmod>2026-01-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/heart-attack-warning.html</loc><lastmod>2026-01-15</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/angina-types.html</loc><lastmod>2026-02-03</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/stemi-nstemi.html</loc><lastmod>2026-02-10</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/pci-procedure.html</loc><lastmod>2026-08-04</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/ivus-imaging.html</loc><lastmod>2026-08-05</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/ffr-measurement.html</loc><lastmod>2026-02-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/cto-procedure.html</loc><lastmod>2026-02-24</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/radial-vs-femoral.html</loc><lastmod>2026-03-10</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/contrast-media-kidney.html</loc><lastmod>2026-03-03</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/cabg-vs-pci.html</loc><lastmod>2026-03-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/stent-aftercare.html</loc><lastmod>2026-01-27</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/aortic-dissection.html</loc><lastmod>2026-03-24</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/aortic-aneurysm-screening.html</loc><lastmod>2026-03-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/tevar-guide.html</loc><lastmod>2026-08-06</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/evar-guide.html</loc><lastmod>2026-08-07</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/endoleak-followup.html</loc><lastmod>2026-04-14</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/tavi-guide.html</loc><lastmod>2026-04-07</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/blood-pressure-arm-difference.html</loc><lastmod>2026-04-21</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/carotid-stenosis-symptoms.html</loc><lastmod>2026-08-11</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/carotid-ultrasound.html</loc><lastmod>2026-04-28</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/carotid-stenting.html</loc><lastmod>2026-08-08</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/carotid-endarterectomy.html</loc><lastmod>2026-05-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/vertebral-artery.html</loc><lastmod>2026-05-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/stroke-fast.html</loc><lastmod>2026-05-05</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/pad-symptoms.html</loc><lastmod>2026-08-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/abi-test.html</loc><lastmod>2026-05-26</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/peripheral-angioplasty.html</loc><lastmod>2026-08-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/acute-limb-ischemia.html</loc><lastmod>2026-06-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/diabetic-foot.html</loc><lastmod>2026-06-02</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/varicose-veins.html</loc><lastmod>2026-06-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/dvt-basics.html</loc><lastmod>2026-06-16</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/atrial-fibrillation.html</loc><lastmod>2026-01-24</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/svt-explained.html</loc><lastmod>2026-07-14</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/pvc-premature-beats.html</loc><lastmod>2026-07-21</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/syncope-workup.html</loc><lastmod>2026-08-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/holter-monitoring.html</loc><lastmod>2026-07-28</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/ep-study-ablation.html</loc><lastmod>2026-08-16</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/pacemaker-insertion.html</loc><lastmod>2026-08-14</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/icd-guide.html</loc><lastmod>2026-06-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/crt-guide.html</loc><lastmod>2026-07-07</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/anticoagulant-guide.html</loc><lastmod>2026-07-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/ecg-basics.html</loc><lastmod>2026-08-03</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/echocardiography-basics.html</loc><lastmod>2026-07-02</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/stress-test.html</loc><lastmod>2026-07-16</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/calcium-score-ct.html</loc><lastmod>2026-07-09</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/heart-failure-basics.html</loc><lastmod>2026-07-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/cardiac-rehabilitation.html</loc><lastmod>2026-07-25</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/hypertension-basics.html</loc><lastmod>2026-01-18</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/cholesterol-ldl-hdl.html</loc><lastmod>2026-01-21</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/smoking-blood-vessels.html</loc><lastmod>2026-01-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/posts/heart-healthy-foods.html</loc><lastmod>2026-02-02</lastmod><priority>0.8</priority></url>
   <url><loc>https://www.ttvessellab.com/tools/chest-pain-test.html</loc><priority>0.8</priority></url>
   <url><loc>https://www.ttvessellab.com/tools/warfarin-guide.html</loc><priority>0.8</priority></url>
   <url><loc>https://www.ttvessellab.com/tools/pacemaker-safety-guide.html</loc><priority>0.8</priority></url>
