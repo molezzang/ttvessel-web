@@ -40,36 +40,50 @@
 
 <div class="page">
   <h1>문의하기</h1>
-  <p>콘텐츠 주제 제안, 정정 요청, 협업·제휴 문의 등 무엇이든 환영합니다. 아래 양식을 작성하시거나 이메일로 직접 연락 주세요. 보통 2~3일 이내에 답변드립니다.</p>
+  <p>콘텐츠 주제 제안, 정정 요청, 협업·제휴 문의 등 무엇이든 환영합니다. 아래 채널로 편하게 연락 주세요. 보통 2~3일 이내에 답변드립니다.</p>
 
   <div class="callout">
     <b>※ 개별 의료 상담은 어렵습니다.</b> 증상·진단·치료에 대한 질문은 정확한 답변을 드릴 수 없으며, 반드시 가까운 의료기관에서 전문의와 상담하시기 바랍니다.
   </div>
 
-  <h2>이메일</h2>
-  <p><a href="mailto:molezzang@gmail.com">molezzang@gmail.com</a></p>
+  <h2>연락 채널</h2>
+  <div class="contact-list">
+    <a class="contact-item" href="mailto:molezzang@gmail.com">
+      <span class="ci-ico" aria-hidden="true">✉️</span>
+      <span class="ci-tx">
+        <b>이메일</b>
+        <span>molezzang@gmail.com</span>
+      </span>
+      <span class="ci-go">보내기 →</span>
+    </a>
 
-  <h2>SNS</h2>
-  <p>인스타그램 · 스레드 <a href="https://www.instagram.com/tt_vessel_lab" target="_blank" rel="noopener">@tt_vessel_lab</a></p>
+    <a class="contact-item" href="https://cafe.naver.com/cardiovascularlab" target="_blank" rel="noopener">
+      <span class="ci-ico" aria-hidden="true">🌿</span>
+      <span class="ci-tx">
+        <b>네이버 카페</b>
+        <span>튼튼혈관연구소 — 질문과 후기를 나누는 공간</span>
+      </span>
+      <span class="ci-go">바로가기 ↗</span>
+    </a>
 
-  <h2>문의 양식</h2>
-  <!-- 정적 호스팅에서 바로 작동시키려면 Formspree 등 폼 서비스 endpoint로 action을 교체하세요.
-       예: action="https://formspree.io/f/your_id" method="POST" -->
-  <form class="form" action="mailto:molezzang@gmail.com" method="POST" enctype="text/plain">
-    <div>
-      <label for="name">이름</label>
-      <input id="name" name="name" type="text" placeholder="홍길동" required>
-    </div>
-    <div>
-      <label for="email">이메일</label>
-      <input id="email" name="email" type="email" placeholder="you@example.com" required>
-    </div>
-    <div>
-      <label for="msg">문의 내용</label>
-      <textarea id="msg" name="message" rows="6" placeholder="문의하실 내용을 적어주세요." required></textarea>
-    </div>
-    <button class="btn" type="submit">보내기</button>
-  </form>
+    <a class="contact-item" href="https://www.instagram.com/tt_vessel_lab" target="_blank" rel="noopener">
+      <span class="ci-ico" aria-hidden="true">📷</span>
+      <span class="ci-tx">
+        <b>인스타그램</b>
+        <span>@tt_vessel_lab</span>
+      </span>
+      <span class="ci-go">바로가기 ↗</span>
+    </a>
+
+    <a class="contact-item" href="https://www.threads.com/@tt_vessel_lab" target="_blank" rel="noopener">
+      <span class="ci-ico" aria-hidden="true">🧵</span>
+      <span class="ci-tx">
+        <b>스레드</b>
+        <span>@tt_vessel_lab</span>
+      </span>
+      <span class="ci-go">바로가기 ↗</span>
+    </a>
+  </div>
 </div>
 
 <footer class="site">
