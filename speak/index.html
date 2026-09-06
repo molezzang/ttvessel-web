@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPEAK LAB — 카메라로 하는 스피치·자세 피드백 (아나운서·배우·발표·강의·면접)</title>
+<meta name="description" content="카메라 앞에서 연습하면 시선·자세·제스처·목소리·말속도·군말을 자동 분석해 카테고리별로 코칭합니다. 아나운서, 배우, 발표자, 선생님, 면접 준비생용. 녹화 영상은 서버로 전송되지 않습니다.">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="SPEAK LAB — 카메라 스피치 피드백">
+<meta property="og:description" content="아나운서·배우·발표자·선생님·면접, 카테고리에 맞춰 시선·자세·목소리를 분석하고 코칭합니다.">
+<meta property="og:type" content="website">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0d0f14">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SPEAK LAB">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="./"><span class="dot"></span><span>SPEAK LAB<small>CAMERA COACHING</small></span></a>
+    <span class="site-note">녹화 영상은 기기 밖으로 나가지 않습니다</span>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="hero">
+    <span class="tag">CAMERA PRACTICE COACH</span>
+    <h1>카메라 앞에서 연습하고,<br><em>내 시선·자세·목소리</em>를 숫자로 확인하세요</h1>
+    <p>아나운서가 거울과 카메라로 연습하듯이, 녹화한 영상에서 정면 응시 비율·어깨 기울기·몸 흔들림·제스처·성량·억양·말속도·군말을 자동으로 뽑아냅니다. 같은 지표라도 <b>직군에 따라 좋은 기준이 다르기 때문에</b>, 선택한 카테고리 기준으로 채점하고 코멘트합니다.</p>
+  </div>
+
+  <div class="install" id="installTip">
+    <span style="font-size:20px;line-height:1.2">📲</span>
+    <div>
+      <b>폰에서는 홈 화면에 추가해서 쓰세요.</b><br>
+      <span id="installHow"></span>
+    </div>
+    <button class="close" id="installClose" aria-label="닫기">✕</button>
+  </div>
+
+  <div class="steps">
+    <span data-s="1">1 · 카테고리</span>
+    <span data-s="2">2 · 연습 과제</span>
+    <span data-s="3">3 · 녹화</span>
+    <span data-s="4">4 · 피드백</span>
+  </div>
+
+  <!-- STEP 1 -->
+  <section class="step" id="s1">
+    <h2 class="sec">어떤 상황을 연습하시나요?</h2>
+    <p class="sub">카테고리마다 채점 기준과 가중치가 다릅니다. 예를 들어 억양 폭이 넓으면 배우에게는 가점, 뉴스 아나운서에게는 감점이 될 수 있습니다.</p>
+    <div class="cats" id="catList"></div>
+    <div class="row"><button class="btn" id="toStep2" disabled>다음 →</button></div>
+  </section>
+
+  <!-- STEP 2 -->
+  <section class="step" id="s2">
+    <h2 class="sec">연습 과제 선택</h2>
+    <p class="sub">과제를 고르면 화면 아래 프롬프터로 띄워 드립니다. 직접 대본을 붙여넣어도 됩니다.</p>
+    <div class="prompts" id="promptList"></div>
+    <h2 class="sec">대본 / 메모</h2>
+    <p class="sub">프롬프터에 표시할 내용입니다. 비워두면 프롬프터 없이 자유 연습으로 진행합니다.</p>
+    <textarea class="script" id="scriptBox" placeholder="여기에 대본을 붙여넣으세요."></textarea>
+    <div class="row">
+      <button class="btn ghost" id="backTo1">← 이전</button>
+      <button class="btn" id="toStep3">스튜디오로 →</button>
+    </div>
+  </section>
+
+  <!-- STEP 3 -->
+  <section class="step" id="s3">
+    <h2 class="sec" id="studioTitle">스튜디오</h2>
+    <p class="sub">① 카메라 켜기 → ② 3초 기준자세 잡기 → ③ 녹화. 얼굴 전체와 어깨가 화면에 들어오도록 앉아주세요.</p>
+    <div class="studio">
+      <div>
+        <div class="stage" id="stage">
+          <video id="preview" playsinline muted></video>
+          <canvas id="overlay"></canvas>
+          <div class="recdot" id="recDot"><i></i><span id="recTime">00:00</span></div>
+          <div class="tele off" id="tele"><div class="inner" id="teleInner"></div></div>
+          <div class="caption" id="caption"></div>
+          <div class="mtop">
+            <button class="mx" id="btnExit" aria-label="촬영 끝내기">✕</button>
+            <span class="pill mute" id="mEye">–</span>
+            <span class="pill mute" id="mPos">–</span>
+            <span class="pill mute" id="mSway">–</span>
+          </div>
+          <div class="placeholder" id="placeholder">
+            <div style="font-size:34px">🎥</div>
+            <div>카메라를 켜면 여기에 화면이 나옵니다.<br>브라우저가 카메라·마이크 권한을 물어보면 허용해 주세요.</div>
+          </div>
+        </div>
+        <div class="mbar">
+          <div class="mvol"><i id="mVolM"></i></div>
+          <div class="mbtns">
+            <button class="mb" id="mCal">기준자세</button>
+            <button class="mb shoot" id="mShoot" aria-label="녹화"><span></span></button>
+            <button class="mb" id="mSet">설정</button>
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn" id="btnCam">카메라 켜기</button>
+          <button class="btn ghost" id="btnCal" disabled>기준자세 잡기 (3초)</button>
+          <button class="btn rec" id="btnRec" disabled>● 녹화 시작</button>
+          <button class="btn ghost" id="btnStop" disabled>■ 정지 &amp; 분석</button>
+          <button class="btn ghost" id="backTo2">← 과제 변경</button>
+        </div>
+        <div class="notice" id="engineNote">분석 엔진 준비 중…</div>
+      </div>
+
+      <div class="sheet-back" id="sheetBack"></div>
+      <div class="hud">
+        <button class="sheet-handle" id="sheetClose" aria-label="설정 닫기"></button>
+        <button class="btn ghost sm m-only" id="sheetDone" style="width:100%;justify-content:center;margin-bottom:12px">닫기</button>
+        <div class="card">
+          <h4>실시간</h4>
+          <div>성량<div class="meter"><i id="mVol"></i></div></div>
+          <div class="live"><span>정면 응시</span><span class="pill mute" id="lEye">–</span></div>
+          <div class="live"><span>어깨 수평</span><span class="pill mute" id="lPos">–</span></div>
+          <div class="live"><span>몸 흔들림</span><span class="pill mute" id="lSway">–</span></div>
+          <div class="live"><span>군말</span><b id="lFill">0</b></div>
+          <div class="live"><span>인식된 글자</span><b id="lChars">0</b></div>
+        </div>
+        <div class="card">
+          <h4>설정</h4>
+          <label class="chk"><input type="checkbox" id="optPose" checked> 자세·제스처 분석(어깨·손)</label>
+          <label class="chk"><input type="checkbox" id="optStt" checked> 말속도·군말 인식(한국어)</label>
+          <p style="font-size:11.5px;color:var(--tx-mute);margin:2px 0 0;line-height:1.5">받아쓰기는 브라우저(크롬)의 음성인식 기능을 사용합니다. 이 기능을 켜면 <b>말소리</b>가 브라우저 제조사의 인식 서버로 전달될 수 있습니다. 원치 않으면 꺼 주세요 — 나머지 분석은 그대로 동작합니다.</p>
+          <label class="chk"><input type="checkbox" id="optMirror" checked> 좌우 반전 미리보기</label>
+          <label class="chk"><input type="checkbox" id="optLand" checked> 화면에 분석 표시</label>
+          <div style="margin-top:12px">
+            <label class="chk" style="justify-content:space-between"><span>프롬프터 속도</span><b id="teleSpeedV">0</b></label>
+            <input type="range" id="teleSpeed" min="0" max="10" value="0">
+          </div>
+        </div>
+        <div class="card">
+          <h4>이 카테고리의 핵심</h4>
+          <div id="focusList" style="font-size:13px;color:var(--tx-dim)"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 4 -->
+  <section class="step" id="s4">
+    <h2 class="sec">피드백 리포트</h2>
+    <p class="sub" id="reportSub"></p>
+
+    <div class="score-top">
+      <div class="gauge" id="gauge"></div>
+      <div class="verdict">
+        <h3 id="verdictTitle"></h3>
+        <p id="verdictText"></p>
+      </div>
+    </div>
+
+    <h2 class="sec">지표별 점수</h2>
+    <p class="sub">초록 구간이 선택한 카테고리의 목표 범위입니다.</p>
+    <div class="mgrid" id="metricGrid"></div>
+
+    <h2 class="sec">코칭 코멘트</h2>
+    <div class="tips" id="tipList"></div>
+
+    <div class="two-col" style="margin-top:26px">
+      <div>
+        <h2 class="sec" style="margin-top:0">다시 보기</h2>
+        <p class="sub">타임라인의 표시를 누르면 그 순간으로 이동합니다.</p>
+        <video class="playback" id="playback" controls playsinline></video>
+        <div class="row">
+          <a class="btn ghost sm" id="dlVideo" download>영상 저장</a>
+          <button class="btn ghost sm" id="dlReport">리포트 저장(.txt)</button>
+        </div>
+      </div>
+      <div>
+        <h2 class="sec" style="margin-top:0">순간 기록</h2>
+        <div class="tl" id="timeline"></div>
+        <div class="tl-legend">
+          <s style="color:var(--bad)">시선 이탈</s>
+          <s style="color:var(--warn)">군말 / 긴 침묵</s>
+          <s style="color:var(--info)">자세 흔들림</s>
+        </div>
+        <div class="evlist" id="evList"></div>
+      </div>
+    </div>
+
+    <h2 class="sec">받아쓰기</h2>
+    <p class="sub">브라우저 음성인식으로 받아 적은 내용입니다. 말속도·군말 계산에 사용됩니다.</p>
+    <div class="card"><div id="transcript" style="font-size:14px;color:var(--tx-dim);white-space:pre-wrap"></div></div>
+
+    <div class="row">
+      <button class="btn" id="againSame">같은 과제 다시</button>
+      <button class="btn ghost" id="againNew">다른 카테고리</button>
+    </div>
+  </section>
+
+  <div class="hist">
+    <h2 class="sec" style="margin-top:0">연습 기록</h2>
+    <p class="sub">이 브라우저에만 저장됩니다(점수·지표만 저장, 영상은 저장하지 않습니다).</p>
+    <svg class="spark" id="spark" viewBox="0 0 600 46" preserveAspectRatio="none"></svg>
+    <div id="histList"><p class="empty">아직 기록이 없습니다.</p></div>
+    <div class="row"><button class="btn ghost sm" id="clearHist">기록 지우기</button></div>
+  </div>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    SPEAK LAB · 녹화 영상과 대본, 모든 채점 계산은 이 브라우저 안에서만 처리되며 어떤 서버로도 전송되지 않습니다.
+    연습 기록은 이 브라우저의 저장소에만 남습니다.<br>
+    예외는 하나입니다. ‘말속도·군말 인식’을 켜면 브라우저 내장 음성인식이 동작하며, 크롬 등 일부 브라우저는 이때 말소리를 제조사 서버로 보내 처리합니다. 끄면 전송되지 않습니다.<br>
+    측정값은 연습 참고용이며 실제 오디션·면접 결과를 예측하지 않습니다. Chrome / Edge 최신 버전 권장.
+  </div>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
