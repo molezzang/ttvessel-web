@@ -9,6 +9,14 @@
 <meta property="og:title" content="SPEAK LAB — 카메라 스피치 피드백">
 <meta property="og:description" content="아나운서·배우·발표자·선생님·면접, 카테고리에 맞춰 시선·자세·목소리를 분석하고 코칭합니다.">
 <meta property="og:type" content="website">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0d0f14">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SPEAK LAB">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -26,6 +34,15 @@
     <span class="tag">CAMERA PRACTICE COACH</span>
     <h1>카메라 앞에서 연습하고,<br><em>내 시선·자세·목소리</em>를 숫자로 확인하세요</h1>
     <p>아나운서가 거울과 카메라로 연습하듯이, 녹화한 영상에서 정면 응시 비율·어깨 기울기·몸 흔들림·제스처·성량·억양·말속도·군말을 자동으로 뽑아냅니다. 같은 지표라도 <b>직군에 따라 좋은 기준이 다르기 때문에</b>, 선택한 카테고리 기준으로 채점하고 코멘트합니다.</p>
+  </div>
+
+  <div class="install" id="installTip">
+    <span style="font-size:20px;line-height:1.2">📲</span>
+    <div>
+      <b>폰에서는 홈 화면에 추가해서 쓰세요.</b><br>
+      <span id="installHow"></span>
+    </div>
+    <button class="close" id="installClose" aria-label="닫기">✕</button>
   </div>
 
   <div class="steps">
@@ -69,9 +86,23 @@
           <div class="recdot" id="recDot"><i></i><span id="recTime">00:00</span></div>
           <div class="tele off" id="tele"><div class="inner" id="teleInner"></div></div>
           <div class="caption" id="caption"></div>
+          <div class="mtop">
+            <button class="mx" id="btnExit" aria-label="촬영 끝내기">✕</button>
+            <span class="pill mute" id="mEye">–</span>
+            <span class="pill mute" id="mPos">–</span>
+            <span class="pill mute" id="mSway">–</span>
+          </div>
           <div class="placeholder" id="placeholder">
             <div style="font-size:34px">🎥</div>
             <div>카메라를 켜면 여기에 화면이 나옵니다.<br>브라우저가 카메라·마이크 권한을 물어보면 허용해 주세요.</div>
+          </div>
+        </div>
+        <div class="mbar">
+          <div class="mvol"><i id="mVolM"></i></div>
+          <div class="mbtns">
+            <button class="mb" id="mCal">기준자세</button>
+            <button class="mb shoot" id="mShoot" aria-label="녹화"><span></span></button>
+            <button class="mb" id="mSet">설정</button>
           </div>
         </div>
         <div class="row">
@@ -84,7 +115,10 @@
         <div class="notice" id="engineNote">분석 엔진 준비 중…</div>
       </div>
 
+      <div class="sheet-back" id="sheetBack"></div>
       <div class="hud">
+        <button class="sheet-handle" id="sheetClose" aria-label="설정 닫기"></button>
+        <button class="btn ghost sm m-only" id="sheetDone" style="width:100%;justify-content:center;margin-bottom:12px">닫기</button>
         <div class="card">
           <h4>실시간</h4>
           <div>성량<div class="meter"><i id="mVol"></i></div></div>

@@ -659,6 +659,11 @@ const $$ = s => [...document.querySelectorAll(s)];
 const fmtTime = s => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
 const scColor = s => s >= 85 ? 'var(--ok)' : s >= 65 ? 'var(--accent-2)' : s >= 45 ? 'var(--warn)' : 'var(--bad)';
 
+/* 폰인가. 화면 폭과 기기 종류를 같이 본다 (데스크톱 창을 줄인 경우도 폰 취급) */
+const IS_PHONE = matchMedia('(max-width: 880px)').matches || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+const IS_IOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const IS_STANDALONE = window.navigator.standalone === true || matchMedia('(display-mode: standalone)').matches;
+
 const state = {
   cat: null, promptIdx: null, script: '',
   stream: null, audio: null, stt: null, vision: null,
@@ -669,6 +674,9 @@ const state = {
 };
 
 function setStep(n) {
+  state.analyzePaused = n !== 3;
+  if (n !== 3) { document.body.classList.remove('live', 'sheet-open'); releaseWakeLock(); }
+  else if (state.stream) document.body.classList.add('live');
   $$('section.step').forEach(s => s.classList.remove('active'));
   $(`#s${n}`).classList.add('active');
   $$('.steps span').forEach(el => {
@@ -723,7 +731,10 @@ async function startCamera() {
   $('#btnCam').disabled = true;
   try {
     state.stream = await navigator.mediaDevices.getUserMedia({
-      video: { width: { ideal: 1280 }, height: { ideal: 960 }, facingMode: 'user' },
+      // 폰은 세로로 들고 쓰므로 세로 비율로 받는다. 해상도를 낮춰야 발열·끊김이 덜하다.
+      video: IS_PHONE
+        ? { width: { ideal: 720 }, height: { ideal: 1280 }, facingMode: 'user' }
+        : { width: { ideal: 1280 }, height: { ideal: 960 }, facingMode: 'user' },
       // 자동 게인이 켜져 있으면 성량 분석이 뭉개진다
       audio: { echoCancellation: true, noiseSuppression: false, autoGainControl: false },
     });
@@ -739,6 +750,8 @@ async function startCamera() {
   $('#btnCam').textContent = '카메라 켜짐';
   $('#btnCal').disabled = false;
   $('#btnRec').disabled = false;
+  $('#mCal').disabled = false;
+  document.body.classList.add('live');
 
   state.audio = new AudioAnalyzer(state.stream);
   state.audio.start(0);   // t0=0 → 기록은 하지 않고 HUD 미터만 돌린다
@@ -768,8 +781,9 @@ function loopVision() {
     visionRAF = requestAnimationFrame(step);
     if (!v.videoWidth) return;
     if (cv.width !== v.videoWidth) { cv.width = v.videoWidth; cv.height = v.videoHeight; }
+    if (state.analyzePaused) return;
     const now = performance.now();
-    if (now - lastMs < 62) return;          // ~16fps
+    if (now - lastMs < (IS_PHONE ? 100 : 62)) return;   // 폰 10fps / 데스크톱 16fps
     lastMs = now;
     let f = null;
     if (state.vision && state.vision.ready) {
@@ -817,20 +831,44 @@ function drawOverlay(ctx, cv, f) {
   }
 }
 
-function pill(el, txt, cls) { el.textContent = txt; el.className = 'pill ' + cls; }
+/* 같은 상태를 데스크톱 패널과 모바일 상단 칩 양쪽에 쓴다 */
+function pill(sel, txt, cls) {
+  for (const el of $$(sel)) {
+    el.textContent = txt;
+    el.className = 'pill ' + cls;
+    el.hidden = txt === '–';        // 측정 전에는 빈 칩을 띄우지 않는다
+  }
+}
 
 function updateHud(f) {
-  if (state.audio) $('#mVol').style.width = Math.min(100, state.audio.live / 0.35 * 100) + '%';
-  if (!f || !f.ok) { pill($('#lEye'), '얼굴 없음', 'mute'); return; }
-  pill($('#lEye'), state.vision.isFrontal(f) ? '정면' : '이탈', state.vision.isFrontal(f) ? 'ok' : 'bad');
+  if (state.audio) {
+    const w = Math.min(100, state.audio.live / 0.35 * 100) + '%';
+    $('#mVol').style.width = w;
+    $('#mVolM').style.width = w;
+  }
+  if (!f || !f.ok) {
+    pill('#lEye,#mEye', state.vision && state.vision.ready ? '얼굴 없음' : '–', 'mute');
+    return;
+  }
+  const front = state.vision.isFrontal(f);
+  pill('#lEye,#mEye', front ? '정면' : '시선 이탈', front ? 'ok' : 'bad');
   if (f.tilt !== undefined) {
     const dev = Math.abs(f.tilt);
-    pill($('#lPos'), dev.toFixed(1) + '°', dev < 4 ? 'ok' : dev < 8 ? 'warn' : 'bad');
+    pill('#lPos,#mPos', '어깨 ' + dev.toFixed(1) + '°', dev < 4 ? 'ok' : dev < 8 ? 'warn' : 'bad');
   }
   if (state.vision.baseline) {
     const dx = Math.abs(f.noseX - state.vision.baseline.noseX) / (f.faceW || .1) * 100;
-    pill($('#lSway'), dx.toFixed(0) + '%', dx < 8 ? 'ok' : dx < 18 ? 'warn' : 'bad');
+    pill('#lSway,#mSway', '흔들림 ' + dx.toFixed(0) + '%', dx < 8 ? 'ok' : dx < 18 ? 'warn' : 'bad');
   }
+}
+
+/* 녹화 중 화면이 꺼지지 않게 (지원하지 않는 브라우저에서는 조용히 넘어간다) */
+async function acquireWakeLock() {
+  try { if ('wakeLock' in navigator) state.wake = await navigator.wakeLock.request('screen'); } catch (e) {}
+}
+function releaseWakeLock() {
+  try { if (state.wake) state.wake.release(); } catch (e) {}
+  state.wake = null;
 }
 
 function meterLoop() {
@@ -850,12 +888,17 @@ function meterLoop() {
 async function calibrate() {
   if (!state.vision || !state.vision.ready) { $('#engineNote').textContent = '영상 분석 엔진이 없어 기준자세를 잡을 수 없습니다.'; return; }
   state.calBuf = []; state.calibrating = true;
-  const btn = $('#btnCal'); btn.disabled = true;
-  for (let i = 3; i > 0; i--) { btn.textContent = `정면을 봐주세요 ${i}`; await new Promise(r => setTimeout(r, 1000)); }
+  const btn = $('#btnCal'), mbtn = $('#mCal');
+  btn.disabled = mbtn.disabled = true;
+  for (let i = 3; i > 0; i--) {
+    btn.textContent = mbtn.textContent = `정면 보기 ${i}`;
+    await new Promise(r => setTimeout(r, 1000));
+  }
   state.calibrating = false;
   const base = state.vision.calibrate(state.calBuf);
-  btn.disabled = false;
+  btn.disabled = mbtn.disabled = false;
   btn.textContent = base ? '기준자세 다시 잡기' : '기준자세 잡기 (3초)';
+  mbtn.textContent = base ? '기준 재설정' : '기준자세';
   $('#engineNote').textContent = base
     ? '기준자세를 저장했습니다. 이 자세를 기준으로 시선 이탈·어깨 기울기·흔들림을 계산합니다.'
     : '얼굴이 충분히 잡히지 않았습니다. 조명을 밝게 하고 얼굴 전체가 화면에 들어오게 한 뒤 다시 시도해 주세요.';
@@ -891,6 +934,9 @@ function startRecording() {
   $('#recDot').classList.add('on');
   $('#btnRec').disabled = true; $('#btnStop').disabled = false; $('#btnCal').disabled = true;
   $('#optPose').disabled = true; $('#optStt').disabled = true;
+  $('#mShoot').classList.add('on'); $('#mCal').disabled = true;
+  document.body.classList.remove('sheet-open');
+  acquireWakeLock();
   startTeleprompter();
 }
 
@@ -905,6 +951,8 @@ function stopRecording() {
   $('#recDot').classList.remove('on');
   $('#btnRec').disabled = false; $('#btnStop').disabled = true; $('#btnCal').disabled = false;
   $('#optPose').disabled = false; $('#optStt').disabled = false;
+  $('#mShoot').classList.remove('on'); $('#mCal').disabled = false;
+  releaseWakeLock();
 }
 
 function finishRecording() {
@@ -913,6 +961,46 @@ function finishRecording() {
   if (state.blobUrl) URL.revokeObjectURL(state.blobUrl);
   state.blobUrl = URL.createObjectURL(state.blob);
   buildReport();
+}
+
+function exitStudio() {
+  if (state.recording && !confirm('녹화 중입니다. 중단하고 나갈까요?')) return;
+  if (state.recording) { state.recording = false; try { state.rec.stop(); } catch (e) {} state.audio.stop(); if (state.stt) state.stt.stop(); }
+  stopTeleprompter();
+  releaseWakeLock();
+  if (state.stream) { state.stream.getTracks().forEach(t => t.stop()); state.stream = null; }
+  if (state.audio) { state.audio.close(); state.audio = null; }
+  $('#preview').srcObject = null;
+  $('#placeholder').classList.remove('hidden');
+  $('#recDot').classList.remove('on');
+  $('#mShoot').classList.remove('on');
+  $('#btnCam').disabled = false; $('#btnCam').textContent = '카메라 켜기';
+  $('#btnCal').disabled = true; $('#btnRec').disabled = true; $('#btnStop').disabled = true;
+  $('#mCal').disabled = true;
+  document.body.classList.remove('live', 'sheet-open');
+}
+
+/* ────────────────────────────── 홈 화면에 추가 ────────────────────────────── */
+function setupInstall() {
+  const box = $('#installTip'), how = $('#installHow');
+  if (IS_STANDALONE || localStorage.getItem('speaklab.installTip') === 'off') return;
+  if (IS_IOS) {
+    how.innerHTML = '사파리 아래 <kbd>공유</kbd> 버튼을 누르고 <kbd>홈 화면에 추가</kbd>를 고르세요. ' +
+      '아이콘이 생기고 주소창 없이 전체화면으로 열립니다. (사파리에서 열어야 이 메뉴가 나옵니다)';
+    box.classList.add('show');
+  } else if (IS_PHONE) {
+    how.innerHTML = '크롬 오른쪽 위 <kbd>⋮</kbd> 메뉴에서 <kbd>홈 화면에 추가</kbd>를 고르세요.';
+    box.classList.add('show');
+    window.addEventListener('beforeinstallprompt', e => {
+      e.preventDefault();
+      how.innerHTML = '';
+      const b = document.createElement('button');
+      b.className = 'btn sm'; b.textContent = '홈 화면에 추가';
+      b.onclick = () => { e.prompt(); box.classList.remove('show'); };
+      how.appendChild(b);
+    });
+  }
+  $('#installClose').onclick = () => { box.classList.remove('show'); localStorage.setItem('speaklab.installTip', 'off'); };
 }
 
 /* ────────────────────────────── 프롬프터 ────────────────────────────── */
@@ -1114,6 +1202,29 @@ function init() {
   $('#btnCal').onclick = calibrate;
   $('#btnRec').onclick = startRecording;
   $('#btnStop').onclick = stopRecording;
+
+  // 모바일 조작 바
+  $('#mCal').onclick = calibrate;
+  $('#mShoot').onclick = () => (state.recording ? stopRecording() : startRecording());
+  $('#mSet').onclick = () => document.body.classList.toggle('sheet-open');
+  const closeSheet = () => document.body.classList.remove('sheet-open');
+  $('#sheetBack').onclick = closeSheet;
+  $('#sheetClose').onclick = closeSheet;
+  $('#sheetDone').onclick = closeSheet;
+  $('#btnExit').onclick = exitStudio;
+  $('#mCal').disabled = true;
+
+  // 폰에서는 자세 모델까지 돌리면 발열·끊김이 심해 기본은 얼굴만 본다
+  if (IS_PHONE) $('#optPose').checked = false;
+
+  setupInstall();
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+  }
+  // 녹화 중 화면을 다시 켜면 wake lock을 다시 잡는다
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && state.recording) acquireWakeLock();
+  });
 
   $('#optMirror').onchange = e => $('#stage').classList.toggle('no-mirror', !e.target.checked);
   $('#optPose').onchange = () => { state.vision = null; state.visionMode = 'loading'; initVision(); };
