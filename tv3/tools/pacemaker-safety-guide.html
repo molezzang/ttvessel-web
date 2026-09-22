@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#FFFFFF">
+<title>인공심박동기·제세동기 생활 안전 검색 | 튼튼혈관연구소</title>
+  <link rel="canonical" href="https://www.ttvessellab.com/tools/pacemaker-safety-guide.html" />
+<meta name="description" content="인공심박동기(Pacemaker)·삽입형 제세동기(ICD) 환자가 일상에서 조심해야 할 158가지 제품·환경을 검색하세요. Medtronic·Boston Scientific·Abbott·AHA·FDA 공식 자료 기반.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --panel:#FBF9F8;
+    --line:#EDE7E3;
+    --line-red:rgba(206,53,69,.25);
+    --ink:#1D1A18;
+    --muted:#7A7068;
+    --red:#CE3545;            /* 로고 레드 */
+    --red-bright:#E2606C;
+    --red-deep:#A8222F;
+    --red-tint:#FCEEF0;
+    --avoid:#CE3545;   --avoid-bg:#FCEEF0;
+    --d60:#B5491C;     --d60-bg:#FAEFE8;
+    --d30:#C26A0A;     --d30-bg:#FBF2E4;
+    --d15:#A3820A;     --d15-bg:#FAF5E2;
+    --safe:#2E7D4F;    --safe-bg:#ECF5EE;
+    --consult:#2D5FA8; --consult-bg:#ECF1FA;
+    --radius:16px;
+    --shadow:0 1px 2px rgba(29,26,24,.03), 0 8px 22px rgba(29,26,24,.05);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{width:100%;max-width:100%;overflow-x:hidden}
+  body{
+    font-family:'Noto Sans KR',sans-serif;
+    background:var(--paper);color:var(--ink);
+    font-size:17px;line-height:1.7;word-break:keep-all;
+    padding-bottom:112px;
+  }
+  /* 은은한 별가루 + 그리드 (화이트 버전) */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(1.5px 1.5px at 12% 16%, rgba(206,53,69,.28) 50%, transparent 51%),
+      radial-gradient(1px 1px at 80% 8%, rgba(206,53,69,.22) 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 90% 36%, rgba(206,53,69,.15) 50%, transparent 51%),
+      radial-gradient(1px 1px at 24% 55%, rgba(206,53,69,.13) 50%, transparent 51%),
+      radial-gradient(1px 1px at 65% 75%, rgba(206,53,69,.12) 50%, transparent 51%),
+      linear-gradient(rgba(29,26,24,.022) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(29,26,24,.022) 1px, transparent 1px),
+      radial-gradient(ellipse 130% 55% at 50% -5%, #FDF7F7 0%, var(--paper) 65%);
+    background-size:auto,auto,auto,auto,auto,56px 56px,56px 56px,auto;
+  }
+  .wrap{max-width:560px;margin:0 auto;padding:0 18px}
+
+  /* ───────── 헤더 ───────── */
+  header{padding:calc(36px + env(safe-area-inset-top)) 0 6px;text-align:center}
+  .eyebrow{
+    font-size:11.5px;font-weight:700;letter-spacing:.3em;
+    color:var(--red);text-transform:uppercase;margin-bottom:16px;
+  }
+  .logo-heart{width:58px;height:58px;margin:0 auto 16px;border-radius:50%;
+    background:var(--paper);border:1px solid var(--line-red);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 0 24px rgba(206,53,69,.12)}
+  .logo-heart svg{width:32px;height:32px}
+  h1{font-size:22px;font-weight:900;letter-spacing:-0.5px;line-height:1.45;color:var(--ink)}
+  h1 .accent{
+    font-family:'MaruBuri','Noto Serif KR',serif;font-weight:700;
+    background:linear-gradient(180deg,var(--red-bright) 15%,var(--red-deep) 90%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .subtitle{font-size:14.5px;color:var(--muted);margin-top:10px}
+  .subtitle b{color:var(--red);font-weight:700}
+
+  .ecg{display:block;width:100%;height:34px;margin:14px 0 6px}
+  .ecg path{stroke:var(--red);stroke-width:1.8;fill:none;opacity:.7}
+
+  /* 메타 스트립 */
+  .meta-strip{
+    display:flex;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    margin:6px 0 20px;
+  }
+  .meta-strip div{flex:1;padding:11px 4px;text-align:center}
+  .meta-strip div+div{border-left:1px solid var(--line)}
+  .meta-strip span{display:block;font-size:10px;letter-spacing:.22em;color:var(--red);font-weight:700;margin-bottom:2px}
+  .meta-strip b{font-size:13.5px;color:var(--ink);font-weight:700;white-space:nowrap}
+
+  /* ───────── 검색 ───────── */
+  .searchbox{position:relative}
+  .searchbox input{
+    width:100%;padding:17px 64px 17px 20px;
+    font-family:inherit;font-size:17.5px;color:var(--ink);
+    border:1.5px solid var(--line);border-radius:14px;
+    background:var(--paper);outline:none;box-shadow:var(--shadow);
+  }
+  .searchbox input:focus{border-color:var(--red);box-shadow:0 0 0 4px var(--red-tint)}
+  .searchbox input::placeholder{color:#B8AEA6;font-size:15.5px}
+  .sbtn{
+    position:absolute;right:7px;top:50%;transform:translateY(-50%);
+    width:46px;height:46px;border:none;border-radius:10px;cursor:pointer;
+    background:linear-gradient(135deg,var(--red-bright),var(--red-deep));
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 3px 12px rgba(206,53,69,.3);
+  }
+  .sbtn:active{transform:translateY(-50%) scale(.95)}
+  .sbtn svg{width:21px;height:21px;color:#fff}
+  .hint{font-size:13px;color:var(--muted);text-align:center;margin-top:10px}
+
+  /* 카테고리 칩 */
+  .chips{display:flex;gap:8px;overflow-x:auto;padding:18px 18px 4px;
+    max-width:560px;margin:0 auto;scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto;padding:9px 16px;border-radius:999px;
+    border:1px solid var(--line);background:var(--paper);
+    font-family:inherit;font-size:14.5px;color:var(--muted);cursor:pointer;white-space:nowrap}
+  .chip.on{
+    background:linear-gradient(135deg,var(--red-bright),var(--red-deep));
+    border-color:transparent;color:#fff;font-weight:700;
+  }
+
+  /* ───────── 범례 ───────── */
+  .legend{display:flex;flex-wrap:wrap;gap:8px 12px;justify-content:center;padding:14px 0 4px}
+  .lg{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted)}
+  .dot{width:10px;height:10px;border-radius:50%;flex:0 0 auto}
+
+  /* ───────── 결과 카드 ───────── */
+  #results{margin-top:14px;display:flex;flex-direction:column;gap:14px}
+  .count{font-size:13.5px;color:var(--muted);padding:2px 4px}
+  .count b{color:var(--red)}
+  .card{
+    border:1px solid var(--line);border-radius:var(--radius);
+    background:var(--paper);overflow:hidden;box-shadow:var(--shadow);
+  }
+  .card-top{display:flex;align-items:flex-start;gap:12px;padding:18px 18px 0}
+  .badge{flex:0 0 auto;font-size:13px;font-weight:700;letter-spacing:-0.2px;
+    padding:7px 13px;border-radius:999px;margin-top:2px;white-space:nowrap}
+  .b-avoid{background:var(--avoid);color:#fff}
+  .b-d60{background:var(--d60-bg);color:var(--d60);border:1px solid currentColor}
+  .b-d30{background:var(--d30-bg);color:var(--d30);border:1px solid currentColor}
+  .b-d15{background:var(--d15-bg);color:var(--d15);border:1px solid currentColor}
+  .b-safe{background:var(--safe-bg);color:var(--safe);border:1px solid currentColor}
+  .b-consult{background:var(--consult-bg);color:var(--consult);border:1px solid currentColor}
+  .card h3{font-size:19.5px;font-weight:700;line-height:1.4;letter-spacing:-0.4px;color:var(--ink)}
+  .cat-tag{font-size:12.5px;color:var(--muted);margin-top:2px}
+
+  .distance{margin:13px 18px 0;padding:12px 14px;border-radius:12px;
+    font-size:15px;line-height:1.6;display:flex;gap:9px;align-items:flex-start;color:var(--ink)}
+  .distance .ruler{flex:0 0 auto;width:20px;height:20px;margin-top:2px;opacity:.85}
+  .distance b{font-weight:700}
+  .d-avoid{background:var(--avoid-bg)} .d-avoid b{color:var(--avoid)}
+  .d-d60{background:var(--d60-bg)} .d-d60 b{color:var(--d60)}
+  .d-d30{background:var(--d30-bg)} .d-d30 b{color:var(--d30)}
+  .d-d15{background:var(--d15-bg)} .d-d15 b{color:var(--d15)}
+  .d-safe{background:var(--safe-bg)} .d-safe b{color:var(--safe)}
+  .d-consult{background:var(--consult-bg)} .d-consult b{color:var(--consult)}
+
+  .reason{padding:13px 18px 0;font-size:15.5px;line-height:1.8;color:#403A35}
+  .reason b{color:var(--red)}
+
+  .brandnote{margin:13px 18px 0;padding:13px 14px;border-radius:12px;
+    border:1px dashed var(--line-red);font-size:14px;line-height:1.7;
+    background:#FFFAFA;color:#4A433D}
+  .brandnote .bn-title{display:inline-flex;align-items:center;gap:5px;font-weight:700;
+    font-size:13.5px;color:var(--red);margin-bottom:4px}
+  .brandnote b{color:var(--ink)}
+  .source{padding:13px 18px 17px;font-size:12px;color:var(--muted)}
+  .source span{display:inline-block;background:var(--panel);
+    border:1px solid var(--line);border-radius:6px;padding:2px 8px;margin:2px 3px 0 0}
+
+  .empty{text-align:center;padding:36px 16px;border:1.5px dashed var(--line-red);
+    border-radius:var(--radius);background:var(--panel)}
+  .empty h3{font-size:17.5px;font-weight:700;margin-bottom:8px;color:var(--ink)}
+  .empty p{font-size:14.5px;color:var(--muted);line-height:1.75}
+  .empty a{color:var(--red);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+
+  .popular{margin-top:20px}
+  .section-eyebrow{font-size:11px;font-weight:700;letter-spacing:.28em;
+    color:var(--red);text-transform:uppercase;margin-bottom:6px}
+  .popular h2{font-size:18px;font-weight:900;color:var(--ink);margin-bottom:12px;letter-spacing:-0.3px}
+  .pop-grid{display:flex;flex-wrap:wrap;gap:8px}
+  .pop{padding:10px 15px;border-radius:11px;border:1px solid var(--line);
+    background:var(--paper);font-family:inherit;font-size:15px;color:var(--ink);cursor:pointer;
+    box-shadow:var(--shadow)}
+  .pop:active{background:var(--red-tint);border-color:var(--red);color:var(--red)}
+  .db-count{text-align:center;font-size:12.5px;color:var(--muted);margin-top:16px}
+  .db-count b{color:var(--red)}
+
+  /* ───────── 정보/면책 ───────── */
+  .infocard{margin-top:30px;padding:22px 19px;border-radius:var(--radius);
+    border:1px solid var(--line);background:var(--paper);box-shadow:var(--shadow);
+    font-size:14.5px;line-height:1.8}
+  .infocard h2{font-size:16.5px;font-weight:900;margin-bottom:10px;color:var(--ink)}
+  .infocard h2 span{color:var(--red)}
+  .infocard p+p{margin-top:10px}
+  .infocard p{color:#4A433D}
+  .infocard b{color:var(--red)}
+
+  .notice{margin-top:16px;padding:19px;border-radius:var(--radius);
+    background:var(--panel);border:1px solid var(--line);
+    font-size:13.5px;color:var(--muted);line-height:1.8}
+  .notice b{color:var(--ink)}
+
+  /* ───────── 카페 CTA (딥레드 카드) ───────── */
+  .cafe-card{margin-top:26px;padding:34px 22px;border-radius:20px;text-align:center;
+    background:linear-gradient(160deg,#B92B3B 0%,#8E1B29 100%);color:#fff;
+    box-shadow:0 14px 36px rgba(168,34,47,.25)}
+  .cafe-card .cc-eyebrow{font-size:11px;font-weight:700;letter-spacing:.3em;color:#F4B9C0;margin-bottom:14px;text-transform:uppercase}
+  .cafe-card h2{font-size:21px;font-weight:900;line-height:1.55;margin-bottom:10px;color:#fff}
+  .cafe-card h2 .accent{
+    font-family:'MaruBuri','Noto Serif KR',serif;font-weight:700;color:#FFD9DD}
+  .cafe-card p{font-size:14px;color:#F2CFD3;line-height:1.85}
+  .cafe-btn{display:inline-block;margin-top:20px;padding:16px 30px;border-radius:999px;
+    background:#fff;color:var(--red-deep);
+    font-weight:900;font-size:16px;text-decoration:none;letter-spacing:-0.3px;
+    box-shadow:0 6px 20px rgba(0,0,0,.18)}
+  footer{text-align:center;font-size:12px;color:#A89D94;padding:30px 18px 14px;line-height:1.9}
+
+  /* ───────── 하단 고정 CTA ───────── */
+  .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:50;
+    background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border-top:1px solid var(--line);
+    padding:11px 16px calc(11px + env(safe-area-inset-bottom))}
+  .sticky-inner{max-width:560px;margin:0 auto;display:flex;align-items:center}
+  .sticky-btn{flex:1;text-align:center;padding:15px 18px;border-radius:999px;
+    background:linear-gradient(135deg,var(--red-bright),var(--red-deep));color:#fff;
+    font-weight:900;font-size:15.5px;text-decoration:none;white-space:nowrap;letter-spacing:-0.3px;
+    box-shadow:0 4px 16px rgba(206,53,69,.3)}
+  .sticky-btn:active{filter:brightness(.93)}
+  @media (prefers-reduced-motion:no-preference){
+    .card{animation:rise .25s ease both}
+    @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  }
+</style>
+</head>
+<body>
+<div style="background:#111418;color:#e8e8e8;font-size:13px;padding:10px 16px;text-align:center;font-family:'Noto Sans KR',sans-serif;">
+  <a href="/index.html" style="color:#ff8a72;text-decoration:none;font-weight:700;">튼튼혈관연구소</a>
+  <span style="opacity:.5;"> · </span>
+  <a href="/tools.html" style="color:#e8e8e8cc;text-decoration:none;">tt_vessel_toolbox 전체보기 →</a>
+</div>
+
+
+<header class="wrap">
+  <p class="eyebrow">— Pacemaker · ICD Safety Guide</p>
+  <div class="logo-heart" aria-hidden="true">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 28C16 28 3 19.5 3 10.8 3 6.5 6.4 3.4 10.3 3.4c2.3 0 4.4 1.1 5.7 2.9 1.3-1.8 3.4-2.9 5.7-2.9 3.9 0 7.3 3.1 7.3 7.4C29 19.5 16 28 16 28Z" fill="#CE3545"/>
+      <path d="M6 15h5l2-4 3 8 2.5-5H26" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <h1>인공심박동기·제세동기 환자를 위한<br>생활 속 전자제품 <span class="accent">안전 검색</span></h1>
+  <p class="subtitle">궁금한 제품을 검색하면<br><b>사용 가능 여부와 이유</b>를 바로 알려드려요</p>
+  <svg class="ecg" viewBox="0 0 560 34" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 20 H170 l10 0 6-11 8 20 9-26 8 24 5-7 h12 H560" />
+  </svg>
+  <div class="meta-strip">
+    <div><span>Items</span><b><span id="dbTotal"></span>개 항목</b></div>
+    <div><span>Source</span><b>제조사 공식 자료</b></div>
+    <div><span>By</span><b>튼튼혈관연구소</b></div>
+  </div>
+  <div class="searchbox">
+    <input id="q" type="search" inputmode="search" autocomplete="off"
+      placeholder="예) 인덕션, 안마의자, 전기장판, 용접…" aria-label="제품 검색">
+    <button id="searchBtn" class="sbtn" type="button" aria-label="검색">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+        <circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/>
+      </svg>
+    </button>
+  </div>
+  <p class="hint">제품 이름을 한 글자만 입력해도 관련 결과가 나와요</p>
+</header>
+
+<div class="chips" id="chips" role="tablist" aria-label="카테고리">
+  <button class="chip on" data-cat="all">전체</button>
+  <button class="chip" data-cat="주방·생활가전">주방·생활가전</button>
+  <button class="chip" data-cat="스마트기기·통신">스마트기기·통신</button>
+  <button class="chip" data-cat="개인·건강·운동">개인·건강·운동</button>
+  <button class="chip" data-cat="공구·작업">공구·작업</button>
+  <button class="chip" data-cat="자동차·이동">자동차·이동</button>
+  <button class="chip" data-cat="외출·보안·여행">외출·보안·여행</button>
+  <button class="chip" data-cat="취미·여가">취미·여가</button>
+  <button class="chip" data-cat="병원·치료">병원·치료</button>
+  <button class="chip" data-cat="직업·산업환경">직업·산업환경</button>
+</div>
+
+<main class="wrap">
+  <div class="legend" aria-hidden="true">
+    <span class="lg"><span class="dot" style="background:var(--avoid)"></span>피하세요</span>
+    <span class="lg"><span class="dot" style="background:var(--d60)"></span>60cm 이상</span>
+    <span class="lg"><span class="dot" style="background:var(--d30)"></span>30cm 이상</span>
+    <span class="lg"><span class="dot" style="background:var(--d15)"></span>15cm 이상</span>
+    <span class="lg"><span class="dot" style="background:var(--safe)"></span>안심 사용</span>
+    <span class="lg"><span class="dot" style="background:var(--consult)"></span>병원 상담</span>
+  </div>
+
+  <div class="popular" id="popularBox">
+    <p class="section-eyebrow">— Most Searched</p>
+    <h2>환자분들이 가장 많이 찾는 제품</h2>
+    <div class="pop-grid">
+      <button class="pop">인덕션</button>
+      <button class="pop">스마트폰</button>
+      <button class="pop">안마의자</button>
+      <button class="pop">전기장판</button>
+      <button class="pop">전기차</button>
+      <button class="pop">공항 검색대</button>
+      <button class="pop">인바디</button>
+      <button class="pop">무선 이어폰</button>
+      <button class="pop">용접</button>
+      <button class="pop">MRI</button>
+      <button class="pop">고데기</button>
+      <button class="pop">찜질방</button>
+    </div>
+    <p class="db-count">현재 <b id="dbTotal2"></b>개 항목 등록 · 제조사 공식 자료 기준</p>
+  </div>
+
+  <div id="results" aria-live="polite"></div>
+
+  <div class="infocard">
+    <h2><span>💡</span> 제조사마다 '자석 반응'이 달라요</h2>
+    <p>모든 인공심박동기·제세동기에는 자석을 대면 작동하는 스위치가 있어요. 자석이 닿으면 <b>인공심박동기는 정해진 속도로만 뛰는 모드</b>로, <b>제세동기(ICD)는 충격 치료가 일시 중단</b>됩니다. 자석이 떨어지면 대부분 즉시 원래대로 돌아와요.</p>
+    <p>브랜드별 차이 — <b>Medtronic·Boston Scientific</b> ICD는 자석 모드 진입 시 '삐' 소리 알림이 날 수 있고, <b>Abbott(구 세인트주드)</b>는 진동 알림이 있는 기종이 있어요. 또 <b>Boston Scientific·Abbott 일부 기기는 병원에서 '외부 자석 무시' 설정</b>이 가능합니다. 내 기기가 어느 회사 어떤 모델인지는 <b>기기 등록카드</b>에 적혀 있으니 항상 지갑에 넣고 다니세요.</p>
+  </div>
+
+  <div class="notice">
+    <b>꼭 읽어주세요.</b> 이 정보는 Medtronic·Boston Scientific·Abbott 제조사 공식 환자 가이드(EMC 호환성 표 포함)와 미국심장협회(AHA), 미국 FDA, Heart Rhythm·JAHA 학술지 자료를 바탕으로 정리한 <b>일반적인 안내</b>입니다. 같은 제품이라도 <b>내 기기의 제조사·모델·설정에 따라 권고가 다를 수 있으니</b>, 최종 판단은 반드시 담당 의료진과 기기 제조사에 확인하세요. 기기 사용 중 어지럼증·두근거림이 느껴지면 그 물건에서 즉시 손을 떼거나 떨어지면 대부분 정상으로 돌아옵니다. 증상이 계속되면 병원에 연락하세요. '인공심박동기 환자 출입 금지' 표지판이 있는 곳은 들어가기 전에 반드시 의사와 상의하세요.
+  </div>
+
+  <div class="cafe-card">
+    <p class="cc-eyebrow">— Community Invitation</p>
+    <h2>의사한테 못 물어본 심장 궁금증,<br><span class="accent">여기서 무료로</span> 해결하세요.</h2>
+    <p>17년차 심뇌혈관조영실 방사선사가 운영하는<br>심장혈관·부정맥 환자 커뮤니티입니다.<br>인공심박동기·제세동기 환자분들의 실제 경험담과 정보가 모여 있어요.</p>
+    <a class="cafe-btn" href="https://litt.ly/tt_vessel_lab?utm_source=threads&utm_medium=social&utm_content=link_in_bio" target="_blank" rel="noopener">튼튼혈관연구소 바로가기 👉</a>
+  </div>
+
+  <footer>
+    튼튼혈관연구소 | 심혈관·부정맥 정보 (@tt_vessel_lab)<br>
+    본 콘텐츠는 의학적 진단·처방을 대신하지 않습니다.<br>
+    출처: Medtronic EMC Guide · Boston Scientific EMC Compatibility Table · Abbott EMI Guide · AHA · FDA
+  </footer>
+</main>
+
+<div class="sticky-cta">
+  <div class="sticky-inner">
+    <a class="sticky-btn" href="https://litt.ly/tt_vessel_lab?utm_source=threads&utm_medium=social&utm_content=link_in_bio" target="_blank" rel="noopener">심장혈관부정맥 커뮤니티 바로가기 👉</a>
+  </div>
+</div>
+
+<script>
+/* status: avoid / d60 / d30 / d15 / safe / consult
+   출처 약어: MDT=Medtronic, BSC=Boston Scientific, ABT=Abbott */
+const DB=[
+/* ━━ 주방·생활가전 ━━ */
+{n:"전자레인지",k:"전자렌지 렌지 microwave",c:"주방·생활가전",s:"safe",d:"정상 제품은 안심 사용",r:"내부가 차폐되어 있어 가정용·업소용 모두 정상 제품이라면 영향이 없습니다. 문이 안 닫히는 등 고장 난 제품만 피하세요.",src:["Medtronic","Boston Scientific"]},
+{n:"인덕션 레인지",k:"인덕션 IH 쿡탑 전기레인지 induction",c:"주방·생활가전",s:"d30",d:"작동 중 화구에서 <b>30cm 이상, 가능하면 60cm(팔 길이)</b>",r:"자기장으로 냄비를 직접 데우는 방식이라 화구 위로 몸을 숙이면 기기가 오작동할 수 있습니다. 팔을 뻗어 조리하는 자세면 대부분 안전합니다.",src:["Medtronic","Boston Scientific"],bn:"Boston Scientific은 30cm, Medtronic은 더 보수적으로 <b>가열 구역에서 60cm</b>를 권고합니다. 내 기기 제조사 기준을 따르는 게 가장 안전해요."},
+{n:"하이라이트·가스레인지",k:"하이라이트 가스렌지 가스불 전기스토브 핫플레이트",c:"주방·생활가전",s:"safe",d:"안심 사용",r:"열선·가스 방식 조리기구는 자기장을 만들지 않아 인덕션과 달리 거리 제한이 없습니다.",src:["Boston Scientific"]},
+{n:"전기밥솥·전기포트",k:"밥솥 쿠쿠 쿠첸 전기주전자 포트 커피포트",c:"주방·생활가전",s:"safe",d:"안심 사용",r:"조리대 위 주방가전(밥솥·토스터·커피머신 등)은 안전 품목으로 분류됩니다.",src:["Boston Scientific"]},
+{n:"토스터·커피머신·에어프라이어",k:"토스트 커피메이커 에스프레소 에어프라이어 오븐 컨벡션",c:"주방·생활가전",s:"safe",d:"안심 사용",r:"거치형 주방가전은 안전 품목입니다. 컨벡션 오븐도 마찬가지예요.",src:["Boston Scientific"]},
+{n:"믹서기·푸드프로세서(거치형)",k:"블렌더 믹서 녹즙기 착즙기 분쇄기 캔따개",c:"주방·생활가전",s:"safe",d:"거치형은 안심 — 손에 쥐는 핸드형은 15cm",r:"바닥에 놓고 쓰는 거치형 믹서·전기 캔따개는 안전 품목입니다. 손에 쥐는 핸드믹서는 아래 항목을 보세요.",src:["Boston Scientific"]},
+{n:"핸드믹서·핸드블렌더",k:"핸드 믹서 도깨비방망이 휴대용믹서 거품기",c:"주방·생활가전",s:"d15",d:"모터를 가슴에서 <b>15cm(손 한 뼘) 이상</b>",r:"손에 쥐는 주방가전은 모터가 몸 가까이 오므로 Medtronic이 15cm 거리를 명시한 품목입니다.",src:["Medtronic"]},
+{n:"냉장고·김치냉장고",k:"냉장고 김치 냉동고 정수기",c:"주방·생활가전",s:"safe",d:"안심 사용",r:"대형 가전은 정상 작동 시 영향을 줄 자기장이 거의 없습니다.",src:["Boston Scientific","Medtronic"]},
+{n:"세탁기·건조기",k:"세탁기 건조기 드럼 통돌이",c:"주방·생활가전",s:"safe",d:"안심 사용",r:"세탁기와 건조기는 공식 안전 품목입니다. 모터부에 가슴을 장시간 붙이는 자세만 피하면 됩니다.",src:["Boston Scientific"]},
+{n:"식기세척기",k:"식세기 식기 세척기",c:"주방·생활가전",s:"safe",d:"안심 사용",r:"일반 가전과 동일하게 안전합니다.",src:["Boston Scientific"]},
+{n:"청소기·로봇청소기",k:"진공청소기 무선청소기 다이슨 로보락 로봇 물걸레",c:"주방·생활가전",s:"safe",d:"안심 사용 — 본체 모터를 가슴에 붙이지만 않기",r:"Boston Scientific은 진공청소기를 안전 품목으로 분류합니다. 손잡이를 잡는 일반 자세면 거리가 충분해요.",src:["Boston Scientific"]},
+{n:"헤어드라이어",k:"드라이기 드라이어 헤어드라이기 살롱드라이어",c:"주방·생활가전",s:"d15",d:"가슴에서 <b>15cm 이상</b>",r:"핸드형·미용실용 모두 모터에서 자기장이 나오므로 한 뼘 거리를 두세요. 머리 말리는 일반 자세는 자연스럽게 거리가 확보됩니다.",src:["Boston Scientific","Medtronic"]},
+{n:"전기장판·전기요",k:"전기매트 전기담요 장판 히팅매트",c:"주방·생활가전",s:"safe",d:"안심 사용 — <b>변압기(컨트롤러)를 기기 위에 두지 않기</b>",r:"전기담요 자체는 안전 품목입니다. 단, 온도조절기(변압기) 부분을 가슴 위 시술 부위에 올려놓지 마세요.",src:["Boston Scientific"]},
+{n:"온수매트·찜질팩",k:"온수 매트 찜질기 핫팩 손난로 워터매트",c:"주방·생활가전",s:"safe",d:"안심 사용",r:"물을 데워 순환시키는 온수매트와 찜질팩(히팅패드)은 안전 품목입니다.",src:["Boston Scientific"]},
+{n:"자석 매트리스·자기요법 침구",k:"자기장 매트리스 자석요 자석베개 자기매트 토르마늄 의료기 돌침대자석",c:"주방·생활가전",s:"avoid",d:"<b>사용하지 마세요</b> — 자석이 기기 근처에 장시간 머무름",r:"자석 침구 위에서 자면 기기의 자석 스위치가 계속 눌린 상태가 돼 인공심박동기는 고정 모드로, ICD는 치료가 꺼질 수 있습니다. AHA가 명시적으로 피하라고 권고하는 품목입니다.",src:["AHA","Medtronic"]},
+{n:"회전자석 건강기기",k:"닛켄 자기치료기 회전 자석 바이악시얼 고자기장",c:"주방·생활가전",s:"avoid",d:"<b>사용 금지</b>",r:"고속 회전 자석으로 강한 3차원 자기장(약 1,700가우스)을 만드는 제품은 Boston Scientific이 '사용 금지'로 분류한 품목입니다.",src:["Boston Scientific"]},
+{n:"공기청정기",k:"공기 청정기 에어퓨리어 헤파 이오나이저 음이온",c:"주방·생활가전",s:"d15",d:"일반형은 안심 — <b>이온식(음이온)은 15cm</b>",r:"헤파필터 방식은 일반 가전과 같지만, 이온(음이온) 발생 방식은 15cm 거리 권고가 있습니다. 목에 거는 휴대용 공기청정기는 기기 검사(프로그래머 체크) 때만 빼세요.",src:["Boston Scientific"]},
+{n:"가습기·제습기",k:"가습기 제습기 초음파가습기",c:"주방·생활가전",s:"safe",d:"안심 사용",r:"일반 가전과 동일하게 안전합니다.",src:["Boston Scientific"]},
+{n:"에어컨·선풍기·서큘레이터",k:"에어컨 선풍기 써큘레이터 냉풍기 온풍기 히터",c:"주방·생활가전",s:"safe",d:"안심 사용",r:"휴대용 전기히터를 포함해 냉난방 가전은 안전 품목입니다.",src:["Boston Scientific"]},
+{n:"비데",k:"비데 온수세정기",c:"주방·생활가전",s:"safe",d:"안심 사용 — 접지(어스) 확인",r:"일반 가전으로 안전하지만, 물을 쓰는 전기제품이므로 접지가 제대로 된 정상 제품을 쓰세요. 누전되는 제품에서 전기가 몸을 타고 흐르는 게 진짜 위험 요인입니다.",src:["Medtronic"]},
+{n:"다리미·스팀다리미",k:"다리미 스팀 의류관리기 스타일러",c:"주방·생활가전",s:"safe",d:"안심 사용",r:"열선 방식 가전으로 안전합니다.",src:["Boston Scientific"]},
+{n:"재봉틀·미싱",k:"재봉틀 미싱 자수기 오버로크",c:"주방·생활가전",s:"d15",d:"모터에서 <b>15cm 이상</b>",r:"재봉틀과 오버로크 미싱은 Medtronic·Boston Scientific 모두 모터 기준 15cm 거리를 명시한 품목입니다. 몸을 기계에 바짝 붙이고 작업하지 마세요.",src:["Medtronic","Boston Scientific"]},
+{n:"대형 스피커·앰프",k:"스피커 우퍼 앰프 오디오 전축 사운드바",c:"주방·생활가전",s:"d30",d:"대형 스피커에서 <b>30cm 이상</b>",r:"대형 스피커 안에는 큰 자석이 들어 있어 30cm 거리 권고가 있습니다. 스피커를 안고 옮길 때 가슴에 붙이지 마세요. 소형 스피커는 15cm면 충분합니다.",src:["Boston Scientific"]},
+{n:"초음파 해충퇴치기",k:"해충 모기 퇴치기 초음파 쥐",c:"주방·생활가전",s:"safe",d:"안심 사용",r:"음파만 내보내는 방식이라 안전 품목입니다.",src:["Boston Scientific"]},
+{n:"전기파리채",k:"파리채 전기 모기채",c:"주방·생활가전",s:"d15",d:"망에 <b>감전되지 않게 주의</b> — 흔드는 사용은 가능",r:"기기 자체보다 고전압 망에 감전되는 게 문제입니다. 외부 전기 충격을 받으면 인공심박동기 점검을 받으라는 게 제조사 공통 안내입니다.",src:["Boston Scientific"]},
+{n:"가정용 보안 시스템",k:"홈 시큐리티 적외선 센서 CCTV 인터폰 도어락",c:"주방·생활가전",s:"safe",d:"적외선·초음파식은 안심 — 마이크로파식만 송신부 15cm",r:"적외선·초음파 방식 보안센서와 인터폰, 디지털 도어락은 안전합니다. 마이크로파 방식 감지기만 송신부에서 15cm 거리를 두세요.",src:["Boston Scientific"]},
+
+/* ━━ 스마트기기·통신 ━━ */
+{n:"스마트폰",k:"휴대폰 핸드폰 아이폰 갤럭시 폰 휴대전화 셀폰",c:"스마트기기·통신",s:"d15",d:"<b>15cm 이상</b> — 가슴 주머니 보관 금지, 반대쪽 귀로 통화",r:"통화는 괜찮지만 최신 폰에는 강한 자석이 들어 있어 가슴 주머니가 위험합니다. FDA 공식 권고: 15cm 거리, 가슴 주머니 금지, 시술 반대쪽 귀 사용. 3와트 넘는 고출력 단말은 30cm.",src:["FDA","Boston Scientific"],bn:"아이폰 12 이후의 <b>MagSafe 자석</b>은 연구에서 Medtronic·Abbott 일부 기종의 자석 모드를 작동시켰고 Boston Scientific은 덜 민감했습니다. 어떤 브랜드든 15cm만 지키면 안전합니다."},
+{n:"무선충전기·맥세이프",k:"무선충전 맥세이프 magsafe 충전패드 무선 충전 거치대 차이",c:"스마트기기·통신",s:"d15",d:"<b>15cm 이상</b> — 충전 중인 폰을 가슴에 올리고 자지 않기",r:"자기장으로 전력을 보내는 방식이라 일반 충전기보다 강합니다. 가장 위험한 습관은 충전 중인 폰을 가슴에 올려둔 채 잠드는 것. 협탁 충전은 전혀 문제없어요.",src:["FDA","JAHA"]},
+{n:"스마트워치·스마트밴드",k:"애플워치 갤럭시워치 워치 밴드 미밴드",c:"스마트기기·통신",s:"d15",d:"손목 착용은 OK — 시계·충전기를 가슴에서 <b>15cm 이상</b>",r:"손목은 거리가 충분합니다. 자석이 든 본체·충전기를 가슴 주머니에 넣거나 잘 때 가슴 옆에 두는 것만 피하세요.",src:["FDA"]},
+{n:"활동량 측정기(핏빗 등)",k:"핏빗 가민 활동량 트래커 만보기",c:"스마트기기·통신",s:"d15",d:"블루투스 송신부 기준 <b>15cm 이상</b>",r:"손목 착용은 괜찮습니다. 가슴 스트랩형 심박 측정 모델은 스트랩을 시술 반대쪽으로 돌려 착용하세요.",src:["Boston Scientific"]},
+{n:"무선 이어폰",k:"에어팟 버즈 무선이어폰 이어버드 블루투스이어폰",c:"스마트기기·통신",s:"d15",d:"귀 착용 OK — <b>목걸이형·가슴 주머니 보관 금지</b>",r:"이어폰 자석은 작지만 강합니다. 케이스째 가슴 주머니에 넣거나 목에 거는 것만 피하고, 보관은 가방·바지 주머니에 하세요.",src:["AHA","Boston Scientific"]},
+{n:"유선 이어폰·헤드폰",k:"헤드폰 헤드셋 이어폰 유선 소니 보스 비츠",c:"스마트기기·통신",s:"d15",d:"<b>15cm 이상</b> — 선을 가슴에 늘어뜨리지 않기",r:"헤드폰 자석 때문에 목에 걸어 가슴에 닿게 하거나, 이어폰 낀 사람이 내 가슴에 머리를 기대는 것을 피하라는 게 AHA 안내입니다.",src:["AHA","Boston Scientific"]},
+{n:"블루투스·AI 스피커",k:"블루투스 스피커 에코 알렉사 구글홈 누구 클로바 기가지니",c:"스마트기기·통신",s:"d15",d:"송수신부에서 <b>15cm 이상</b>",r:"블루투스 기기는 15cm 거리 권고가 있습니다. 책상·선반 위에 두고 쓰는 일반적인 사용은 전혀 문제없습니다.",src:["Boston Scientific"]},
+{n:"와이파이 공유기",k:"와이파이 wifi 공유기 라우터 모뎀 랜",c:"스마트기기·통신",s:"d15",d:"안테나에서 <b>15cm 이상</b>",r:"공유기·무선랜 안테나 기준 15cm입니다. 방에 설치된 공유기는 거리가 멀어 일상에선 신경 쓸 일이 없어요. 가슴 바로 옆 머리맡에만 두지 마세요.",src:["Boston Scientific"]},
+{n:"노트북·데스크탑 PC",k:"노트북 컴퓨터 데스크탑 맥북 모니터 PC",c:"스마트기기·통신",s:"d15",d:"책상 사용은 자유 — <b>가슴 위에 올려놓지 않기</b>",r:"책상에서 쓰는 건 문제없습니다. 무선 모듈과 일부 노트북의 덮개 자석 때문에 가슴 위에 올리고 눕는 자세만 피하세요.",src:["Boston Scientific"]},
+{n:"태블릿(아이패드 등)",k:"태블릿 아이패드 갤럭시탭 패드",c:"스마트기기·통신",s:"d15",d:"<b>15cm 이상</b> — 가슴에 받쳐 들고 보지 않기",r:"태블릿과 자석 커버를 가슴에 받치고 누워서 보는 자세를 피하라는 게 Boston Scientific의 공식 안내입니다(아이패드 명시).",src:["Boston Scientific"]},
+{n:"전자책 리더기",k:"전자책 킨들 크레마 리디 이북",c:"스마트기기·통신",s:"d15",d:"<b>15cm 이상</b> — 가슴 위 거치 금지",r:"킨들 등 전자책 리더기는 자석 커버 때문에 15cm 거리 권고 품목입니다. 손에 들고 읽는 건 문제없어요.",src:["Boston Scientific"]},
+{n:"집전화 무선전화기",k:"무선전화기 집전화 코드리스 전화기",c:"스마트기기·통신",s:"d15",d:"수화기·본체(베이스) 모두 <b>15cm 이상</b>",r:"무선 집전화는 출력이 약하지만 수화기와 충전 베이스 모두 15cm 거리를 권고합니다. 가슴 주머니에 꽂아두지 마세요.",src:["Boston Scientific"]},
+{n:"MP3·휴대용 플레이어",k:"엠피쓰리 아이팟 mp3 워크맨 플레이어",c:"스마트기기·통신",s:"d15",d:"<b>15cm 이상</b> — 가슴 주머니 보관 금지",r:"플레이어와 이어폰에 자석이 들어 있어 15cm 거리 품목입니다.",src:["Boston Scientific"]},
+{n:"TV·홈시어터",k:"텔레비전 티비 TV 프로젝터",c:"스마트기기·통신",s:"safe",d:"안심 사용",r:"TV는 안전 품목입니다. 함께 쓰는 대형 스피커만 30cm 거리를 지키세요.",src:["Boston Scientific"]},
+{n:"TV 무선 헤드폰",k:"TV이어스 무선헤드폰 송신기 효도 헤드폰",c:"스마트기기·통신",s:"d15",d:"<b>송신기(TV 옆 장치)</b>에서 15cm 이상",r:"헤드폰 자체보다 TV 옆에 두는 송신기·충전기가 거리 대상입니다. 송신기를 소파 옆 가슴 높이에 두지 마세요.",src:["Boston Scientific"]},
+{n:"라디오·CD플레이어",k:"라디오 오디오 CD DVD 카세트",c:"스마트기기·통신",s:"safe",d:"안심 사용",r:"AM/FM 라디오와 CD/DVD 플레이어는 안전 품목입니다.",src:["Boston Scientific"]},
+{n:"리모컨",k:"리모콘 리모컨 차고문 셋톱박스",c:"스마트기기·통신",s:"safe",d:"안심 사용",r:"적외선 리모컨(TV·차고문 등)은 안전 품목입니다.",src:["Boston Scientific"]},
+{n:"자동차 스마트키",k:"스마트키 차키 리모컨키 카드키",c:"스마트기기·통신",s:"safe",d:"안심 — 기기 바로 위에 올려놓지만 않기",r:"Boston Scientific이 직접 테스트해 간섭이 없다고 확인한 품목입니다. 가슴 주머니보다는 바지 주머니·가방에 보관하세요.",src:["Boston Scientific"]},
+{n:"내비게이션·GPS",k:"네비 내비게이션 GPS 가민 티맵",c:"스마트기기·통신",s:"safe",d:"안심 사용",r:"GPS는 수신만 하고 전파를 쏘지 않아 안전합니다. 통신 기능이 합쳐진 기기는 휴대폰 기준(15cm)을 따르세요.",src:["Boston Scientific"]},
+{n:"게임기·콘솔",k:"닌텐도 플스 플레이스테이션 엑스박스 스위치 위 게임 콘솔",c:"스마트기기·통신",s:"safe",d:"안심 — 컨트롤러를 기기 바로 위에 두지 않기",r:"무선 컨트롤러 게임기는 안전 품목입니다. 닌텐도 매뉴얼은 컨트롤러를 심장기기에서 약 23cm 떨어뜨리라고 자체 권고합니다.",src:["Boston Scientific"]},
+{n:"드론·RC 조종기",k:"드론 RC카 조종기 무선조종 헬리캠",c:"스마트기기·통신",s:"d30",d:"송신 조종기에서 <b>30cm 이상</b> (2.4GHz 제품은 15cm)",r:"RC 비행기·보트용 고출력 송신기는 30cm, 요즘 흔한 2.4GHz 방식은 15cm 거리 권고입니다. 조종기를 가슴에 붙여 잡지 마세요.",src:["Boston Scientific"]},
+{n:"무전기·워키토키",k:"무전기 워키토키 CB 경찰무전 생활무전기",c:"스마트기기·통신",s:"d30",d:"출력 3W 이하 낮은 위험 · <b>3~15W는 30cm</b> · CB/경찰용은 60cm",r:"송신 출력에 따라 거리가 달라집니다. 차량 거치형 송신기는 60cm, 대시보드 조작부는 30cm가 기준입니다.",src:["Medtronic","Boston Scientific"]},
+{n:"햄(HAM)·아마추어 무선",k:"햄 ham 아마추어무선 단파",c:"스마트기기·통신",s:"consult",d:"출력별 거리 상이 — <b>고출력 장비는 사용 전 상담</b>",r:"15~30W는 60cm, 125~250W는 2.75m 거리가 필요하고 모스(CW) 송신도 간섭 가능성이 있습니다. 취미로 계속하려면 장비 출력을 갖고 의사·제조사와 상담하세요.",src:["Medtronic","Boston Scientific"]},
+{n:"위성 안테나",k:"위성 접시 안테나 스카이라이프 파라볼라",c:"스마트기기·통신",s:"safe",d:"수신용은 안심 — 송수신 겸용은 60cm",r:"가정용 수신 전용 접시 안테나는 안전합니다. 인터넷 송수신 겸용 안테나는 주 빔 방향을 피하고 60cm 거리를 두세요.",src:["Boston Scientific"]},
+{n:"통신탑·방송탑 근처",k:"기지국 송신탑 방송국 안테나 중계기",c:"스마트기기·통신",s:"safe",d:"일반인 통행·거주는 안심 — <b>타워 위 작업자는 상담</b>",r:"기지국·방송탑 근처를 지나거나 사는 것은 안전합니다. 송신 안테나에 올라가 정비하는 직업이라면 별도 상담이 필요합니다.",src:["Boston Scientific"]},
+{n:"프린터·복사기·팩스",k:"프린터 복사기 팩스 복합기 스캐너",c:"스마트기기·통신",s:"safe",d:"안심 사용",r:"사무기기는 안전 품목입니다.",src:["Boston Scientific"]},
+
+/* ━━ 개인·건강·운동 ━━ */
+{n:"전기면도기",k:"면도기 쉐이버 전동면도기",c:"개인·건강·운동",s:"d15",d:"<b>15cm 이상</b> — 전선을 가슴에 늘어뜨리지 않기",r:"얼굴 면도는 거리가 충분합니다. 가슴 부위에 직접 대거나 유선 제품 전선을 시술 부위에 걸치는 것만 피하세요.",src:["Boston Scientific","Medtronic"]},
+{n:"전동칫솔",k:"전동 칫솔 음파칫솔 소닉케어 충전기",c:"개인·건강·운동",s:"d15",d:"양치 OK — <b>충전 거치대</b>를 15cm 이상 거리에 보관",r:"핵심은 칫솔이 아니라 충전 베이스입니다. 유도 충전 방식이라 자기장이 나오니, 충전기 위로 몸을 숙이지 말고 머리맡이 아닌 세면대에 두세요.",src:["Boston Scientific","Medtronic"]},
+{n:"구강세정기(워터픽)",k:"워터픽 구강세정기 치실기",c:"개인·건강·운동",s:"d15",d:"소형 모터 기기 — <b>15cm</b> 일반 원칙",r:"손에 쥐는 모터 내장 개인용품으로 분류되어 한 뼘 거리 원칙을 적용하면 됩니다. 일반적인 사용 자세는 충분히 멀어요.",src:["Medtronic"]},
+{n:"고데기·헤어 아이론",k:"고데기 매직기 봉고데기 헤어아이론",c:"개인·건강·운동",s:"safe",d:"안심 사용",r:"고데기는 모터·자석 없이 열선만 있는 기구라 다리미·찜질팩과 같은 안전 분류입니다.",src:["Boston Scientific"]},
+{n:"마사지건",k:"마사지건 근막 테라건",c:"개인·건강·운동",s:"d15",d:"<b>15cm 이상</b> — 시술 부위(쇄골 아래)에 직접 대지 않기",r:"손에 쥐는 마사지기는 모터 자기장 때문에 기기 바로 위 사용 금지입니다. 허리·다리·발은 거리가 충분해 괜찮습니다.",src:["Boston Scientific"]},
+{n:"핸드 안마기·목어깨 안마기",k:"안마기 어깨안마기 목안마기 주물러",c:"개인·건강·운동",s:"d15",d:"<b>15cm 이상</b> — 기기 위 직접 사용 금지",r:"어깨에 두르는 안마기는 시술 부위와 가까워질 수 있으니 위치를 조절하고, 시술 부위 바로 위는 피하세요.",src:["Boston Scientific"]},
+{n:"안마의자",k:"안마의자 바디프랜드 세라젬 마사지의자",c:"개인·건강·운동",s:"safe",d:"안심 사용 — <b>전기자극(저주파) 기능이 없는 제품</b> 기준",r:"롤러·진동 방식 안마의자는 Boston Scientific 공식 안전 품목입니다. 단, 저주파 전기자극 기능이 결합된 제품은 그 기능을 끄고 쓰거나 의사와 상담하세요.",src:["Boston Scientific"]},
+{n:"발마사지기·족욕기",k:"발마사지 족욕기 발 안마기",c:"개인·건강·운동",s:"safe",d:"안심 사용 (전기자극 기능 없는 제품)",r:"진동·롤러식 발마사지기는 안전 품목입니다. 거리도 충분히 멀어요.",src:["Boston Scientific"]},
+{n:"저주파 치료기(TENS)",k:"저주파 텐스 EMS 패드 경피신경 클럭 휴플리",c:"개인·건강·운동",s:"consult",d:"<b>사용 전 반드시 담당 의료진 상담</b>",r:"몸에 전류를 직접 흘리는 기기는 인공심박동기가 심장 신호로 오인할 수 있는 대표 품목입니다. 특히 가슴·등 상부 부착은 위험합니다.",src:["Medtronic","Boston Scientific"]},
+{n:"복근 자극기(EMS 벨트)",k:"복근 벨트 슬렌더톤 앱트로닉 전기자극 운동기",c:"개인·건강·운동",s:"avoid",d:"<b>사용 금지</b>",r:"전기로 근육을 수축시키는 운동기구는 Boston Scientific이 '사용 금지(Do not use)'로 분류한 품목입니다.",src:["Boston Scientific"]},
+{n:"체지방 체중계·인바디",k:"인바디 체지방 체성분 스마트체중계 BIA",c:"개인·건강·운동",s:"avoid",d:"<b>체성분 측정 기능 사용 금지</b> — 숫자만 나오는 일반 체중계는 OK",r:"몸에 미세 전류를 흘려 측정하는 방식이라 Medtronic이 사용 자체를 권하지 않는 품목입니다. 헬스장 인바디도 동일합니다.",src:["Medtronic"]},
+{n:"체수분 측정 저울",k:"체수분 수분측정 하이드레이션",c:"개인·건강·운동",s:"avoid",d:"<b>사용 금지</b>",r:"체수분도 전기 임피던스로 측정하므로 체지방 측정과 동일하게 금지 품목입니다.",src:["Boston Scientific"]},
+{n:"일반 체중계",k:"체중계 저울 몸무게",c:"개인·건강·운동",s:"safe",d:"안심 사용",r:"몸무게 숫자만 보여주는 체중계는 전류가 흐르지 않아 안전합니다.",src:["Medtronic"]},
+{n:"혈압계(팔뚝형)",k:"혈압계 혈압 오므론 자동혈압계",c:"개인·건강·운동",s:"safe",d:"안심 사용",r:"팔에 감는 가정용·약국용 자동 혈압계는 안전 품목입니다.",src:["Boston Scientific"]},
+{n:"혈압계(손목형)",k:"손목 혈압계 손목형",c:"개인·건강·운동",s:"d15",d:"<b>15cm 이상</b> — 측정 시 손목을 가슴 위에 교차하지 않기",r:"일부 손목 혈압계는 측정 자세상 손목이 가슴 위로 오는데, 이때 기기와 가까워지므로 한 뼘 거리를 유지하세요.",src:["Boston Scientific"]},
+{n:"가슴띠 심박계",k:"심박계 가슴 스트랩 폴라 가민 심박벨트",c:"개인·건강·운동",s:"d15",d:"<b>15cm</b> — 스트랩 센서를 시술 반대쪽으로 돌려 착용",r:"가슴에 두르는 심박 벨트는 센서부를 시술 부위 반대쪽으로 회전시켜 착용하라는 게 공식 안내입니다.",src:["Boston Scientific"]},
+{n:"혈당측정기·산소포화도계",k:"혈당 측정기 당뇨 산소포화도 옥시미터",c:"개인·건강·운동",s:"safe",d:"안심 사용",r:"혈당측정기와 손가락 산소포화도 측정기는 영향이 없습니다.",src:["Boston Scientific"]},
+{n:"보청기",k:"보청기 청각 보조기",c:"개인·건강·운동",s:"safe",d:"안심 사용",r:"보청기는 인공심박동기와 서로 간섭하지 않습니다.",src:["Medtronic"]},
+{n:"응급호출 목걸이",k:"응급 호출기 안심폰 효도 목걸이 실버케어",c:"개인·건강·운동",s:"d15",d:"<b>15cm</b> — 펜던트를 시술 반대쪽으로",r:"휴대폰 기능이 있는 응급호출 목걸이는 펜던트가 가슴에 닿으므로 시술 부위 반대쪽으로 늘어뜨려 착용하세요.",src:["Boston Scientific"]},
+{n:"자석 팔찌·목걸이",k:"자석팔찌 자석목걸이 게르마늄자석 자기 액세서리",c:"개인·건강·운동",s:"avoid",d:"<b>시술 부위 근처 착용 금지</b>",r:"자석 장신구가 가슴 근처(15cm 이내)에 오면 기기의 자석 스위치를 건드릴 수 있습니다. 자석 없는 이온·게르마늄 팔찌는 괜찮습니다.",src:["AHA","Medtronic"]},
+{n:"이온·게르마늄 팔찌(자석 없는)",k:"이온팔찌 게르마늄 큐레이 음이온 팔찌",c:"개인·건강·운동",s:"safe",d:"안심 착용",r:"자석이 들어 있지 않은 이온 팔찌는 Boston Scientific 안전 품목입니다. 단, '자석'이라고 적힌 제품은 위 항목을 따르세요.",src:["Boston Scientific"]},
+{n:"자석 허리보호대·복대",k:"자석 복대 허리보호대 자기 벨트",c:"개인·건강·운동",s:"d15",d:"<b>가슴(기기)에서 15cm 이상</b> — 허리 착용은 가능",r:"허리에 차는 자석 벨트는 기기와 거리가 있어 사용 가능하지만, 가슴 가까이 올려 차거나 보관 시 기기 근처에 두지 마세요.",src:["Boston Scientific"]},
+{n:"자석파스",k:"자기파스 자석 패치 동전파스자석",c:"개인·건강·운동",s:"d15",d:"<b>가슴·어깨 시술 부위 주변 부착 금지</b>",r:"자석이 든 패치류는 '자석 있는 물건 15cm' 원칙이 그대로 적용됩니다. 허리·다리 부착은 괜찮지만 시술 부위 주변은 안 됩니다.",src:["Medtronic","AHA"]},
+{n:"실내자전거·일립티컬",k:"실내자전거 스피닝 일립티컬 헬스자전거 사이클",c:"개인·건강·운동",s:"d15",d:"자기 저항 방식 운동기구의 <b>자석부에서 15cm</b>",r:"자석으로 페달 저항을 만드는 운동기구는 자석부 기준 15cm 거리 권고가 있습니다. 정상 자세로 타면 충분히 멀어 운동 자체는 문제없습니다.",src:["Boston Scientific"]},
+{n:"러닝머신·트레드밀",k:"러닝머신 트레드밀 워킹머신",c:"개인·건강·운동",s:"safe",d:"안심 사용 — 운동 강도는 의사와 상의",r:"기기 간섭 측면에서는 안전합니다. 어느 강도까지 운동할지는 심장 상태에 따라 다르니 담당 의사와 정하세요.",src:["Boston Scientific"]},
+{n:"전신 진동 운동기",k:"진동 운동기 바이브레이션 진동판 솔로플렉스",c:"개인·건강·운동",s:"safe",d:"안심 사용",r:"기계 진동만 전달하는 전신진동 운동기는 안전 품목입니다.",src:["Boston Scientific"]},
+{n:"문신(타투)",k:"타투 문신 타투머신 반영구",c:"개인·건강·운동",s:"d15",d:"머신을 기기에서 <b>15cm 이상</b> — <b>시술 부위 위 문신 금지</b>",r:"타투 머신과 부속 장비는 15cm 거리 품목이며, 기기가 삽입된 부위 바로 위에는 문신을 받지 말라는 게 공식 안내입니다.",src:["Boston Scientific"]},
+{n:"전동휠체어·전동스쿠터",k:"전동휠체어 전동스쿠터 실버카 노인 스쿠터",c:"개인·건강·운동",s:"d15",d:"배터리·충전기에서 <b>15cm 이상</b>",r:"탑승은 안전합니다. 배터리 팩과 충전기를 가슴 높이에 바짝 붙이지만 마세요. 마트 전동카트도 동일합니다.",src:["Boston Scientific"]},
+
+/* ━━ 공구·작업 ━━ */
+{n:"전동드릴·전동공구",k:"드릴 임팩 그라인더 샌더 직쏘 원형톱 전동공구",c:"공구·작업",s:"d15",d:"모터에서 <b>15cm 이상</b> — 어깨·가슴에 받치는 자세 금지",r:"유선·무선 전동공구 공통으로 15cm 거리입니다. 공구를 어깨에 받치고 쓰면 모터가 기기 바로 옆에 오므로 절대 금지.",src:["Medtronic"]},
+{n:"체인톱(엔진톱)",k:"체인톱 전기톱 엔진톱 기계톱",c:"공구·작업",s:"d30",d:"<b>30cm 이상</b> — 사용 자체를 신중히",r:"전기·가솔린 모두 30cm 거리 품목입니다. 더 큰 위험은 간섭으로 어지럼증이 올 때 돌아가는 톱날을 들고 있다는 점이에요. 꼭 필요할 때만 짧게 쓰세요.",src:["Boston Scientific","Medtronic"]},
+{n:"예초기·엔진 잔디깎이",k:"예초기 잔디깎이 풀베기 제초기",c:"공구·작업",s:"d30",d:"엔진 점화장치에서 <b>30cm 이상</b> — 시동 끄고 정비",r:"가솔린 엔진 장비는 점화장치 기준 30cm입니다. 날 교체 등 조정은 반드시 시동을 끄고 하세요. 전기식 잔디깎이는 15cm면 됩니다.",src:["Medtronic"]},
+{n:"납땜인두·납땜건",k:"납땜 인두 솔더링",c:"공구·작업",s:"d30",d:"<b>30cm 이상</b>",r:"납땜건 속 변압기에서 자기장이 나옵니다. 가슴 가까이 들고 작업하지 마세요.",src:["Medtronic","Boston Scientific"],bn:"Boston Scientific은 15cm, Medtronic은 30cm를 권고합니다. 더 보수적인 30cm를 기준으로 안내드려요."},
+{n:"탈자기(디마그네타이저)",k:"탈자기 디마그네타이저 자기제거",c:"공구·작업",s:"d30",d:"<b>30cm 이상</b>",r:"공구·드라이버의 자성을 없애는 탈자기는 강한 자기장을 쓰므로 30cm 거리 품목입니다.",src:["Medtronic"]},
+{n:"아크용접기",k:"용접 용접기 아크 알곤 CO2 저항용접",c:"공구·작업",s:"avoid",d:"<b>피해야 할 대표 작업</b> — 직업상 필요 시 사전 상담 필수",r:"아크·저항 용접은 제조사들이 공통으로 '피하라'고 꼽는 장비입니다. 납 앞치마·조끼로도 전자기장은 차단되지 않습니다(Medtronic 공식 답변). 생업이라면 전류량·거리·접지 조건을 의사·제조사와 협의하세요.",src:["Medtronic","Boston Scientific"]},
+{n:"휴대용 발전기",k:"발전기 캠핑 발전기 제너레이터",c:"공구·작업",s:"d30",d:"<b>30cm 이상</b> (20kW 이하 휴대용 기준)",r:"엔진 점화장치가 있는 휴대용 발전기는 30cm 거리 품목입니다. 캠핑장에서 발전기 옆에 붙어 앉지 마세요. 산업용 대형 발전기는 별도 상담 대상입니다.",src:["Medtronic"]},
+{n:"UPS(무정전 전원장치)",k:"UPS 무정전 전원 배터리백업",c:"공구·작업",s:"d30",d:"<b>30cm 이상</b> — 정전돼 배터리로 작동 중일 땐 45cm",r:"컴퓨터용 UPS(200A 이하)는 평소 30cm, 배터리 구동 중에는 45cm 거리가 권고됩니다. 책상 아래 발치에 두면 충분합니다.",src:["Medtronic"]},
+{n:"점프케이블(배터리 점프)",k:"점프 케이블 점프스타터 방전 부스터",c:"공구·작업",s:"d60",d:"시동 거는 동안 케이블에서 <b>60cm 이상</b>",r:"점프 순간 케이블에 수백 암페어가 흐릅니다. 케이블을 몸에 걸치거나 가슴 가까이 두지 말고, 가능하면 다른 사람에게 부탁하세요.",src:["Boston Scientific"]},
+{n:"차량용 배터리 충전기",k:"배터리 충전기 차량 충전기",c:"공구·작업",s:"d30",d:"<b>30cm 이상</b>",r:"차량 배터리 충전기는 30cm 거리 품목입니다. 충전기 위로 몸을 숙여 들여다보지 마세요.",src:["Boston Scientific"]},
+{n:"착암기(잭해머)",k:"착암기 잭해머 브레이커 파쇄기",c:"공구·작업",s:"avoid",d:"<b>사용 금지</b> — 의사 상담",r:"콘크리트 파쇄용 착암기는 Boston Scientific이 '사용 금지' 품목으로 분류했습니다. 강한 전자기와 충격·진동이 모두 문제입니다.",src:["Boston Scientific"]},
+{n:"전기 울타리(농장)",k:"전기울타리 전기 펜스 멧돼지 울타리",c:"공구·작업",s:"safe",d:"평소엔 안전 — <b>감전됐다면 병원에 알리기</b>",r:"농장 전기울타리는 평상시 안전하지만, 만약 감전됐다면 인공심박동기 점검을 받으라고 권고합니다.",src:["Boston Scientific"]},
+{n:"반려견 전자 울타리",k:"강아지 울타리 전자펜스 인비저블펜스 목걸이훈련기",c:"공구·작업",s:"d30",d:"매설선·실내 송신기에서 <b>30cm 이상</b>",r:"보이지 않는 반려견 울타리는 땅에 묻은 전선과 실내 송신 안테나 모두 30cm 거리 품목입니다. 훈련 경계 구역에서 개를 쓰다듬는 자세(웅크림)도 피하세요.",src:["Medtronic","Boston Scientific"]},
+{n:"케이블 탐지기",k:"케이블 탐지 매설 탐지기 배관탐지",c:"공구·작업",s:"d60",d:"신호가 흐르는 매설 케이블에서 <b>50~60cm</b>",r:"지하 케이블 탐지 작업 중에는 테스트 신호가 흐르는 케이블 위로 몸을 숙이지 마세요.",src:["Boston Scientific"]},
+{n:"고압세척기·컴프레서",k:"고압세척기 콤프레샤 컴프레서 에어건",c:"공구·작업",s:"d15",d:"모터에서 <b>15cm 이상</b>",r:"모터 내장 장비의 일반 원칙(15cm)을 적용하면 됩니다. 정상 자세로 쓰면 충분히 멉니다.",src:["Medtronic"]},
+{n:"정전기 스프레이건",k:"스프레이건 도장 정전 분무기",c:"공구·작업",s:"safe",d:"안심 — 기기 바로 위에 대지만 않기",r:"핸드형 정전기 스프레이건은 안전 품목입니다.",src:["Boston Scientific"]},
+{n:"3D프린터",k:"3D 프린터 쓰리디",c:"공구·작업",s:"d15",d:"모터 작동부에서 <b>15cm</b> 일반 원칙",r:"제조사 표에 직접 등재되진 않았지만, 모터 구동 장비의 공통 원칙(15cm)을 적용하면 됩니다. 책상 위 일반 사용은 문제없습니다.",src:["Medtronic 일반원칙"]},
+
+/* ━━ 자동차·이동 ━━ */
+{n:"자동차 운전",k:"운전 자동차 차 승용차",c:"자동차·이동",s:"safe",d:"운전·탑승은 안전",r:"운전석은 점화장치와 거리가 충분합니다. 단, 제세동기(ICD) 환자의 운전 재개 시점은 부정맥 상태에 따라 다르니 담당 의사와 정하세요.",src:["Boston Scientific","AHA"]},
+{n:"엔진룸 정비(가솔린차)",k:"엔진룸 보닛 정비 점화플러그 카센터",c:"자동차·이동",s:"d30",d:"시동 켠 상태에서 점화장치로부터 <b>30cm 이상</b> — 정비는 시동 끄고",r:"가동 중인 가솔린 엔진의 점화코일은 강한 자기장을 만듭니다. 보닛 열고 몸을 숙이기 전에 반드시 시동부터 끄세요.",src:["Medtronic","Boston Scientific"]},
+{n:"디젤차 엔진",k:"디젤 경유차 트럭엔진",c:"자동차·이동",s:"safe",d:"안심 — 디젤 엔진은 점화장치가 없음",r:"디젤 엔진은 점화플러그 없이 압축착화하므로 가솔린차와 달리 영향이 없다고 Boston Scientific이 명시합니다. 단, 알터네이터(발전기) 60cm 원칙은 동일합니다.",src:["Boston Scientific"]},
+{n:"알터네이터·돌아가는 모터",k:"알터네이터 제너레이터 모터 발전기 회전",c:"자동차·이동",s:"d60",d:"가동 중인 차량 모터·알터네이터에서 <b>60cm 이상</b>",r:"시동 걸린 차의 알터네이터는 큰 자기장을 만들어 60cm 거리 품목입니다. 운전·탑승은 안전하고, 정비할 때만 해당됩니다.",src:["Boston Scientific"]},
+{n:"전기차",k:"전기차 EV 테슬라 아이오닉 EV6",c:"자동차·이동",s:"safe",d:"탑승·운전 안심 — <b>급속충전 중엔 차에서 내려 기다리기 권장</b>",r:"전기차 탑승·운전은 안전합니다. Boston Scientific은 충전탑에서 충전하는 동안 차내에 앉아 있지 말라고 권고하니, 급속충전 중엔 내려서 기다리는 게 좋아요. 케이블을 가슴에 안는 자세도 금지.",src:["Boston Scientific"]},
+{n:"하이브리드 차",k:"하이브리드 HEV 프리우스",c:"자동차·이동",s:"safe",d:"탑승·운전 안심",r:"하이브리드 차는 안전 품목입니다. 모터 정비 작업자만 60cm 원칙이 적용됩니다.",src:["Boston Scientific"]},
+{n:"오토바이",k:"오토바이 바이크 스쿠터 배달",c:"자동차·이동",s:"d30",d:"점화장치에서 <b>30cm 이상</b> — 운행 가능 여부는 의사와 상담",r:"오토바이 점화장치는 30cm 거리 품목입니다. 연료탱크 위로 바짝 엎드리는 자세를 피하고, 낙상 충격이 시술 부위에 위험할 수 있으니 운행 자체는 의사와 상의하세요.",src:["Boston Scientific"]},
+{n:"전동킥보드·전기자전거",k:"킥보드 전기자전거 전동휠 PM",c:"자동차·이동",s:"d15",d:"배터리·모터에서 <b>15cm</b> — 낙상 주의",r:"배터리·모터는 발 아래라 거리가 충분합니다. 기기 간섭보다 넘어질 때 가슴 충격이 더 큰 문제이니 시술 후 회복기에는 피하세요.",src:["Boston Scientific"]},
+{n:"전동 골프카트",k:"골프카트 카트 골프 전동카트",c:"자동차·이동",s:"d15",d:"배터리에서 15cm — <b>충전기에서는 30cm</b>",r:"골프카트 탑승은 안전합니다. 배터리 박스에 기대앉지 말고, 충전 중인 카트 옆에 붙어 있지 마세요. 골프 라운딩 자체는 의사 허락 후 가능합니다.",src:["Boston Scientific"]},
+{n:"버스·지하철·KTX",k:"지하철 기차 KTX SRT 버스 전철 고속철",c:"자동차·이동",s:"safe",d:"탑승 안심",r:"고속철·자기부상열차를 포함해 대중교통 탑승은 승객 기준 안전 품목입니다.",src:["Boston Scientific"]},
+{n:"비행기 탑승",k:"비행기 항공 기내 여행",c:"자동차·이동",s:"safe",d:"탑승 안심 — 검색대는 '외출·보안' 참고",r:"비행기 탑승과 기내 환경은 인공심박동기에 영향이 없습니다. 여행 시 기기 등록카드를 꼭 챙기세요.",src:["Boston Scientific","Medtronic"]},
+{n:"하이패스 단말기·블랙박스",k:"하이패스 블랙박스 단말기 톨게이트",c:"자동차·이동",s:"safe",d:"안심 사용",r:"저출력 차량 전자장비는 안전합니다. 단말기를 가슴 주머니에 넣고 다니지만 마세요.",src:["Boston Scientific"]},
+{n:"열선시트·열선조끼",k:"열선 시트 발열조끼 열선조끼 핫시트",c:"자동차·이동",s:"safe",d:"안심 사용",r:"직류(DC)로 열선을 데우는 발열 조끼·시트는 안전 품목입니다.",src:["Boston Scientific"]},
+
+/* ━━ 외출·보안·여행 ━━ */
+{n:"공항 보안 검색대",k:"공항 검색대 금속탐지기 보안검색 출국",c:"외출·보안·여행",s:"safe",d:"<b>멈추지 말고 보통 걸음으로 통과</b> — 기기 카드 제시",r:"걸어서 통과하는 금속탐지 게이트는 안전합니다. 경보가 울리면 기기 등록카드를 보여주고 손 검색을 요청하세요. 게이트 안에서 멈춰 서 있지만 마세요.",src:["Medtronic","Boston Scientific","Abbott"]},
+{n:"전신 스캐너",k:"전신스캐너 바디스캐너 밀리미터파",c:"외출·보안·여행",s:"safe",d:"통과 안심",r:"공항의 밀리미터파·전신 이미지 스캐너는 인공심박동기·제세동기에 영향이 없다고 공식 확인된 품목입니다.",src:["Boston Scientific","Medtronic"]},
+{n:"휴대용 검색봉(완드)",k:"검색봉 완드 핸드 금속탐지",c:"외출·보안·여행",s:"safe",d:"검색은 가능 — <b>기기 위에서 멈추거나 왔다갔다 하지 않게 요청</b>",r:"보안요원에게 인공심박동기 환자임을 알리고, 검색봉을 기기 부위 위에서 빠르게 한 번만 지나가도록 요청하세요.",src:["Medtronic","Boston Scientific"]},
+{n:"마트 도난방지 게이트",k:"도난방지 게이트 백화점 마트 보안게이트 EAS 도서관",c:"외출·보안·여행",s:"safe",d:"<b>멈추지 말고, 기대지 말고, 그냥 통과</b>",r:"매장·도서관 출입구의 도난방지 장치는 보통 걸음으로 지나가면 안전합니다. 게이트 사이에 서서 통화하거나 기둥에 기대는 것만 금지입니다.",src:["Medtronic","Boston Scientific"]},
+{n:"RFID 계산대·태그 제거기",k:"RFID 태그 계산대 셀프계산 리더기",c:"외출·보안·여행",s:"d60",d:"RFID 리더기에서 <b>60cm 이상</b>",r:"계산대의 도난방지 태그 제거기와 RFID 리더기는 60cm 거리 품목입니다. 계산대 기계에 가슴을 바짝 붙이고 기대지 마세요.",src:["Boston Scientific"]},
+{n:"출입증 카드 리더기",k:"카드키 출입증 사원증 리더기 게이트 태그",c:"외출·보안·여행",s:"d15",d:"벽면 리더기에서 <b>15cm 이상</b>",r:"건물 출입용 RFID 리더기는 15cm 거리 품목입니다. 카드를 태그할 때 가슴을 리더기에 붙이지 말고 팔만 뻗으세요.",src:["Boston Scientific"]},
+{n:"자석 명찰",k:"명찰 자석 이름표 뱃지",c:"외출·보안·여행",s:"avoid",d:"<b>자석식 명찰을 가슴(시술 부위)에 달지 마세요</b>",r:"자석 클립 명찰은 정확히 기기 위치에 자석을 붙이는 셈입니다. 옷핀·클립식으로 바꾸거나 시술 반대쪽에 다세요.",src:["Boston Scientific"]},
+{n:"고압 송전선·송전탑",k:"송전탑 고압선 전봇대 철탑",c:"외출·보안·여행",s:"safe",d:"아래로 지나다니기·근처 거주 모두 안심",r:"송전선 아래를 걷거나 차로 지나가는 것, 근처에 사는 것은 일반인 기준 안전합니다. 송전선 위에서 일하는 직업만 별도 상담 대상입니다.",src:["Boston Scientific"]},
+{n:"주택가 변압기 박스",k:"변압기 트랜스 배전함 녹색 박스",c:"외출·보안·여행",s:"d30",d:"<b>30cm 이상</b> — 옆을 지나가는 건 괜찮음",r:"길가의 지상 변압기 박스는 30cm 거리 품목입니다. 지나다니거나 마당에 있는 건 낮은 위험이지만, 박스에 걸터앉거나 기대지 마세요.",src:["Boston Scientific"]},
+{n:"수력발전소(댐) 견학",k:"댐 수력발전소 견학 후버댐 발전소투어",c:"외출·보안·여행",s:"avoid",d:"<b>댐 내부 견학은 피하세요</b> (특히 ICD 환자)",r:"미국 후버댐은 내부의 강한 자기장 때문에 ICD 환자의 내부 투어를 권하지 않는 공식 방침이 있습니다. 다른 수력발전소도 내부 자기장을 예측할 수 없어 마찬가지예요. 댐 바깥 전망대 관람은 괜찮습니다.",src:["Boston Scientific"]},
+{n:"노래방·무선 마이크",k:"노래방 마이크 무선마이크 코인노래방",c:"외출·보안·여행",s:"d15",d:"무선 마이크 안테나에서 <b>15cm</b>",r:"무선 마이크는 저출력이라 15cm 거리면 충분합니다. 마이크를 가슴에 품지 말고 노래방 대형 스피커 앞에 가슴을 붙이고 서 있지 마세요.",src:["Boston Scientific"]},
+{n:"카지노 슬롯머신",k:"카지노 슬롯머신 파친코 게임기",c:"외출·보안·여행",s:"d30",d:"기계에서 <b>30cm 이상</b>",r:"슬롯머신은 30cm 거리 품목입니다. 기계에 가슴을 붙이고 엎드리듯 기대는 자세만 피하면 게임은 가능합니다.",src:["Boston Scientific"]},
+
+/* ━━ 취미·여가 ━━ */
+{n:"전기기타",k:"일렉기타 전기 기타 베이스 픽업",c:"취미·여가",s:"d15",d:"기타 픽업(자석)에서 <b>15cm</b> — 연주는 가능",r:"전기기타 픽업에는 자석이 있지만 자기장이 약해 15cm 거리면 연주에 문제없다는 게 공식 안내입니다. 앰프 스피커는 30cm 거리를 두세요.",src:["Boston Scientific"]},
+{n:"빙고 자석봉",k:"빙고 자석봉 빙고게임",c:"취미·여가",s:"d15",d:"<b>15cm</b> — 자석봉을 가슴 주머니에 넣지 않기",r:"빙고 칩을 줍는 자석봉에는 영구자석이 들어 있어 15cm 거리 품목입니다.",src:["Boston Scientific"]},
+{n:"기차 모형(전동)",k:"기차모형 철도모형 디오라마 변압기",c:"취미·여가",s:"d15",d:"<b>변압기에서 15cm</b> — 전원 레일을 맨손으로 만지지 않기",r:"전동 기차 모형의 변압기가 거리 대상이며, 특히 젖은 손으로 전원 레일을 만지지 말라는 안내가 있습니다.",src:["Boston Scientific"]},
+{n:"레이저태그·서바이벌",k:"레이저태그 서바이벌 게임 조끼",c:"취미·여가",s:"d15",d:"조끼 속 <b>자석에서 15cm</b>",r:"레이저 총 자체는 빛이라 안전하지만, 일부 조끼에 자석·송신기가 들어 있어 조끼 착용 위치를 확인하세요.",src:["Boston Scientific"]},
+{n:"플라즈마 볼",k:"플라즈마볼 번개구슬 정전기 반데그라프",c:"취미·여가",s:"d15",d:"<b>15cm</b> — 절대 만지지 않기",r:"과학관의 플라즈마 볼·정전기 발생장치는 만지지 말고 한 뼘 거리에서 구경만 하세요.",src:["Boston Scientific"]},
+{n:"사격(소총·엽총)",k:"사격 소총 엽총 총 클레이",c:"취미·여가",s:"consult",d:"<b>개머리판을 시술 반대쪽 어깨에</b> — 사전 상담",r:"문제는 전자기가 아니라 반동 충격입니다. 발사 반동이 기기·전극선에 손상을 줄 수 있어, 시술 반대쪽 어깨로 견착하고 의사와 상담 후 하세요.",src:["Boston Scientific"]},
+{n:"낚시·보트 모터",k:"낚시 보트 트롤링 선외기 모터보트",c:"취미·여가",s:"d30",d:"전동 트롤링 모터·선외기에서 <b>30cm 이상</b>",r:"낚시 자체는 문제없습니다. 보트 모터에 가슴을 붙이고 정비하는 자세만 피하세요.",src:["Medtronic"]},
+{n:"소형 보트 레이더",k:"레이더 어선 보트레이더",c:"취미·여가",s:"consult",d:"안테나 회전 반경 아래 <b>수직 1m</b> 거리",r:"1~4kW급 소형 선박 레이더는 안테나 아래 1m 수직 거리가 권고됩니다. 콘솔 화면 조작은 괜찮습니다. 크루즈선 승객 구역은 안전합니다.",src:["Boston Scientific"]},
+{n:"스쿠버다이빙",k:"스쿠버 다이빙 잠수 스킨스쿠버 프리다이빙",c:"취미·여가",s:"consult",d:"<b>잠수 전 반드시 의사 상담</b> — 기기 압력 한계 약 2.5기압",r:"기기의 압력 내구 시험은 약 2.5기압(수심 약 15m 상당)까지입니다. 수심 한계와 심장 상태를 함께 평가해야 하므로 반드시 사전 상담이 필요합니다.",src:["Boston Scientific"]},
+{n:"사우나·찜질방·온수욕조",k:"사우나 찜질방 온천 핫텁 스파 욕조",c:"취미·여가",s:"safe",d:"기기 간섭은 없음 — <b>고온 견딜 수 있는지는 의사와 상의</b>",r:"온수욕조(핫텁)는 공식 안전 품목입니다. 전자기 간섭은 없지만, 고온·탈수가 심장에 주는 부담은 별개이니 입욕 시간은 심장 상태에 맞게 정하세요.",src:["Boston Scientific"]},
+{n:"태닝(선탠)",k:"태닝 선탠 태닝베드 인공선탠",c:"취미·여가",s:"safe",d:"안심 — 시작 전 의사에게 한 번 확인",r:"태닝베드와 스프레이 태닝 부스 모두 기기 간섭 측면에선 안전 품목입니다.",src:["Boston Scientific"]},
+{n:"놀이기구·롤러코스터",k:"롤러코스터 놀이공원 자이로드롭 바이킹 놀이기구",c:"취미·여가",s:"consult",d:"일반 중력식은 안전 — <b>전자기(자기부상) 추진식은 피하기</b>",r:"전통적인 중력식 롤러코스터는 안전 품목이지만, 전자석으로 쏘아 올리는 발사형 코스터는 피하라는 안내가 있습니다. 격렬한 기구의 충격·가속이 시술 부위에 주는 부담도 의사와 상의하세요.",src:["Boston Scientific"]},
+{n:"취미용 금속탐지기",k:"금속탐지기 보물찾기 탐지기",c:"취미·여가",s:"d60",d:"탐지 헤드를 몸 반대 방향으로, <b>60cm 이상</b>",r:"보물찾기용 금속탐지기는 탐지 헤드(코일)가 강한 자기장을 내므로 헤드를 항상 몸에서 60cm 이상 떨어뜨려 땅 쪽으로만 향하게 하세요.",src:["Boston Scientific"]},
+{n:"도예 가마(전기)",k:"가마 도예 도자기 킬른 유리공예",c:"취미·여가",s:"d60",d:"가정용 전기 가마에서 <b>60cm 이상</b>",r:"열선식 전기 가마는 거리 품목입니다. 장작·가스 가마는 영향이 없습니다. 금속을 녹이는 '유도가열' 가마는 차원이 다르게 강하므로 직업·산업환경 항목을 보세요.",src:["Medtronic","Boston Scientific"],bn:"Medtronic은 60cm, Boston Scientific은 30cm를 권고합니다. 보수적으로 60cm 기준으로 안내드려요."},
+
+/* ━━ 병원·치료 ━━ */
+{n:"MRI 검사",k:"MRI 엠알아이 자기공명",c:"병원·치료",s:"consult",d:"<b>'MRI 조건부 기기'인지 확인</b> — 반드시 시술 병원과 사전 협의",r:"요즘 이식되는 기기 다수는 검사 전 MRI 모드로 설정하면 촬영이 가능하지만, 기기·전극선 모델에 따라 불가능한 경우도 있습니다. MRI 예약 전 기기 등록카드 확인 + 시술받은 심장내과 문의, 두 가지를 꼭 거치세요.",src:["Medtronic","Boston Scientific","Abbott"],bn:"제조사·모델마다 MRI 가능 조건(1.5T/3T, 촬영 부위 제한)이 다릅니다. 등록카드의 모델명으로 확인하는 게 가장 정확합니다."},
+{n:"CT 촬영",k:"CT 씨티 컴퓨터단층",c:"병원·치료",s:"safe",d:"검사 가능 — <b>인공심박동기 환자임을 미리 알리기</b>",r:"CT는 일반적으로 안전하지만, X선 빔이 기기를 수십 초 이상 직접 비추면 일시적 오감지 가능성이 있어 촬영 전 고지가 필요합니다. 의료진이 알고 있으면 문제없이 진행됩니다.",src:["Medtronic"]},
+{n:"X-ray·초음파 검사",k:"엑스레이 방사선촬영 초음파 에코 심장초음파",c:"병원·치료",s:"safe",d:"검사 안심",r:"일반 X선 촬영과 진단용 초음파(심장초음파 포함)는 기기에 영향이 없습니다.",src:["Medtronic","Abbott"]},
+{n:"고주파 온열치료(디아테르미)",k:"디아테르미 고주파 온열 심부열 단파 극초단파 고주파치료",c:"병원·치료",s:"avoid",d:"<b>절대 금지</b>",r:"단파·극초단파 디아테르미는 제조사 공통 금기입니다. 강한 에너지가 전극선을 타고 흘러 기기 손상과 심장 조직 화상까지 일으킬 수 있어요. 물리치료실·한의원·피부관리실에서 고주파 장비를 권하면 인공심박동기 환자임을 먼저 알리세요.",src:["Medtronic","Boston Scientific","Abbott"]},
+{n:"수술(전기소작기)",k:"수술 전기소작 보비 외과 내시경시술",c:"병원·치료",s:"consult",d:"수술 전 <b>반드시 인공심박동기 환자임을 알리기</b>",r:"수술용 전기소작기는 간섭 가능성이 있어, 의료진이 미리 알면 기기 설정 변경·자석 준비 등 안전 조치를 합니다. 어떤 수술이든 기기 등록카드를 먼저 보여주세요.",src:["Medtronic","Boston Scientific"]},
+{n:"체외충격파 쇄석술",k:"쇄석술 요로결석 체외충격파 ESWL",c:"병원·치료",s:"consult",d:"<b>시술 전 심장내과 협의 필수</b>",r:"결석을 깨는 충격파가 기기에 영향을 줄 수 있어, 충격파 초점을 기기에서 멀리 두는 등 조정이 필요합니다. 비뇨기과와 심장내과가 협의해 진행합니다.",src:["Medtronic"]},
+{n:"방사선 치료(암치료)",k:"방사선치료 항암 방사선 종양",c:"병원·치료",s:"consult",d:"<b>치료 계획 단계부터 심장내과 협의</b>",r:"치료 방사선이 기기에 누적되면 회로 손상 위험이 있어, 기기 차폐·위치 이동·치료 중 모니터링 계획이 필요합니다. 방사선종양학과에 인공심박동기 환자임을 반드시 알리세요.",src:["Medtronic","Abbott"]},
+{n:"전기침·한방 치료",k:"전기침 침 한의원 부항 뜸",c:"병원·치료",s:"consult",d:"일반 침·부항·뜸은 대체로 가능 — <b>전기침은 사전 상담</b>",r:"전기 자극 없는 일반 침은 큰 문제가 없지만, 침에 전류를 흘리는 전기침은 저주파 치료기와 같은 원리로 위험합니다. 한의원에 인공심박동기 환자임을 알리세요.",src:["Medtronic"]},
+{n:"치과 치료",k:"치과 스케일링 임플란트 발치",c:"병원·치료",s:"safe",d:"대부분 안전 — 진료 전 고지",r:"스케일링·충치치료·발치 등 일반 치과 진료는 안전합니다. 진료 전 인공심박동기 환자임을 알리면 치과에서 장비를 조정해줍니다.",src:["Medtronic","Abbott"]},
+{n:"고압산소치료",k:"고압산소 챔버 HBOT",c:"병원·치료",s:"consult",d:"<b>2.5기압 이내</b>에서 의사 판단 하에 가능",r:"기기의 압력 시험 한계가 약 2.5기압이므로, 치료 압력과 심장 상태를 의사가 평가한 후 진행해야 합니다.",src:["Boston Scientific"]},
+{n:"스턴건·테이저 피격",k:"테이저 스턴건 전기충격기 감전",c:"병원·치료",s:"consult",d:"전기 충격을 받았다면 <b>기기 점검 필수</b>",r:"스턴건이나 콘센트 감전 등 외부에서 전기 충격을 받은 경우, 증상이 없어도 병원에서 기기 점검을 받으라는 게 제조사 권고입니다.",src:["Boston Scientific"]},
+
+/* ━━ 직업·산업환경 ━━ */
+{n:"산업용 아크·저항 용접",k:"산업 용접 저항용접 스폿용접 조선소",c:"직업·산업환경",s:"avoid",d:"<b>피해야 할 작업환경</b> — 복귀 전 의사·제조사 협의",r:"전기 아크·저항 용접 장비는 제조사가 명시한 '피하거나 근처에서 일하지 말아야 할' 산업장비입니다. 직업 복귀가 필요하면 전류량·거리 조건을 사전 협의하세요.",src:["Medtronic"]},
+{n:"제철소 전기로",k:"제철 전기로 용광로 제강",c:"직업·산업환경",s:"avoid",d:"<b>근처 작업 금지</b>",r:"철강 제조용 전기로는 Medtronic이 명시한 회피 대상 산업장비입니다.",src:["Medtronic"]},
+{n:"유도가열 설비·유도로",k:"유도가열 고주파로 유도로 인덕션히터 열처리",c:"직업·산업환경",s:"avoid",d:"<b>근처 작업 금지</b> — 작업장 자기장 측정 필요",r:"금속을 녹이거나 열처리하는 유도가열 설비는 매우 강한 자기장을 만듭니다. 해당 작업장 복귀가 필요하면 전문가의 현장 자기장 측정이 선행돼야 합니다.",src:["Medtronic","Boston Scientific"]},
+{n:"유전가열기(플라스틱 가공)",k:"유전가열 고주파접착 플라스틱가공 목공접착",c:"직업·산업환경",s:"avoid",d:"<b>근처 작업 금지</b>",r:"플라스틱 가열·가구 접착제 건조에 쓰는 유전가열기는 회피 대상 산업장비입니다.",src:["Medtronic"]},
+{n:"산업용 대형 자석·전자석 크레인",k:"전자석 크레인 마그넷 고철 리프팅",c:"직업·산업환경",s:"avoid",d:"<b>근처 작업 금지</b>",r:"고철을 들어 올리는 전자석 크레인과 연삭용 대형 자석은 회피 대상입니다. 고철상·재활용 작업장 근무자는 복귀 전 상담이 필요합니다.",src:["Medtronic"]},
+{n:"발전소·대형 발전기",k:"발전소 터빈 대형발전기 플랜트",c:"직업·산업환경",s:"consult",d:"발전 설비 근접 작업은 <b>복귀 전 상담</b>",r:"발전소 내부의 대형 발전기·송전 설비 근처 작업은 상담 대상입니다. 가정·상가용 저압 배전선은 영향이 없습니다.",src:["Medtronic"]},
+{n:"방송 송신 안테나 작업",k:"송신소 방송탑 안테나 작업 통신탑",c:"직업·산업환경",s:"avoid",d:"AM/FM/TV <b>송신 안테나 근접 작업 금지</b>",r:"방송국 송신 안테나는 회피 대상 장비입니다. 일반인이 송신소 근처를 지나는 것은 안전합니다.",src:["Medtronic","Boston Scientific"]},
+{n:"고출력 무선 송신기",k:"고출력 송신기 중계기 기지국장비 마이크로웨이브",c:"직업·산업환경",s:"d60",d:"15~30W는 60cm · <b>125~250W는 2.75m</b> · 그 이상은 제조사 문의",r:"송신 출력에 비례해 거리가 늘어납니다. 마이크로파 송신기도 회피 대상이지만, 전자레인지(가정용)는 무관합니다.",src:["Medtronic"]},
+{n:"군용·경찰 차량 무전기",k:"군용 무전기 경찰 소방 차량무전",c:"직업·산업환경",s:"d60",d:"송신 안테나에서 <b>60cm</b> — 대시보드 조작부는 30cm",r:"군용 무전기(10~20W)와 경찰·소방 차량 무전기는 안테나 기준 60cm 거리 품목입니다. 직업상 사용이 필요하면 안테나 위치를 차량 뒤쪽으로 옮기는 방법을 협의하세요.",src:["Boston Scientific"]},
+{n:"측량 GPS(리피터 장비)",k:"측량 GPS 측량기 리피터 토목",c:"직업·산업환경",s:"d60",d:"리피터 송신기 안테나에서 <b>60cm</b>",r:"일반 측량 GPS는 낮은 위험이지만, 리피터 송신기(25W 이하)를 쓰는 장비는 안테나 기준 60cm 거리가 필요합니다.",src:["Boston Scientific"]},
+{n:"'인공심박동기 출입금지' 표지 구역",k:"출입금지 경고 표지판 작업장 통제구역",c:"직업·산업환경",s:"avoid",d:"표지판이 있는 곳은 <b>들어가기 전 의사 상담</b>",r:"산업시설·연구소 등에 '인공심박동기 착용자 출입 제한' 표지가 있다면 이유가 있는 곳입니다. 업무상 출입이 필요하면 반드시 사전 상담하세요.",src:["Medtronic"]},
+];
+
+const $q=document.getElementById('q');
+const $res=document.getElementById('results');
+const $pop=document.getElementById('popularBox');
+let curCat='all';
+document.getElementById('dbTotal').textContent=DB.length;
+document.getElementById('dbTotal2').textContent=DB.length;
+
+const norm=s=>s.replace(/\s+/g,'').toLowerCase();
+function statusMeta(s){return{
+  avoid:{cls:'avoid',label:'피하세요'},
+  d60:{cls:'d60',label:'60cm 이상'},
+  d30:{cls:'d30',label:'30cm 이상'},
+  d15:{cls:'d15',label:'15cm 이상'},
+  safe:{cls:'safe',label:'안심 사용'},
+  consult:{cls:'consult',label:'병원 상담'}}[s];}
+
+function card(it){
+  const m=statusMeta(it.s);
+  return `<article class="card">
+    <div class="card-top">
+      <span class="badge b-${m.cls}">${m.label}</span>
+      <div><h3>${it.n}</h3><div class="cat-tag">${it.c}</div></div>
+    </div>
+    <div class="distance d-${m.cls}">
+      <svg class="ruler" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <rect x="2" y="9" width="20" height="6" rx="1.5"/><path d="M6 9v3M10 9v3M14 9v3M18 9v3"/>
+      </svg><div>${it.d}</div>
+    </div>
+    <p class="reason">${it.r}</p>
+    ${it.bn?`<div class="brandnote"><span class="bn-title">💡 브랜드마다 달라요</span><br>${it.bn}</div>`:''}
+    <div class="source">근거 자료 ${it.src.map(s=>`<span>${s}</span>`).join('')}</div>
+  </article>`;
+}
+
+function render(list,query){
+  if(!query&&curCat==='all'){$res.innerHTML='';$pop.style.display='';return;}
+  $pop.style.display='none';
+  if(list.length===0){
+    $res.innerHTML=`<div class="empty">
+      <h3>"${query}" 검색 결과가 아직 없어요</h3>
+      <p>찾으시는 제품이 목록에 없다면,<br>
+      <a href="https://litt.ly/tt_vessel_lab?utm_source=threads&utm_medium=social&utm_content=link_in_bio" target="_blank" rel="noopener">튼튼혈관연구소 카페</a>에 질문을 남겨주세요.<br>
+      17년차 심뇌혈관조영실 방사선사가<br>공신력 있는 자료를 찾아 답변해드립니다.</p></div>`;
+    return;
+  }
+  const order={avoid:0,consult:1,d60:2,d30:3,d15:4,safe:5};
+  list.sort((a,b)=>order[a.s]-order[b.s]);
+  $res.innerHTML=`<div class="count">검색 결과 <b>${list.length}건</b> · 조심해야 할 것부터 보여드려요</div>`+list.map(card).join('');
+}
+
+function search(){
+  const q=norm($q.value);
+  let list=DB.filter(it=>curCat==='all'||it.c===curCat);
+  if(q){list=list.filter(it=>norm(it.n).includes(q)||norm(it.k).includes(q));}
+  render(list,$q.value.trim());
+}
+$q.addEventListener('input',search);
+$q.addEventListener('keydown',e=>{if(e.key==='Enter'){search();$q.blur();}});
+document.getElementById('searchBtn').addEventListener('click',()=>{search();$q.blur();
+  if($q.value.trim())document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});});
+document.getElementById('chips').addEventListener('click',e=>{
+  const btn=e.target.closest('.chip');if(!btn)return;
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+  btn.classList.add('on');curCat=btn.dataset.cat;search();
+});
+document.querySelectorAll('.pop').forEach(b=>{
+  b.addEventListener('click',()=>{
+    $q.value=b.textContent;search();
+    $q.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+</script>
+<footer style="background:#161b22;color:#c7ced5;font-size:13px;line-height:1.7;padding:28px 16px;text-align:center;font-family:'Noto Sans KR',sans-serif;">
+  <div style="max-width:640px;margin:0 auto 14px;">⚠️ 이 자료는 교육·참고 목적이며 의학적 진단·처방을 대체하지 않습니다. 개별 기기·환경에 대한 안전 여부는 반드시 담당 의료진 또는 기기 제조사에 확인하세요.</div>
+  <nav style="margin-bottom:10px;">
+    <a href="/index.html" style="color:#ff8a72;text-decoration:none;">Home</a>
+    <span style="opacity:.4;"> · </span>
+    <a href="/tools.html" style="color:#ff8a72;text-decoration:none;">tt_vessel_toolbox</a>
+    <span style="opacity:.4;"> · </span>
+    <a href="/about.html" style="color:#ff8a72;text-decoration:none;">About</a>
+    <span style="opacity:.4;"> · </span>
+    <a href="/contact.html" style="color:#ff8a72;text-decoration:none;">Contact</a>
+    <span style="opacity:.4;"> · </span>
+    <a href="/privacy.html" style="color:#ff8a72;text-decoration:none;">Privacy Policy</a>
+    <span style="opacity:.4;"> · </span>
+    <a href="/terms.html" style="color:#ff8a72;text-decoration:none;">Terms</a>
+  </nav>
+  <div style="opacity:.6;">© 2026 튼튼혈관연구소 TT VESSEL LAB (ttvessellab.com). All rights reserved.</div>
+</footer>
+</body>
+</html>

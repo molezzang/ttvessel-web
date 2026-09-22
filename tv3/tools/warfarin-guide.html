@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>와파린 복용 중 안전한 식생활 정보 | 튼튼혈관연구소</title>
+<meta name="description" content="와파린은 비타민 K 섭취량에 따라 약효가 달라집니다. 음식을 무조건 끊기보다 매일 일정한 양을 규칙적으로 드시는 것이 중요합니다.">
+<link rel="canonical" href="https://www.ttvessellab.com/tools/warfarin-guide.html">
+<meta property="og:title" content="와파린 복용 중 안전한 식생활 정보">
+<meta property="og:description" content="와파린은 비타민 K 섭취량에 따라 약효가 달라집니다. 음식을 무조건 끊기보다 매일 일정한 양을 규칙적으로 드시는 것이 중요합니다.">
+<meta property="og:image" content="https://www.ttvessellab.com/tools/assets/warfarin-thumbnail.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.ttvessellab.com/tools/warfarin-guide.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.ttvessellab.com/tools/assets/warfarin-thumbnail.png">
+<!-- 카카오 SDK -->
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --safe: #2d6a4f; --safe-bg: #f0faf4; --safe-border: #95d5b2;
+  --caution: #92620a; --caution-bg: #fffbeb; --caution-border: #fcd34d;
+  --avoid: #9b1c1c; --avoid-bg: #fff5f5; --avoid-border: #fca5a5;
+  --accent: #1d4e89; --neutral: #1f2937; --muted: #6b7280;
+  --bg: #f8f9fa; --surface: #ffffff; --border: #e5e7eb;
+  --radius: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--neutral); }
+
+/* ── HEADER ── */
+.site-header {
+  background: linear-gradient(135deg, #1d4e89 0%, #2563eb 100%);
+  padding: 28px 20px 24px;
+  color: #fff;
+}
+.header-inner { max-width: 720px; margin: 0 auto; }
+.site-header h1 { font-size: 22px; font-weight: 700; line-height: 1.4; margin-bottom: 6px; }
+.site-header p { font-size: 13px; opacity: .88; line-height: 1.7; }
+.header-tag { display: inline-block; background: rgba(255,255,255,.2); border-radius: 20px; padding: 3px 10px; font-size: 11px; margin-bottom: 10px; }
+
+/* ── 검색 바 (헤더 하단) ── */
+.search-bar-wrap {
+  max-width: 720px; margin: 0 auto;
+  padding: 14px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 50;
+}
+.search-bar-inner { position: relative; }
+.search-bar-inner input {
+  width: 100%; padding: 11px 16px 11px 40px;
+  font-size: 14px; font-family: inherit;
+  border: 1.5px solid var(--border); border-radius: 10px;
+  background: var(--bg); color: var(--neutral); outline: none;
+  transition: border-color .2s;
+}
+.search-bar-inner input:focus { border-color: var(--accent); background: #fff; }
+.search-bar-inner .si { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 16px; }
+.filter-chips { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+.chip {
+  padding: 5px 14px; font-size: 12px; font-weight: 500; font-family: inherit;
+  border-radius: 20px; border: 1.5px solid var(--border);
+  background: var(--surface); color: var(--muted); cursor: pointer; transition: all .15s;
+}
+.chip.c-all.on  { background: var(--accent); color: #fff; border-color: var(--accent); }
+.chip.c-safe.on { background: var(--safe-bg); color: var(--safe); border-color: var(--safe-border); }
+.chip.c-caution.on { background: var(--caution-bg); color: var(--caution); border-color: var(--caution-border); }
+.chip.c-avoid.on { background: var(--avoid-bg); color: var(--avoid); border-color: var(--avoid-border); }
+
+/* ── NOTICE ── */
+.notice {
+  max-width: 720px; margin: 16px auto 0; padding: 0 16px;
+}
+.notice-inner {
+  background: #fffbeb; border: 1px solid #fcd34d; border-radius: 10px;
+  padding: 12px 16px; font-size: 13px; color: #78350f; line-height: 1.7;
+  display: flex; gap: 8px; align-items: flex-start;
+}
+
+/* ── MAIN ── */
+main { max-width: 720px; margin: 0 auto; padding: 16px 16px 120px; }
+
+/* ── INTRO CARDS ── */
+.intro-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 24px; }
+.intro-card { border-radius: var(--radius); padding: 14px 12px; text-align: center; }
+.intro-card.safe   { background: var(--safe-bg);    border: 1px solid var(--safe-border); }
+.intro-card.caution{ background: var(--caution-bg); border: 1px solid var(--caution-border); }
+.intro-card.avoid  { background: var(--avoid-bg);   border: 1px solid var(--avoid-border); }
+.intro-num { font-size: 26px; font-weight: 700; }
+.safe   .intro-num { color: var(--safe); }
+.caution.intro-num { color: var(--caution); }
+.avoid  .intro-num { color: var(--avoid); }
+.intro-label { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+/* ── SECTION HEADER ── */
+.sec-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 0 10px;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 12px; margin-top: 28px;
+}
+.sec-header:first-of-type { margin-top: 8px; }
+.sec-badge { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+.sec-badge.safe    { background: var(--safe-bg); color: var(--safe); border: 1px solid var(--safe-border); }
+.sec-badge.caution { background: var(--caution-bg); color: var(--caution); border: 1px solid var(--caution-border); }
+.sec-badge.avoid   { background: var(--avoid-bg); color: var(--avoid); border: 1px solid var(--avoid-border); }
+.sec-title { font-size: 16px; font-weight: 700; color: var(--neutral); }
+.sec-count { font-size: 12px; color: var(--muted); margin-left: auto; }
+
+/* ── FOOD CARDS ── */
+.food-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@media(max-width:480px){ .food-grid { grid-template-columns: 1fr; } }
+
+.food-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px;
+  cursor: pointer; transition: box-shadow .15s;
+  border-left: 4px solid var(--border);
+}
+.food-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,.08); }
+.food-card.safe    { border-left-color: var(--safe); }
+.food-card.caution { border-left-color: var(--caution); }
+.food-card.avoid   { border-left-color: var(--avoid); }
+.food-card.hidden  { display: none; }
+
+.fc-top { display: flex; align-items: center; gap: 9px; }
+.fc-emoji { font-size: 20px; width: 30px; text-align: center; flex-shrink: 0; }
+.fc-name { font-size: 14px; font-weight: 700; flex: 1; }
+.fc-badge { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 6px; flex-shrink: 0; }
+.fc-badge.safe    { background: var(--safe-bg);    color: var(--safe); }
+.fc-badge.caution { background: var(--caution-bg); color: var(--caution); }
+.fc-badge.avoid   { background: var(--avoid-bg);   color: var(--avoid); }
+.fc-arrow { font-size: 10px; color: var(--muted); transition: transform .2s; flex-shrink: 0; }
+.food-card.open .fc-arrow { transform: rotate(180deg); }
+
+.fc-detail { display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 13px; color: #374151; line-height: 1.7; }
+.food-card.open .fc-detail { display: block; }
+
+.dose-tag {
+  display: inline-block; border-radius: 6px; padding: 3px 8px;
+  font-size: 11px; font-weight: 500; margin-top: 6px; margin-right: 4px;
+  border: 1px solid var(--border); background: #f3f4f6; color: #374151;
+}
+.dose-tag.green { background: var(--safe-bg); border-color: var(--safe-border); color: var(--safe); }
+.dose-tag.amber { background: var(--caution-bg); border-color: var(--caution-border); color: var(--caution); }
+.dose-tag.red   { background: var(--avoid-bg); border-color: var(--avoid-border); color: var(--avoid); }
+
+/* ── 원칙 박스 ── */
+.tip-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; margin-top: 28px; }
+.tip-box h3 { font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+.tip-box p  { font-size: 13px; color: var(--muted); line-height: 1.8; }
+
+/* ── 전체 모바일처럼 좁게 ── */
+.site-header, .search-bar-wrap, .notice, main {
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.notice { padding: 12px 16px 0; }
+
+/* ── info section title ── */
+.info-section-title {
+  font-size: 17px; font-weight: 700; color: var(--neutral);
+  margin: 32px 0 12px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border);
+}
+
+/* ── INR 테이블 ── */
+.inr-table-wrap { margin-top: 12px; overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+.inr-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.inr-table th { background: #f9fafb; padding: 10px 12px; text-align: left; font-weight: 600; border-bottom: 1px solid var(--border); }
+.inr-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+.inr-table tr:last-child td { border-bottom: none; }
+.inr-safe td { background: var(--safe-bg); }
+.inr-warn td  { background: var(--caution-bg); }
+.inr-danger td{ background: var(--avoid-bg); }
+
+/* ── 음주 카드 ── */
+.alcohol-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 12px; }
+.alcohol-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 8px; text-align: center; }
+.alc-emoji { font-size: 24px; margin-bottom: 6px; }
+.alc-name  { font-size: 13px; font-weight: 700; color: var(--neutral); margin-bottom: 4px; }
+.alc-limit { font-size: 14px; font-weight: 700; color: var(--avoid); }
+.alc-ml    { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+/* ── 타임라인 ── */
+.timeline { position: relative; padding-left: 24px; margin: 12px 0; }
+.timeline::before { content:''; position:absolute; left:8px; top:8px; bottom:8px; width:2px; background:var(--border); }
+.tl-item { position: relative; margin-bottom: 14px; }
+.tl-dot { position:absolute; left:-20px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--accent); border:2px solid var(--bg); }
+.tl-content { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+.tl-title { font-size:13px; font-weight:700; margin-bottom:4px; color:var(--neutral); }
+.tl-desc  { font-size:12px; color:var(--muted); line-height:1.7; }
+
+/* 빈 메시지 */
+.empty-msg { text-align: center; padding: 40px 0; color: var(--muted); font-size: 14px; }
+
+/* ── 고정 하단 버튼 ── */
+.fixed-bottom {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: var(--surface); border-top: 1px solid var(--border);
+  padding: 10px 16px; display: flex; gap: 10px;
+  justify-content: center; z-index: 100;
+}
+.fb-btn {
+  display: flex; align-items: center; gap: 7px;
+  padding: 11px 18px; border-radius: 10px;
+  font-size: 13px; font-weight: 700; font-family: inherit;
+  cursor: pointer; border: none; text-decoration: none;
+  transition: opacity .15s; white-space: nowrap;
+  flex: 1; justify-content: center; max-width: 260px;
+}
+.fb-btn:active { opacity: .8; }
+.fb-naver { background: #03C75A; color: #fff; }
+.fb-kakao { background: #FEE500; color: #391B1B; }
+</style>
+</head>
+<body>
+<div style="background:#111418;color:#e8e8e8;font-size:13px;padding:10px 16px;text-align:center;font-family:'Noto Sans KR',sans-serif;">
+  <a href="/index.html" style="color:#ff8a72;text-decoration:none;font-weight:700;">튼튼혈관연구소</a>
+  <span style="opacity:.5;"> · </span>
+  <a href="/tools.html" style="color:#e8e8e8cc;text-decoration:none;">tt_vessel_toolbox 전체보기 →</a>
+</div>
+
+
+<!-- 헤더 -->
+<div class="site-header">
+  <div class="header-inner">
+    <div class="header-tag">💊 항응고제 식이 정보</div>
+    <h1>와파린 복용 중<br>안전한 식생활 정보</h1>
+    <p>와파린은 비타민 K 섭취량에 따라 약효가 달라집니다.<br>음식을 무조건 끊기보다 <strong>매일 일정한 양을 규칙적으로</strong> 드시는 것이 가장 중요합니다.</p>
+  </div>
+</div>
+
+<!-- 검색 + 필터 -->
+<div class="search-bar-wrap">
+  <div class="search-bar-inner">
+    <span class="si">🔍</span>
+    <input type="text" id="search-input" placeholder="음식 이름으로 검색 (예: 시금치, 자몽, 두부...)" oninput="doSearch(this.value)">
+  </div>
+  <div class="filter-chips">
+    <button class="chip c-all on" onclick="setFilter('all',this)">전체</button>
+    <button class="chip c-safe"    onclick="setFilter('safe',this)">✓ 안전</button>
+    <button class="chip c-caution" onclick="setFilter('caution',this)">△ 주의</button>
+    <button class="chip c-avoid"   onclick="setFilter('avoid',this)">✕ 위험</button>
+  </div>
+</div>
+
+<!-- 주의 안내 -->
+<div class="notice">
+  <div class="notice-inner">
+    <span>⚠️</span>
+    <span>이 자료는 교육 목적의 일반 정보입니다. 식단·용량·보충제 변경 전에는 반드시 담당 의사·약사와 상의하세요.</span>
+  </div>
+</div>
+
+<main>
+
+<!-- 통계 -->
+<div class="intro-grid">
+  <div class="intro-card safe">   <div class="intro-num" id="cnt-safe">0</div>  <div class="intro-label">안전 식품</div></div>
+  <div class="intro-card caution"><div class="intro-num" id="cnt-caution">0</div><div class="intro-label">주의 식품</div></div>
+  <div class="intro-card avoid">  <div class="intro-num" id="cnt-avoid">0</div>  <div class="intro-label">위험 식품</div></div>
+</div>
+
+<!-- 안전 섹션 -->
+<div class="sec-header" id="sec-safe">
+  <span class="sec-badge safe">✓ 안전</span>
+  <span class="sec-title">먹어도 되는 음식</span>
+  <span class="sec-count" id="sc-safe"></span>
+</div>
+<div class="food-grid" id="list-safe"></div>
+
+<!-- 주의 섹션 -->
+<div class="sec-header" id="sec-caution">
+  <span class="sec-badge caution">△ 주의</span>
+  <span class="sec-title">소량 주의 음식</span>
+  <span class="sec-count" id="sc-caution"></span>
+</div>
+<div class="food-grid" id="list-caution"></div>
+
+<!-- 위험 섹션 -->
+<div class="sec-header" id="sec-avoid">
+  <span class="sec-badge avoid">✕ 위험</span>
+  <span class="sec-title">피해야 할 음식</span>
+  <span class="sec-count" id="sc-avoid"></span>
+</div>
+<div class="food-grid" id="list-avoid"></div>
+
+<div id="empty-msg" class="empty-msg" style="display:none">검색 결과가 없습니다.</div>
+
+<!-- 핵심 원칙 -->
+<div class="tip-box">
+  <h3>📌 꼭 기억하세요</h3>
+  <p>의료진은 환자의 평소 비타민 K 섭취량을 기준으로 와파린 용량을 조절합니다. 갑자기 채소를 많이 먹거나 갑자기 끊으면 약효의 균형이 무너져 혈전 또는 출혈 위험이 생깁니다. <strong>평소 먹던 양을 그대로 유지하는 것</strong>이 가장 중요합니다.</p>
+</div>
+<div class="tip-box" style="margin-top:12px">
+  <h3>⚡ 절대 피해야 할 것</h3>
+  <p><strong>① 농축 한약·녹즙·건강기능식품</strong> — 성분이 수십 배 농축되어 약효를 예측 불가능하게 만듭니다.<br>
+  <strong>② 자몽·크랜베리</strong> — 와파린 분해 효소를 막아 출혈을 유발합니다.<br>
+  <strong>③ 과음</strong> — 와파린 대사를 방해하고 출혈 위험을 크게 높입니다.</p>
+</div>
+
+<!-- INR 섹션 -->
+<div class="info-section-title">🔬 INR 수치란?</div>
+<div class="tip-box">
+  <h3>INR이 무엇인가요?</h3>
+  <p>INR(국제정상화비율)은 혈액이 응고되는 속도를 표준화한 수치입니다. 와파린 복용 중에는 이 수치를 목표 범위 안에서 유지하는 것이 가장 중요합니다.</p>
+</div>
+<div class="inr-table-wrap">
+  <table class="inr-table">
+    <thead><tr><th>INR 수치</th><th>의미</th><th>조치</th></tr></thead>
+    <tbody>
+      <tr class="inr-danger"><td><strong>&lt; 1.5</strong></td><td>너무 낮음 — 혈전 위험</td><td>즉시 의사 연락</td></tr>
+      <tr class="inr-warn"><td><strong>1.5 ~ 2.0</strong></td><td>목표보다 낮음</td><td>가까운 시일 내 재확인</td></tr>
+      <tr class="inr-safe"><td><strong>2.0 ~ 3.0</strong></td><td>✅ 목표 범위 (일반적)</td><td>현재 복용량 유지</td></tr>
+      <tr class="inr-warn"><td><strong>3.0 ~ 4.0</strong></td><td>목표보다 높음</td><td>용량 감소 검토</td></tr>
+      <tr class="inr-danger"><td><strong>&gt; 4.0</strong></td><td>너무 높음 — 출혈 위험</td><td>즉시 의사 연락</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="tip-box" style="margin-top:12px">
+  <h3>📅 검사 주기</h3>
+  <p>처음 시작 시에는 <strong>1~2주마다</strong>, INR이 안정되면 <strong>4~6주 간격</strong>으로 검사합니다. 식단·생활에 큰 변화가 있으면 더 자주 받아야 합니다.</p>
+</div>
+<div class="tip-box" style="margin-top:12px">
+  <h3>🚨 즉시 병원에 가야 하는 신호</h3>
+  <p>출혈이 멈추지 않는 상처 · 붉은 소변 · 검은 변 · 심한 두통 · 이유 없는 멍은 즉시 병원에 가야 하는 응급 신호입니다.</p>
+</div>
+
+<!-- 음주 섹션 -->
+<div class="info-section-title">🍺 음주 안내</div>
+<div class="tip-box" style="border-left:4px solid var(--avoid)">
+  <h3>원칙: 금주</h3>
+  <p>알코올은 와파린 대사 효소에 영향을 주어 약효를 예측 불가능하게 만들고 출혈 위험을 크게 높입니다. <strong>가장 안전한 방법은 금주입니다.</strong></p>
+</div>
+<div class="alcohol-grid">
+  <div class="alcohol-card"><div class="alc-emoji">🍺</div><div class="alc-name">맥주</div><div class="alc-limit">최대 1~2잔</div><div class="alc-ml">약 360ml 이하</div></div>
+  <div class="alcohol-card"><div class="alc-emoji">🍷</div><div class="alc-name">와인</div><div class="alc-limit">최대 1잔</div><div class="alc-ml">약 150ml 이하</div></div>
+  <div class="alcohol-card"><div class="alc-emoji">🥃</div><div class="alc-name">소주·위스키</div><div class="alc-limit">최대 1잔</div><div class="alc-ml">약 30~45ml 이하</div></div>
+</div>
+<div class="tip-box" style="margin-top:12px;background:var(--avoid-bg);border:1px solid var(--avoid-border)">
+  <h3 style="color:var(--avoid)">⛔ 절대 금주해야 할 상황</h3>
+  <p style="color:var(--avoid)">INR 수치가 불안정한 상태 · 최근 출혈이 있었던 경우 · 간 질환이 있는 경우 · 와파린 용량이 막 조정된 직후</p>
+</div>
+
+<!-- 수술·시술 섹션 -->
+<div class="info-section-title">🏥 수술·시술 전 주의사항</div>
+<div class="tip-box" style="border-left:4px solid var(--avoid)">
+  <h3>⚠️ 절대 임의로 약을 끊지 마세요</h3>
+  <p>와파린을 갑자기 중단하면 심혈관 질환(혈전·뇌졸중) 위험이 급격히 높아집니다. 반드시 담당 의사와 상의 후 결정하세요.</p>
+</div>
+<div class="timeline">
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <div class="tl-content">
+      <div class="tl-title">수술 결정 시 (최소 1~2주 전)</div>
+      <div class="tl-desc">와파린을 처방한 담당 의사에게 반드시 알리고 약 조절 계획을 협의합니다.</div>
+    </div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <div class="tl-content">
+      <div class="tl-title">수술 전 5~7일</div>
+      <div class="tl-desc">의사의 지시에 따라 와파린 복용을 중단합니다. 임의로 날짜를 바꾸지 마세요.</div>
+    </div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <div class="tl-content">
+      <div class="tl-title">수술 직전 INR 확인</div>
+      <div class="tl-desc">혈액 응고 검사로 와파린 효과가 충분히 감소했는지 확인합니다.</div>
+    </div>
+  </div>
+  <div class="tl-item" style="--dot-color: var(--safe)">
+    <div class="tl-dot" style="background:var(--safe)"></div>
+    <div class="tl-content">
+      <div class="tl-title">수술 후</div>
+      <div class="tl-desc">의사 지시에 따라 와파린 복용을 재개합니다. INR이 안정될 때까지 더 자주 검사받으세요.</div>
+    </div>
+  </div>
+</div>
+<div class="tip-box" style="margin-top:12px">
+  <h3>주의가 필요한 시술</h3>
+  <p>🦷 <strong>치과 치료</strong> (발치·임플란트) · 💉 <strong>근육주사·침·부항</strong> · 🩺 <strong>조직 검사 동반 내시경</strong><br>
+  모두 사전에 담당 의사와 반드시 상의하세요.</p>
+</div>
+<div class="tip-box" style="margin-top:12px">
+  <h3>💊 수술 전 중단해야 할 영양제</h3>
+  <p>오메가-3, 인삼·홍삼, 은행잎 추출물, 고용량 비타민E, 아마씨유 등 항응고 성질이 있는 모든 보충제는 수술 최소 1~2주 전에 중단하세요.</p>
+</div>
+
+</main>
+
+<!-- 고정 하단 버튼 -->
+<div class="fixed-bottom">
+  <a class="fb-btn fb-naver" href="https://cafe.naver.com/cardiovascularlab" target="_blank" rel="noopener">
+    <svg width="20" height="18" viewBox="0 0 44 40" fill="none" style="flex-shrink:0">
+      <path d="M22 36s-16-10.5-16-20.5A10 10 0 0 1 22 8a10 10 0 0 1 16 7.5C38 25.5 22 36 22 36z" fill="#e02020"/>
+      <polyline points="2,22 9,22 12,13 16,31 20,17 24,25 27,22 42,22" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    심장혈관부정맥커뮤니티 네이버카페
+  </a>
+  <button class="fb-btn fb-kakao" onclick="shareKakao()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0">
+      <path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.7 1.6 5.1 4 6.6l-.9 3.4 3.9-2.1c.9.2 1.9.3 2.9.3 5.523 0 10-3.477 10-7.8S17.523 3 12 3z"/>
+    </svg>
+    카카오톡 공유
+  </button>
+</div>
+
+<script>
+const foods = {
+  safe: [
+    {name:"흰쌀밥",cat:"곡류",icon:"🍚",reason:"비타민 K 함량이 극히 낮아 와파린에 전혀 영향을 주지 않습니다.",dose:[{label:"1공기(210g)",type:"green",note:"자유롭게"}]},
+    {name:"현미밥",cat:"곡류",icon:"🍚",reason:"식이섬유가 풍부하고 비타민 K가 낮아 안전합니다.",dose:[{label:"1공기",type:"green",note:"자유롭게"}]},
+    {name:"보리밥",cat:"곡류",icon:"🍚",reason:"비타민 K 함량이 낮아 주식으로 안전합니다.",dose:[{label:"1공기",type:"green",note:"자유롭게"}]},
+    {name:"국수·파스타",cat:"곡류",icon:"🍝",reason:"밀가루 기반 면류는 비타민 K가 매우 낮아 안전합니다. 이탈리안 파스타·피자는 외식 시 좋은 선택입니다.",dose:[{label:"1인분(200g)",type:"green",note:"안전"}]},
+    {name:"감자",cat:"곡류",icon:"🥔",reason:"비타민 K가 거의 없습니다.",dose:[{label:"1개(150g)",type:"green",note:"자유롭게"}]},
+    {name:"고구마",cat:"곡류",icon:"🍠",reason:"비타민 K 함량이 낮고 식이섬유·비타민A가 풍부합니다.",dose:[{label:"1개(130g)",type:"green",note:"자유롭게"}]},
+    {name:"빵",cat:"곡류",icon:"🍞",reason:"비타민 K 함량이 낮아 안전합니다.",dose:[{label:"2~3조각",type:"green",note:"안전"}]},
+    {name:"옥수수",cat:"곡류",icon:"🌽",reason:"비타민 K가 낮아 안전합니다.",dose:[{label:"1개",type:"green",note:"안전"}]},
+    {name:"대구·동태",cat:"생선",icon:"🐟",reason:"흰살생선은 비타민 K가 거의 없고 단백질이 풍부합니다.",dose:[{label:"1토막(100g)",type:"green",note:"자유롭게"}]},
+    {name:"삼치·조기",cat:"생선",icon:"🐟",reason:"흰살 생선은 내장을 제외하면 비타민 K가 낮습니다.",dose:[{label:"1토막(100g)",type:"green",note:"안전"}]},
+    {name:"연어",cat:"생선",icon:"🐟",reason:"비타민 K가 낮고 오메가-3가 풍부합니다. 보충제 형태는 별도로 주의하세요.",dose:[{label:"100g",type:"green",note:"안전"}]},
+    {name:"쇠고기 살코기",cat:"육류",icon:"🥩",reason:"지방이 적은 살코기 부위는 비타민 K가 없습니다. 간·내장은 제외입니다.",dose:[{label:"100~150g",type:"green",note:"살코기만"}]},
+    {name:"돼지고기 살코기",cat:"육류",icon:"🥩",reason:"등심, 안심 등 지방이 적은 부위는 안전합니다.",dose:[{label:"100~150g",type:"green",note:"살코기만"}]},
+    {name:"닭고기 살코기",cat:"육류",icon:"🍗",reason:"껍질을 제거한 닭 가슴살·다리살은 비타민 K가 없습니다.",dose:[{label:"100~150g",type:"green",note:"껍질 제거"}]},
+    {name:"달걀 흰자",cat:"육류",icon:"🥚",reason:"노른자에 약간의 비타민 K가 있으나 흰자는 안전합니다. 달걀 전체도 1~2개는 무방합니다.",dose:[{label:"2~3개",type:"green",note:"흰자 위주"},{label:"노른자 포함 1~2개",type:"amber",note:""}]},
+    {name:"오징어·새우",cat:"해산물",icon:"🦐",reason:"갑각류·연체류는 비타민 K가 낮습니다.",dose:[{label:"100g",type:"green",note:"안전"}]},
+    {name:"조개류",cat:"해산물",icon:"🐚",reason:"비타민 K가 낮아 안전합니다.",dose:[{label:"100g",type:"green",note:"안전"}]},
+    {name:"무",cat:"채소",icon:"🫚",reason:"비타민 K 함량이 낮고 소화에 좋습니다.",dose:[{label:"100g",type:"green",note:"자유롭게"}]},
+    {name:"당근",cat:"채소",icon:"🥕",reason:"비타민 K가 낮고 베타카로틴이 풍부합니다.",dose:[{label:"1개(100g)",type:"green",note:"자유롭게"}]},
+    {name:"연근",cat:"채소",icon:"🌱",reason:"비타민 K 함량이 낮습니다.",dose:[{label:"70~100g",type:"green",note:"안전"}]},
+    {name:"단호박·호박",cat:"채소",icon:"🎃",reason:"비타민 K가 낮아 안전합니다.",dose:[{label:"100g",type:"green",note:"자유롭게"}]},
+    {name:"가지",cat:"채소",icon:"🍆",reason:"비타민 K 함량이 낮습니다.",dose:[{label:"1개(100g)",type:"green",note:"안전"}]},
+    {name:"버섯류",cat:"채소",icon:"🍄",reason:"표고·팽이·느타리·새송이 등 모든 버섯류는 비타민 K가 낮습니다.",dose:[{label:"100g",type:"green",note:"자유롭게"}]},
+    {name:"콩나물",cat:"채소",icon:"🌱",reason:"비타민 K 함량이 낮아 안전합니다.",dose:[{label:"100g",type:"green",note:"자유롭게"}]},
+    {name:"오이",cat:"채소",icon:"🥒",reason:"비타민 K 함량이 낮습니다.",dose:[{label:"1개(100g)",type:"green",note:"자유롭게"}]},
+    {name:"파프리카",cat:"채소",icon:"🫑",reason:"비타민 K가 낮고 비타민 C가 풍부합니다.",dose:[{label:"1개(100g)",type:"green",note:"안전"}]},
+    {name:"토마토",cat:"채소",icon:"🍅",reason:"비타민 K가 낮고 리코펜이 풍부합니다.",dose:[{label:"1~2개(200g)",type:"green",note:"자유롭게"}]},
+    {name:"사과",cat:"과일",icon:"🍎",reason:"비타민 K 함량이 낮고 식이섬유가 풍부합니다.",dose:[{label:"1개(200g)",type:"green",note:"자유롭게"}]},
+    {name:"배",cat:"과일",icon:"🍐",reason:"비타민 K가 낮아 안전합니다.",dose:[{label:"1개(300g)",type:"green",note:"안전"}]},
+    {name:"포도",cat:"과일",icon:"🍇",reason:"비타민 K가 낮습니다. 자몽과 혼동하지 마세요.",dose:[{label:"한 송이(200g)",type:"green",note:"안전"}]},
+    {name:"수박·참외",cat:"과일",icon:"🍉",reason:"비타민 K가 없습니다.",dose:[{label:"2~3조각",type:"green",note:"자유롭게"}]},
+    {name:"바나나",cat:"과일",icon:"🍌",reason:"비타민 K가 매우 낮습니다.",dose:[{label:"1~2개",type:"green",note:"안전"}]},
+    {name:"저지방 우유",cat:"유제품",icon:"🥛",reason:"비타민 K 함량이 낮습니다.",dose:[{label:"200~250ml",type:"green",note:"안전"}]},
+    {name:"요구르트",cat:"유제품",icon:"🍶",reason:"발효 유제품으로 비타민 K가 낮습니다.",dose:[{label:"150~200ml",type:"green",note:"안전"}]},
+    {name:"치즈",cat:"유제품",icon:"🧀",reason:"일반적인 섭취량(30g)은 안전합니다.",dose:[{label:"1~2장(30g)",type:"green",note:"안전"}]},
+    {name:"옥수수유",cat:"기름",icon:"🫙",reason:"비타민 K가 낮은 편에 속하는 식용유입니다.",dose:[{label:"1~2큰술",type:"green",note:"조리용 소량"}]},
+    {name:"해바라기유",cat:"기름",icon:"🌻",reason:"비타민 K 함량이 낮은 식용유입니다.",dose:[{label:"1~2큰술",type:"green",note:"조리용 소량"}]},
+  ],
+  caution: [
+    {name:"브로콜리",cat:"채소",icon:"🥦",reason:"비타민 K 함량이 높습니다. 익히면 부피가 줄어 과량 섭취하기 쉬우므로 주의하세요.",dose:[{label:"1/2컵(40g)",type:"amber",note:"1회 권장"},{label:"1컵 이상",type:"red",note:"과량 금지"}]},
+    {name:"양배추",cat:"채소",icon:"🥬",reason:"비타민 K를 함유합니다. 코울슬로 등 날것으로 많이 먹는 형태에 주의하세요.",dose:[{label:"생 1/2컵(45g)",type:"amber",note:"일정량 유지"},{label:"과량",type:"red",note:"갑자기 늘리지 말 것"}]},
+    {name:"상추·로메인",cat:"채소",icon:"🥬",reason:"비타민 K를 함유합니다. 매일 비슷한 양의 샐러드를 드신다면 괜찮습니다.",dose:[{label:"1컵(30g)",type:"amber",note:"매일 일정량 유지"}]},
+    {name:"깻잎",cat:"채소",icon:"🌿",reason:"비타민 K 함량이 높습니다. 한 번에 많이 먹지 않도록 주의하세요.",dose:[{label:"3~5장(10g)",type:"amber",note:"소량 유지"},{label:"10장 이상",type:"red",note:"과량 주의"}]},
+    {name:"아욱",cat:"채소",icon:"🌿",reason:"국으로 끓였을 때 건더기를 많이 먹기 쉽습니다.",dose:[{label:"국 1그릇(채소 30g 이하)",type:"amber",note:"건더기 소량"}]},
+    {name:"부추",cat:"채소",icon:"🌿",reason:"비타민 K가 다소 높은 편입니다.",dose:[{label:"1/4컵(20g)",type:"amber",note:"소량 유지"}]},
+    {name:"아스파라거스",cat:"채소",icon:"🌿",reason:"비타민 K가 다량 함유된 채소입니다.",dose:[{label:"4~5개(60g)",type:"amber",note:"소량 유지"}]},
+    {name:"김",cat:"해조류",icon:"🌊",reason:"비타민 K를 함유합니다. 소량의 반찬용은 가능합니다.",dose:[{label:"2~3장(5g)",type:"amber",note:"소량 유지"},{label:"5장 이상",type:"red",note:"과량 주의"}]},
+    {name:"미역",cat:"해조류",icon:"🌊",reason:"비타민 K를 함유합니다. 미역국으로 건더기를 많이 먹을 때 특히 주의하세요.",dose:[{label:"불린 미역 30g",type:"amber",note:"소량 일정히"},{label:"많은 양",type:"red",note:"과량 금지"}]},
+    {name:"두부",cat:"콩류",icon:"⬜",reason:"콩 성분이지만 반찬으로 적당량 먹는 것은 가능합니다. 주식처럼 과량은 피하세요.",dose:[{label:"1/4모(80g)",type:"amber",note:"반찬용 소량"},{label:"1모 이상",type:"red",note:"과량 금지"}]},
+    {name:"된장·된장찌개",cat:"콩류",icon:"🍲",reason:"발효 콩 식품입니다. 찌개 1그릇(표준량)은 가능하지만 갑자기 양을 늘리지 마세요.",dose:[{label:"1그릇(표준)",type:"amber",note:"일정량 유지"},{label:"2그릇 이상",type:"red",note:"과량 주의"}]},
+    {name:"검은콩·콩밥",cat:"콩류",icon:"🫘",reason:"밥에 섞인 소량은 가능합니다.",dose:[{label:"밥에 섞인 소량",type:"amber",note:"가능"},{label:"콩 위주 식사",type:"red",note:"금지"}]},
+    {name:"아보카도",cat:"과일",icon:"🥑",reason:"비타민 K와 혈액 응고에 영향을 줄 수 있는 성분을 포함합니다.",dose:[{label:"1/4개(40g)",type:"amber",note:"소량 가능"},{label:"1개 이상",type:"red",note:"과량 금지"}]},
+    {name:"망고",cat:"과일",icon:"🥭",reason:"대량 섭취 시 항응고제와 상호작용하여 출혈 경향성을 높일 수 있습니다.",dose:[{label:"1/2개(100g)",type:"amber",note:"적정량 유지"}]},
+    {name:"석류",cat:"과일",icon:"🍎",reason:"과일 자체 소량은 가능하지만 주스·엑기스는 와파린 분해 효소를 억제할 수 있습니다.",dose:[{label:"과일 1/4개",type:"amber",note:"소량"},{label:"주스·엑기스",type:"red",note:"금지"}]},
+    {name:"마요네즈",cat:"기름·양념",icon:"🫙",reason:"콩기름 기반으로 비타민 K가 높습니다. 소량만 사용하세요.",dose:[{label:"1작은술(5g)",type:"amber",note:"소량"},{label:"3큰술 이상",type:"red",note:"주의"}]},
+    {name:"마늘(양념)",cat:"기름·양념",icon:"🧄",reason:"요리에 소량 사용하는 것은 괜찮습니다. 마늘즙·환 등 농축 형태는 금지입니다.",dose:[{label:"2~3쪽(요리용)",type:"amber",note:"소량 가능"},{label:"마늘즙·환",type:"red",note:"금지"}]},
+    {name:"생강(양념)",cat:"기름·양념",icon:"🫚",reason:"요리 양념으로 소량은 가능합니다. 생강즙·엑기스는 피하세요.",dose:[{label:"1cm 편(요리용)",type:"amber",note:"소량"},{label:"생강즙·엑기스",type:"red",note:"금지"}]},
+    {name:"강황(커큐민)",cat:"기름·양념",icon:"🟡",reason:"자체 항응고 효과가 있습니다. 카레 양념 소량은 가능하지만 보충제 형태는 금지입니다.",dose:[{label:"카레 1인분",type:"amber",note:"양념 소량"},{label:"보충제·캡슐",type:"red",note:"금지"}]},
+    {name:"오메가-3 보충제",cat:"보충제",icon:"💊",reason:"생선 자체는 안전하지만, 오메가-3 보충제는 와파린과 병용 시 출혈 위험이 증가합니다.",dose:[{label:"생선 자체",type:"green",note:"안전"},{label:"보충제 500mg 이상",type:"red",note:"의사 상의"}]},
+    {name:"녹차·홍차",cat:"음료",icon:"🍵",reason:"비타민 K 유사 성분이 들어있어 과다 섭취 시 와파린 효과를 저해할 수 있습니다.",dose:[{label:"하루 1~2잔",type:"amber",note:"소량 가능"},{label:"진하게 여러 잔",type:"red",note:"피하세요"}]},
+    {name:"커피",cat:"음료",icon:"☕",reason:"카페인이 와파린 작용을 방해할 수 있습니다. 과다 섭취를 피하세요.",dose:[{label:"하루 1~2잔",type:"amber",note:"소량 가능"},{label:"5잔 이상",type:"red",note:"과다 금지"}]},
+    {name:"종합 비타민",cat:"보충제",icon:"💊",reason:"비타민 K가 포함된 제품이 있습니다. 복용 중인 제품의 비타민 K 함량을 확인하고 의사와 상의하세요.",dose:[{label:"의사 지시 용량",type:"amber",note:"확인 후 복용"}]},
+  ],
+  avoid: [
+    {name:"시금치",cat:"고비타민K 채소",icon:"🥬",reason:"비타민 K 최고 함량 채소 중 하나입니다. 익힌 시금치 1/2컵에 비타민 K 444mcg 이상 함유되어 와파린 효과를 크게 떨어뜨립니다.",dose:[{label:"익힌 1/2컵(444mcg)",type:"red",note:"일일 권장량 370% 이상"}]},
+    {name:"케일",cat:"고비타민K 채소",icon:"🥬",reason:"모든 채소 중 비타민 K 함량 최고 수준입니다. 익힌 케일 1/2컵에 비타민 K 561mcg 포함됩니다.",dose:[{label:"익힌 1/2컵(561mcg)",type:"red",note:"와파린 효과 급감"}]},
+    {name:"파슬리",cat:"고비타민K 채소",icon:"🌿",reason:"100g당 비타민 K 약 1640mcg으로 모든 식품 중 최고 수준입니다. 요리 장식용 소량도 주의가 필요합니다.",dose:[{label:"어떤 양도 주의",type:"red",note:"장식용도 주의"}]},
+    {name:"쑥갓",cat:"고비타민K 채소",icon:"🥬",reason:"비타민 K가 매우 풍부한 채소입니다.",dose:[{label:"피하세요",type:"red",note:""}]},
+    {name:"깻잎(대량)",cat:"고비타민K 채소",icon:"🌿",reason:"소량은 주의 범주이지만 대량 섭취 시 와파린을 무력화할 수 있습니다.",dose:[{label:"10장 이상",type:"red",note:"금지"}]},
+    {name:"청국장",cat:"발효식품",icon:"🍲",reason:"발효 과정에서 비타민 K2가 다량 합성됩니다. 와파린 효과를 급격히 떨어뜨릴 수 있어 가장 주의해야 할 발효식품입니다.",dose:[{label:"어떤 양도 피하거나",type:"red",note:"의사 지시 없이 금지"}]},
+    {name:"나또(낫토)",cat:"발효식품",icon:"🫘",reason:"비타민 K2 함량이 매우 높습니다.",dose:[{label:"어떤 양도 주의",type:"red",note:"의사 지시 필수"}]},
+    {name:"두유·콩국수",cat:"발효식품",icon:"🥛",reason:"한 번에 많은 양의 콩 성분을 섭취하게 되어 와파린 효과를 급격히 떨어뜨릴 수 있습니다.",dose:[{label:"200ml 이상",type:"red",note:"피하세요"}]},
+    {name:"소·돼지·닭 간",cat:"내장류",icon:"🍖",reason:"동물의 간은 비타민 K의 저장소입니다. 100g당 수백 mcg 이상 포함됩니다.",dose:[{label:"어떤 양도 피하세요",type:"red",note:"내장 요리 전체 주의"}]},
+    {name:"녹즙(케일·치커리 등)",cat:"농축 식품",icon:"🥤",reason:"농축된 비타민 K 덩어리입니다. 한 컵에 일반 채소 수십 배의 비타민 K가 들어 있어 와파린을 무력화할 수 있습니다.",dose:[{label:"어떤 양도 금지",type:"red",note:"절대 금지"}]},
+    {name:"자몽·자몽주스",cat:"출혈 위험 식품",icon:"🍊",reason:"자몽 성분(푸라노쿠마린)이 간에서 와파린을 분해하는 효소(CYP3A4)를 억제합니다. 와파린이 체내에 오래 남아 출혈 위험이 급격히 높아집니다.",dose:[{label:"어떤 양도 금지",type:"red",note:"주스 포함 절대 금지"}]},
+    {name:"크랜베리",cat:"출혈 위험 식품",icon:"🫐",reason:"와파린 효능을 증폭시켜 심각한 내출혈 사례가 보고되었습니다.",dose:[{label:"어떤 양도 금지",type:"red",note:"주스·추출물 포함 절대 금지"}]},
+    {name:"세빌랴 오렌지(쓴 오렌지)",cat:"출혈 위험 식품",icon:"🍊",reason:"자몽과 같은 계열의 약물 상호작용을 일으킵니다.",dose:[{label:"어떤 양도 금지",type:"red",note:"절대 금지"}]},
+    {name:"알코올(술)",cat:"출혈 위험 식품",icon:"🍺",reason:"와파린 대사에 영향을 주어 출혈과 같은 심각한 부작용 위험을 높입니다. 금주가 원칙이며 부득이한 경우 맥주 360ml, 와인 150ml, 소주 30ml 이내로 엄격히 제한해야 합니다.",dose:[{label:"금주 권장",type:"red",note:"부득이 시 의사 상의"}]},
+    {name:"인삼·홍삼",cat:"한약·보충제",icon:"🌿",reason:"자체적인 항응고 성분이 있어 대량 섭취 시 출혈 위험이 높아집니다. 특히 농축 액기스 형태는 절대 금지입니다.",dose:[{label:"액기스·환 절대 금지",type:"red",note:""},{label:"음료 소량",type:"amber",note:"의사 상의 필수"}]},
+    {name:"은행잎 추출물(징코)",cat:"한약·보충제",icon:"🌿",reason:"자체 혈류 개선 효과가 와파린과 합쳐져 뇌출혈 사례가 보고되었습니다.",dose:[{label:"어떤 양도 금지",type:"red",note:"절대 금지"}]},
+    {name:"단삼·당귀·구기자",cat:"한약·보충제",icon:"🌿",reason:"혈소판 응집 억제 또는 와파린 대사 방해 작용으로 출혈 위험을 높입니다.",dose:[{label:"어떤 형태도 금지",type:"red",note:"절대 금지"}]},
+    {name:"한약·달인 물",cat:"한약·보충제",icon:"🍵",reason:"성분이 불분명하고 와파린과의 상호작용이 매우 강합니다. 어떤 한약도 임의로 복용해서는 안 됩니다.",dose:[{label:"어떤 종류도 금지",type:"red",note:"반드시 의사 상의"}]},
+    {name:"마늘즙·양파즙",cat:"한약·보충제",icon:"🧴",reason:"농축 즙·환 형태는 강력한 항응고 효과가 있어 출혈 위험을 높입니다.",dose:[{label:"즙·환·캡슐 금지",type:"red",note:"절대 금지"}]},
+    {name:"세인트존스워트",cat:"한약·보충제",icon:"🌼",reason:"간의 대사 효소를 촉진하여 와파린 분해를 빠르게 해 약의 혈중 농도를 낮춥니다.",dose:[{label:"어떤 양도 금지",type:"red",note:"절대 금지"}]},
+    {name:"고용량 비타민E",cat:"한약·보충제",icon:"💊",reason:"400IU 이상의 고용량 비타민 E는 자체적인 항응고 효과가 있어 와파린과 함께 복용 시 출혈 위험이 높아집니다.",dose:[{label:"400IU 이상 금지",type:"red",note:""},{label:"200IU 이하",type:"amber",note:"의사와 상의"}]},
+    {name:"아스피린·소염진통제",cat:"의약품",icon:"💊",reason:"와파린과 함께 복용 시 출혈 위험이 급격히 높아집니다. 두통약·감기약에도 포함될 수 있으니 반드시 성분을 확인하세요.",dose:[{label:"임의 복용 절대 금지",type:"red",note:"의사·약사 확인 필수"}]},
+    {name:"캐모마일 차",cat:"의약품",icon:"🫖",reason:"쿠마린 성분이 들어있어 와파린과 상호작용합니다.",dose:[{label:"진하게 마시는 것 금지",type:"red",note:"피하세요"}]},
+  ]
+};
+
+// 통계
+document.getElementById('cnt-safe').textContent    = foods.safe.length;
+document.getElementById('cnt-caution').textContent = foods.caution.length;
+document.getElementById('cnt-avoid').textContent   = foods.avoid.length;
+
+let curFilter = 'all', curQuery = '';
+
+function buildCards(type, list) {
+  const container = document.getElementById('list-' + type);
+  const countEl   = document.getElementById('sc-' + type);
+  if (!list.length) { container.innerHTML = ''; countEl.textContent = ''; return; }
+  countEl.textContent = list.length + '개';
+  container.innerHTML = list.map(f => {
+    const doses = f.dose.map(d => `<span class="dose-tag ${d.type}">${d.label}${d.note?' — '+d.note:''}</span>`).join('');
+    return `<div class="food-card ${type}" onclick="toggleCard(this)">
+      <div class="fc-top">
+        <span class="fc-emoji">${f.icon}</span>
+        <span class="fc-name">${f.name}</span>
+        <span class="fc-badge ${type}">${type==='safe'?'안전':type==='caution'?'주의':'위험'}</span>
+        <span class="fc-arrow">▼</span>
+      </div>
+      <div class="fc-detail">
+        <p style="margin-bottom:6px;color:#6b7280;font-size:11px">${f.cat}</p>
+        <p>${f.reason}</p>
+        <div>${doses}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleCard(el) {
+  const isOpen = el.classList.contains('open');
+  el.closest('.food-grid').querySelectorAll('.food-card.open').forEach(c => c.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+
+function applyFilter() {
+  const q = curQuery.toLowerCase();
+  let total = 0;
+  ['safe','caution','avoid'].forEach(type => {
+    const showSection = curFilter === 'all' || curFilter === type;
+    const filtered = !showSection ? [] : foods[type].filter(f =>
+      !q || f.name.includes(curQuery) || f.reason.includes(curQuery) || f.cat.includes(curQuery)
+    );
+    buildCards(type, filtered);
+    total += filtered.length;
+    // 섹션 헤더 표시 여부
+    document.getElementById('sec-' + type).style.display = showSection ? '' : 'none';
+    document.getElementById('list-' + type).style.display = showSection ? '' : 'none';
+  });
+  document.getElementById('empty-msg').style.display = total === 0 ? 'block' : 'none';
+}
+
+function doSearch(v) { curQuery = v; applyFilter(); }
+function setFilter(f, btn) {
+  curFilter = f;
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+  btn.classList.add('on');
+  applyFilter();
+}
+
+// 카카오 SDK 초기화
+Kakao.init('242ec1b463fc4f7a5684dc915c1049e6');
+
+// 카카오톡 공유
+function shareKakao() {
+  Kakao.Share.sendDefault({
+    objectType: 'feed',
+    content: {
+      title: '와파린 복용 중 안전한 식생활 정보',
+      description: '와파린은 비타민 K 섭취량에 따라 약효가 달라집니다. 먹어도 되는 음식과 피해야 할 음식을 확인하세요.',
+      imageUrl: 'https://www.ttvessellab.com/tools/assets/warfarin-thumbnail.png',
+      link: {
+        mobileWebUrl: 'https://www.ttvessellab.com/tools/warfarin-guide.html',
+        webUrl: 'https://www.ttvessellab.com/tools/warfarin-guide.html',
+      },
+    },
+    buttons: [
+      {
+        title: '바로 확인하기',
+        link: {
+          mobileWebUrl: 'https://www.ttvessellab.com/tools/warfarin-guide.html',
+          webUrl: 'https://www.ttvessellab.com/tools/warfarin-guide.html',
+        },
+      },
+    ],
+  });
+}
+
+applyFilter();
+</script>
+<footer style="background:#161b22;color:#c7ced5;font-size:13px;line-height:1.7;padding:28px 16px;text-align:center;font-family:'Noto Sans KR',sans-serif;">
+  <div style="max-width:640px;margin:0 auto 14px;">⚠️ 이 자료는 교육·참고 목적이며 의학적 처방을 대체하지 않습니다. 와파린 용량 조절과 비타민 K 섭취 계획은 반드시 담당 의료진과 상의하세요.</div>
+  <nav style="margin-bottom:10px;">
+    <a href="/index.html" style="color:#ff8a72;text-decoration:none;">Home</a>
+    <span style="opacity:.4;"> · </span>
+    <a href="/tools.html" style="color:#ff8a72;text-decoration:none;">tt_vessel_toolbox</a>
+    <span style="opacity:.4;"> · </span>
+    <a href="/about.html" style="color:#ff8a72;text-decoration:none;">About</a>
+    <span style="opacity:.4;"> · </span>
+    <a href="/contact.html" style="color:#ff8a72;text-decoration:none;">Contact</a>
+    <span style="opacity:.4;"> · </span>
+    <a href="/privacy.html" style="color:#ff8a72;text-decoration:none;">Privacy Policy</a>
+    <span style="opacity:.4;"> · </span>
+    <a href="/terms.html" style="color:#ff8a72;text-decoration:none;">Terms</a>
+  </nav>
+  <div style="opacity:.6;">© 2026 튼튼혈관연구소 TT VESSEL LAB (ttvessellab.com). All rights reserved.</div>
+</footer>
+</body>
+</html>

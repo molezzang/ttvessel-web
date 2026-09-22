@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff6a50"/>
+      <stop offset="1" stop-color="#c92c16"/>
+    </linearGradient>
+  </defs>
+  <!-- heart -->
+  <path fill="url(#hg)" d="M50 88C36 76 14 60 14 38.5 14 26 24 17 35 17c6.5 0 12 3.2 15 8.2C53 20.2 58.5 17 65 17c11 0 21 9 21 21.5C86 60 64 76 50 88Z"/>
+  <!-- ECG line -->
+  <path fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"
+        d="M8 52h22l6-10 7 22 8-34 7 26 5-9h29"/>
+</svg>

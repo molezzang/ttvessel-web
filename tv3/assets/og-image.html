@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;900&display=swap");
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1200px; height: 630px; overflow: hidden; background: #07080b; }
+body {
+  position: relative;
+  font-family: "Pretendard", -apple-system, sans-serif;
+  display: flex; align-items: center; justify-content: center;
+}
+canvas { position: absolute; inset: 0; width: 1200px; height: 630px; display: block; }
+.veil {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 46%, rgba(7,8,11,0) 0%, rgba(7,8,11,.35) 62%, rgba(7,8,11,.92) 100%);
+}
+.card { position: relative; z-index: 2; text-align: center; color: #fff; }
+
+.logo-wrap { position: relative; width: 120px; height: 120px; margin: 0 auto 30px; }
+.logo-glow {
+  position: absolute; inset: -40px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,80,58,.55) 0%, rgba(232,80,58,0) 70%);
+}
+.logo-wrap img { position: relative; width: 100%; height: 100%; filter: drop-shadow(0 6px 26px rgba(232,80,58,.5)); }
+
+.eyebrow {
+  font-size: 14px; font-weight: 600; letter-spacing: .5em; margin-left: .5em;
+  text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: 22px;
+}
+.kr {
+  font-family: "Noto Serif KR", serif; font-weight: 600;
+  font-size: 30px; color: rgba(255,255,255,.72); letter-spacing: -.01em; margin-bottom: 10px;
+}
+h1 {
+  font-weight: 700; font-size: 64px; letter-spacing: .12em; margin-left: .12em;
+  line-height: 1; color: #fff; text-shadow: 0 2px 40px rgba(0,0,0,.5);
+}
+.tagline {
+  margin-top: 26px; font-family: "Noto Serif KR", serif; font-weight: 400;
+  font-size: 22px; color: rgba(255,255,255,.6); line-height: 1.6;
+}
+</style>
+</head>
+<body>
+<canvas id="vessels"></canvas>
+<div class="veil"></div>
+<div class="card">
+  <span class="eyebrow">Cardiac Cath Lab · Radiological Technologist</span>
+  <div class="logo-wrap">
+    <div class="logo-glow"></div>
+    <img src="logo.svg" alt="">
+  </div>
+  <div class="kr">튼튼혈관연구소</div>
+  <h1>TT VESSEL LAB</h1>
+  <p class="tagline">매일 심장 혈관을 들여다보는 사람이, 당신의 혈관을 지킵니다</p>
+</div>
+<script>
+/* static single-frame render of the same vessel motif used on the hero */
+(function () {
+  var cv = document.getElementById("vessels");
+  var ctx = cv.getContext("2d");
+  var W = 1200, H = 630;
+  cv.width = W; cv.height = H;
+
+  function rnd(a, b, seed) { return a + ((Math.sin(seed * 999) + 1) / 2) * (b - a); }
+
+  function crom(pts, t) {
+    var n = pts.length - 1, f = Math.min(t, 0.9999) * n, i = Math.floor(f), u = f - i;
+    var p0 = pts[Math.max(i - 1, 0)], p1 = pts[i], p2 = pts[Math.min(i + 1, n)], p3 = pts[Math.min(i + 2, n)];
+    var u2 = u * u, u3 = u2 * u;
+    return {
+      x: .5 * (2 * p1.x + (-p0.x + p2.x) * u + (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * u2 + (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * u3),
+      y: .5 * (2 * p1.y + (-p0.y + p2.y) * u + (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * u2 + (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * u3)
+    };
+  }
+
+  var g = ctx.createLinearGradient(0, 0, 0, H);
+  g.addColorStop(0, "#07080b"); g.addColorStop(.6, "#0a0b10"); g.addColorStop(1, "#100b0d");
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+
+  var rg = ctx.createRadialGradient(W * .5, H * .55, 0, W * .5, H * .55, Math.max(W, H) * .62);
+  rg.addColorStop(0, "rgba(200,44,22,.11)"); rg.addColorStop(1, "rgba(200,44,22,0)");
+  ctx.fillStyle = rg; ctx.fillRect(0, 0, W, H);
+
+  ctx.lineCap = "round";
+  var nV = 8;
+  for (var i = nV - 1; i >= 0; i--) {
+    var depth = i / (nV - 1);
+    var pts = [], segs = 5, py = rnd(H * .08, H * .92, i + 1);
+    for (var s = 0; s <= segs; s++) {
+      pts.push({ x: (W + 260) * s / segs - 130, y: Math.max(H * .04, Math.min(H * .96, py)) });
+      py += rnd(-H * .3, H * .3, i * 7 + s + 3);
+    }
+    var path = new Path2D(), steps = 64, p = crom(pts, 0);
+    path.moveTo(p.x, p.y);
+    for (var k = 1; k <= steps; k++) { p = crom(pts, k / steps); path.lineTo(p.x, p.y); }
+    var w = 30 - 24 * depth, a = (.13 - .085 * depth) * 1.3;
+    ctx.strokeStyle = "rgba(232,80,58," + (a * .45) + ")"; ctx.lineWidth = w * 2.1; ctx.stroke(path);
+    ctx.strokeStyle = "rgba(232,80,58," + a + ")"; ctx.lineWidth = w; ctx.stroke(path);
+    ctx.strokeStyle = "rgba(255,140,110," + (a * 1.15) + ")"; ctx.lineWidth = Math.max(w * .28, 1); ctx.stroke(path);
+  }
+})();
+</script>
+</body>
+</html>
