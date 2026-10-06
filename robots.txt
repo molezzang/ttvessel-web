@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /speak/
+Disallow: /tv3/
 
 Sitemap: https://www.ttvessellab.com/sitemap.xml

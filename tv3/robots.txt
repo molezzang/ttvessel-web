@@ -1,4 +1,2 @@
 User-agent: *
-Allow: /
-
-Sitemap: https://www.ttvessellab.com/sitemap.xml
+Disallow: /
