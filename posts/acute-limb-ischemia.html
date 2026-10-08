@@ -36,16 +36,15 @@
 <body>
 <header class="site">
   <div class="wrap nav">
-    <a class="brand" href="../index.html"><img class="logo" src="../assets/logo.svg" alt="">튼튼혈관연구소</a>
-    <button class="menu-toggle" aria-label="메뉴" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
-    <nav class="menu" id="menu">
-      <a href="../index.html">Home</a>
-      <a href="../archive.html">Library</a>
-      <a href="../tools.html">tt_vessel_toolbox</a>
-      <a href="../community.html">Community</a>
-      <a href="../about.html">About</a>
-      <a href="../contact.html">Contact</a>
-      <a href="../privacy.html">Privacy Policy</a>
+    <a class="brand" href="../index.html"><img class="logo" src="../assets/logo.svg" alt="" width="30" height="30"><span class="brand-tx"><b>튼튼혈관연구소</b><small>매일 심장 혈관을 들여다보는 사람의 기록</small></span></a>
+    <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-controls="menu" aria-expanded="false" onclick="var m=document.getElementById('menu');this.setAttribute('aria-expanded',m.classList.toggle('open'))">☰</button>
+    <nav class="menu" id="menu" aria-label="주 메뉴">
+      <a href="../index.html">홈</a>
+      <a href="../archive.html" class="active" aria-current="page">자료실</a>
+      <a href="../tools.html">셀프체크</a>
+      <a href="../community.html">커뮤니티</a>
+      <a href="../about.html">소개</a>
+      <a href="../contact.html">문의</a>
     </nav>
   </div>
 </header>
@@ -55,7 +54,7 @@
   <h1>급성 하지허혈, 다리가 갑자기 차가워졌다면</h1>
   <div class="byline">
     <span class="ava"></span>
-    <div><b>튼튼혈관연구소</b> · 17년차 심혈관조영실 방사선사 · 2026.06.23</div>
+    <div><b>튼튼혈관연구소</b> · 17년차 심혈관조영실 방사선사 · 2026.06.23 · 3분 분량 · <a href="../about.html">저자 정보</a></div>
   </div>
 
 <p class="lead">조영실에서 다루는 다리 혈관 문제는 대부분 몇 달, 몇 년에 걸쳐 서서히 진행된 것들입니다. 그런데 가끔 <b>몇 시간 만에</b> 벌어지는 일이 있습니다. 멀쩡하던 다리가 갑자기 차갑고 하얘지면서 감각이 없어지는 경우입니다. 이건 심근경색이나 뇌졸중과 같은 급을 두고 봐야 하는 응급입니다.</p>
@@ -127,23 +126,47 @@
   </div>
 </article>
 
+<!-- related:start -->
+<aside class="related" aria-labelledby="h-rel">
+  <div class="blk-head"><h2 id="h-rel">말초동맥 분야의 다른 글</h2><a class="more" href="../archive.html#cat-3">분야 전체 보기 →</a></div>
+  <div class="pgrid">
+      <a class="pcard" href="diabetic-foot.html" data-cat="cat-3" data-q="당뇨발, 작은 상처가 큰일이 되는 세 가지 이유 당뇨발 당뇨가 있으면 발의 작은 상처가 왜 잘 낫지 않는지. 말초동맥"><span class="top"><span class="tagc">말초동맥</span></span><h3>당뇨발, 작은 상처가 큰일이 되는 세 가지 이유</h3><p>당뇨가 있으면 발의 작은 상처가 왜 잘 낫지 않는지.</p><span class="meta">2026.06.02 · 3분 분량</span></a>
+      <a class="pcard" href="varicose-veins.html" data-cat="cat-3" data-q="하지정맥류, 동맥질환과는 완전히 다른 병입니다 하지정맥류 비교 다리에 튀어나온 혈관은 동맥이 아니라 정맥 문제입니다. 말초동맥"><span class="top"><span class="tagc">말초동맥</span></span><h3>하지정맥류, 동맥질환과는 완전히 다른 병입니다</h3><p>다리에 튀어나온 혈관은 동맥이 아니라 정맥 문제입니다.</p><span class="meta">2026.06.09 · 3분 분량</span></a>
+      <a class="pcard" href="dvt-basics.html" data-cat="cat-3" data-q="심부정맥혈전증, 한쪽 종아리만 붓는다면 심부정맥혈전증 다리 깊은 정맥에 피떡이 생기는 심부정맥혈전증. 말초동맥"><span class="top"><span class="tagc">말초동맥</span></span><h3>심부정맥혈전증, 한쪽 종아리만 붓는다면</h3><p>다리 깊은 정맥에 피떡이 생기는 심부정맥혈전증.</p><span class="meta">2026.06.16 · 3분 분량</span></a>
+  </div>
+</aside>
+<!-- related:end -->
+
+
+
 <footer class="site">
   <div class="wrap">
-    <div class="cols">
-      <div>
-        <a class="brand" href="../index.html"><img class="logo" src="../assets/logo.svg" alt="">튼튼혈관연구소</a>
-        <p>심혈관조영실 17년차 방사선사가 운영하는 혈관 건강 정보 미디어입니다. 본 사이트의 정보는 교육 목적이며 의학적 진단을 대체하지 않습니다.</p>
+    <div class="foot">
+      <div class="fb">
+        <a class="brand" href="../index.html"><img class="logo" src="../assets/logo.svg" alt="" width="30" height="30"><span class="brand-tx"><b>튼튼혈관연구소</b><small>TT VESSEL LAB</small></span></a>
+        <p>심혈관조영실 17년차 방사선사가 운영하는 혈관 건강 정보 허브입니다. 검사와 시술 과정, 검진표 숫자의 의미, 생활 관리를 쉬운 말로 정리합니다.</p>
       </div>
-      <div class="links">
-        <a href="../tools.html">tt_vessel_toolbox</a>
-        <a href="../community.html">Community</a>
-        <a href="../about.html">About</a>
-        <a href="../contact.html">Contact</a>
-        <a href="../privacy.html">Privacy Policy</a>
-        <a href="../terms.html">Terms</a>
-      </div>
+      <div><h4>자료실</h4><ul>
+        <li><a href="../archive.html#cat-0">관상동맥</a></li>
+        <li><a href="../archive.html#cat-4">부정맥 · EP</a></li>
+        <li><a href="../archive.html#cat-7">검사 수치 읽기</a></li>
+        <li><a href="../archive.html#cat-9">놓치기 쉬운 심장질환</a></li>
+        <li><a href="../archive.html">전체 82편 보기</a></li>
+      </ul></div>
+      <div><h4>사이트</h4><ul>
+        <li><a href="../tools.html">셀프체크 도구</a></li>
+        <li><a href="../community.html">커뮤니티</a></li>
+        <li><a href="../about.html">소개 · 저자 정보</a></li>
+        <li><a href="../about.html#editorial">편집 및 검수 원칙</a></li>
+        <li><a href="../contact.html">문의 · 정정 요청</a></li>
+      </ul></div>
+      <div><h4>정책</h4><ul>
+        <li><a href="../privacy.html">개인정보처리방침</a></li>
+        <li><a href="../terms.html">이용약관</a></li>
+        <li><a href="mailto:molezzang@gmail.com">molezzang@gmail.com</a></li>
+      </ul></div>
     </div>
-    <div class="copy">© 2026 튼튼혈관연구소 (ttvessellab.com). All rights reserved.</div>
+    <div class="foot-note"><b>의료 면책</b> — 본 사이트의 콘텐츠와 도구는 교육·정보 목적이며 의학적 진단·처방을 대체하지 않습니다. 가슴 통증이 20분 이상 이어지거나 식은땀·호흡곤란이 함께 오면 즉시 119에 연락하세요.<br>© 2026 튼튼혈관연구소 (ttvessellab.com). All rights reserved.</div>
   </div>
 </footer>
 </body>
