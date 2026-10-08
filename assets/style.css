@@ -539,3 +539,37 @@ section { padding: 44px 0; }
 .form button { align-self: flex-start; }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
+
+/* ===========================================================
+   Slide banner (home, "꼭 읽어볼 글")
+   =========================================================== */
+.slider { position: relative; border-radius: 16px; overflow: hidden; background: #0f2236; height: 400px; isolation: isolate; }
+.slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity .55s ease, visibility .55s; color: #fff; display: block; }
+.slide.on { opacity: 1; visibility: visible; }
+.slide:hover { text-decoration: none; }
+.slide-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+.slide-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(12,26,41,.95) 0%, rgba(12,26,41,.74) 50%, rgba(12,26,41,.25) 100%); }
+.slide-bg img { position: absolute; right: 0; top: 0; height: 100%; width: 56%; object-fit: cover; object-position: center 40%; }
+.slide-kw { position: absolute; right: 4%; top: 30%; transform: translateY(-50%); font-size: clamp(60px, 10vw, 140px); font-weight: 900; letter-spacing: -.05em; line-height: .95; color: rgba(255,255,255,.07); white-space: nowrap; }
+.slide-glow { position: absolute; width: 520px; height: 520px; border-radius: 50%; right: -120px; top: -160px; filter: blur(30px); opacity: .5; }
+.slide-body { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 84px 38px; z-index: 2; max-width: 840px; }
+.slide-body h3 { font-size: 28px; font-weight: 800; letter-spacing: -.03em; line-height: 1.35; margin: 0 0 12px; color: #fff; }
+.slide-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; font-size: 13.5px; font-weight: 700; }
+.slide-meta .k { color: #7fd6c2; }
+.slide-meta .ty { background: rgba(255,255,255,.14); color: #fff; font-size: 11.5px; padding: 3px 9px; border-radius: 6px; }
+.slide-meta .nw2 { background: #e8503a; color: #fff; font-size: 10.5px; font-weight: 800; letter-spacing: .04em; padding: 3px 8px; border-radius: 6px; }
+.slide-meta .d { color: rgba(255,255,255,.72); font-weight: 600; }
+.slide-body p { margin: 0; font-size: 15px; color: rgba(255,255,255,.84); line-height: 1.7; max-width: 640px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.sl-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 5; width: 42px; height: 42px; border-radius: 50%; border: 0; background: #fff; color: var(--navy); font-size: 20px; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,.25); display: flex; align-items: center; justify-content: center; }
+.sl-btn.prev { left: 16px; } .sl-btn.next { right: 16px; }
+.sl-btn:hover { background: #eef3f8; }
+.dots { display: flex; justify-content: center; gap: 7px; margin-top: 14px; }
+.dots button { width: 8px; height: 8px; border-radius: 999px; border: 0; padding: 0; background: #cdd5df; cursor: pointer; transition: width .25s, background .25s; }
+.dots button.on { width: 26px; background: var(--navy); }
+@media (max-width: 720px) {
+  .slider { height: 380px; }
+  .slide-body { padding: 0 20px 26px; }
+  .slide-body h3 { font-size: 21px; }
+  .slide-bg img { width: 100%; opacity: .45; }
+  .sl-btn { display: none; }
+}
