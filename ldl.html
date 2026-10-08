@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#E8503A">
-<title>LDL 콜레스테롤 계산기 — 검진표에 LDL이 없을 때 | 튼튼혈관연구소</title>
+<title>LDL 콜레스테롤 계산기, 검진표에 LDL이 없을 때 | 튼튼혈관연구소</title>
 <meta name="description" content="총콜레스테롤·HDL·중성지방 3가지로 LDL 콜레스테롤을 계산하고, 내 위험군별 목표 수치까지 확인하세요. 프리드왈드 공식 기반 무료 계산기.">
 <meta name="author" content="튼튼혈관연구소">
 <link rel="canonical" href="https://www.ttvessellab.com/ldl.html">
@@ -19,7 +19,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="튼튼혈관연구소 TT VESSEL LAB">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="LDL 콜레스테롤 계산기 — 검진표에 LDL이 없을 때 | 튼튼혈관연구소">
+<meta name="twitter:title" content="LDL 콜레스테롤 계산기, 검진표에 LDL이 없을 때 | 튼튼혈관연구소">
 <meta name="twitter:description" content="총콜레스테롤·HDL·중성지방 3가지로 LDL 콜레스테롤을 계산하고, 내 위험군별 목표 수치까지 확인하세요. 프리드왈드 공식 기반 무료 계산기.">
 <meta name="twitter:image" content="https://www.ttvessellab.com/assets/og-image.png">
 <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
@@ -99,17 +99,17 @@
 </style>
 </head>
 <body>
+<!-- topbar --><div class="topbar"><div class="wrap"><span class="tx">환자와 가족을 위한 심혈관 건강 정보 · 17년차 심혈관조영실 방사선사가 운영합니다</span><span class="tlinks"><a href="index.html#howto">이용 안내</a><a href="community.html">커뮤니티</a><a href="contact.html">문의</a><a href="privacy.html">개인정보처리방침</a></span></div></div><!-- /topbar -->
 <header class="site">
   <div class="wrap nav">
-    <a class="brand" href="index.html"><img class="logo" src="assets/logo.svg" alt="" width="30" height="30"><span class="brand-tx"><b>튼튼혈관연구소</b><small>매일 심장 혈관을 들여다보는 사람의 기록</small></span></a>
+    <a class="brand" href="index.html"><img class="logo" src="assets/logo.svg" alt="" width="34" height="34"><span class="brand-tx"><b>튼튼혈관연구소</b><small>TT VESSEL LAB</small></span></a>
     <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-controls="menu" aria-expanded="false" onclick="var m=document.getElementById('menu');this.setAttribute('aria-expanded',m.classList.toggle('open'))">☰</button>
     <nav class="menu" id="menu" aria-label="주 메뉴">
-      <a href="index.html">홈</a>
-      <a href="archive.html">자료실</a>
+      <a href="archive.html">질환·검사 정보</a>
+      <a href="ranges.html">검사 수치 기준표</a>
       <a href="tools.html" class="active" aria-current="page">셀프체크</a>
-      <a href="community.html">커뮤니티</a>
-      <a href="about.html">소개</a>
-      <a href="contact.html">문의</a>
+      <a href="links.html">관련 기관</a>
+      <a href="about.html">연구소 소개</a>
     </nav>
   </div>
 </header>
@@ -128,7 +128,7 @@
 
     <div class="tool" id="ldlcalc">
       <h2>🧮 LDL 콜레스테롤 계산기</h2>
-      <p class="desc">검진표의 숫자 3개를 그대로 넣어주세요. (단위: mg/dL — 국내 검진표 기본 단위)</p>
+      <p class="desc">검진표의 숫자 3개를 그대로 넣어주세요. (단위: mg/dL, 국내 검진표 기본 단위)</p>
       <div class="row">
         <div class="field">
           <label for="tc">총콜레스테롤 (Total Cholesterol)</label>
@@ -150,9 +150,9 @@
       </div>
       <div class="row">
         <div class="field">
-          <label for="risk">나에게 해당하는 것 (선택 — 목표 수치 계산용)</label>
+          <label for="risk">나에게 해당하는 것 (선택, 목표 수치 계산용)</label>
           <select id="risk">
-            <option value="">선택 안 함 — 일반 기준으로만 볼게요</option>
+            <option value="">선택 안 함, 일반 기준으로만 볼게요</option>
             <option value="55">심근경색·협심증(스텐트 시술 포함) 병력이 있다</option>
             <option value="70">뇌졸중·경동맥질환·말초혈관질환 병력이 있다</option>
             <option value="100">당뇨병이 있다</option>
@@ -171,7 +171,7 @@
       <h2 style="font-size:21px; margin:28px 0 14px;">자주 묻는 질문</h2>
       <details>
         <summary>이 계산, 병원 검사랑 같은 건가요?</summary>
-        <div class="a">네, 같은 방식입니다. 많은 조영실에서 LDL을 직접 측정하는 대신 프리드왈드 공식(LDL = 총콜레스테롤 − HDL − 중성지방÷5)으로 계산해서 결과지에 적습니다. 다만 중성지방이 400 mg/dL 이상이면 공식의 오차가 커져서 계산값을 쓰지 않습니다 — 이 계산기도 똑같이 안내해드립니다.</div>
+        <div class="a">네, 같은 방식입니다. 많은 조영실에서 LDL을 직접 측정하는 대신 프리드왈드 공식(LDL = 총콜레스테롤 − HDL − 중성지방÷5)으로 계산해서 결과지에 적습니다. 다만 중성지방이 400 mg/dL 이상이면 공식의 오차가 커져서 계산값을 쓰지 않습니다. 이 계산기도 똑같이 안내해드립니다.</div>
       </details>
       <details>
         <summary>공복이 아니었는데 괜찮나요?</summary>
@@ -183,14 +183,14 @@
       </details>
       <details>
         <summary>LDL이 높게 나왔어요. 당장 약을 먹어야 하나요?</summary>
-        <div class="a">수치 하나만으로 결정하지 않습니다. 나이·혈압·흡연·당뇨·가족력 등 위험요인을 종합해서 의사와 상의해 결정합니다. 다만 LDL 190 이상이면 위험요인과 무관하게 진료가 필요한 수치입니다. 운영자도 LDL 250에서 시작해 지금 관리 중입니다 — 늦은 때는 없습니다.</div>
+        <div class="a">수치 하나만으로 결정하지 않습니다. 나이·혈압·흡연·당뇨·가족력 등 위험요인을 종합해서 의사와 상의해 결정합니다. 다만 LDL 190 이상이면 위험요인과 무관하게 진료가 필요한 수치입니다. 운영자도 LDL 250에서 시작해 지금 관리 중입니다. 늦은 때는 없습니다.</div>
       </details>
     </div>
 
     <div class="cafe-cta">
       <span class="ci">☕</span>
       <span class="tx"><b>LDL 관리, 혼자 하면 막막하다면</b>
-      <span>검진 수치 이야기, 식단·운동 인증이 모이는 곳 — 튼튼혈관연구소 네이버 카페에서 같이해요.</span></span>
+      <span>검진 수치 이야기, 식단·운동 인증이 모이는 곳 | 튼튼혈관연구소 네이버 카페에서 같이해요.</span></span>
       <a class="btn naver" href="https://cafe.naver.com/cardiovascularlab" target="_blank" rel="noopener">카페에서 같이 관리하기</a>
     </div>
 
@@ -213,32 +213,19 @@
 
 <footer class="site">
   <div class="wrap">
-    <div class="foot">
-      <div class="fb">
-        <a class="brand" href="index.html"><img class="logo" src="assets/logo.svg" alt="" width="30" height="30"><span class="brand-tx"><b>튼튼혈관연구소</b><small>TT VESSEL LAB</small></span></a>
-        <p>심혈관조영실 17년차 방사선사가 운영하는 혈관 건강 정보 허브입니다. 검사와 시술 과정, 검진표 숫자의 의미, 생활 관리를 쉬운 말로 정리합니다.</p>
-      </div>
-      <div><h4>자료실</h4><ul>
-        <li><a href="archive.html#cat-0">관상동맥</a></li>
-        <li><a href="archive.html#cat-4">부정맥 · EP</a></li>
-        <li><a href="archive.html#cat-7">검사 수치 읽기</a></li>
-        <li><a href="archive.html#cat-9">놓치기 쉬운 심장질환</a></li>
-        <li><a href="archive.html">전체 82편 보기</a></li>
-      </ul></div>
-      <div><h4>사이트</h4><ul>
-        <li><a href="tools.html">셀프체크 도구</a></li>
-        <li><a href="community.html">커뮤니티</a></li>
-        <li><a href="about.html">소개 · 저자 정보</a></li>
-        <li><a href="about.html#editorial">편집 및 검수 원칙</a></li>
-        <li><a href="contact.html">문의 · 정정 요청</a></li>
-      </ul></div>
-      <div><h4>정책</h4><ul>
-        <li><a href="privacy.html">개인정보처리방침</a></li>
-        <li><a href="terms.html">이용약관</a></li>
-        <li><a href="mailto:molezzang@gmail.com">molezzang@gmail.com</a></li>
-      </ul></div>
+    <div class="fmap">
+      <div><h4>질환·검사 정보</h4><ul><li><a href="archive.html#cat-0">관상동맥</a></li><li><a href="archive.html#cat-4">부정맥</a></li><li><a href="archive.html#cat-1">대동맥</a></li><li><a href="archive.html#cat-2">경동맥</a></li><li><a href="archive.html#cat-3">말초동맥</a></li><li><a href="archive.html#cat-9">놓치기 쉬운 심장질환</a></li><li><a href="archive.html">전체 82편 보기</a></li></ul></div>
+      <div><h4>검사 수치·셀프체크</h4><ul><li><a href="ranges.html">검사 수치 기준표</a></li><li><a href="archive.html#cat-7">검사 수치 읽기</a></li><li><a href="tools.html#bp">혈압 단계 판정기</a></li><li><a href="ldl.html">LDL 계산기</a></li><li><a href="tools/chest-pain-test.html">흉통 원인 분류</a></li><li><a href="tools.html">셀프체크 도구 전체</a></li></ul></div>
+      <div><h4>관련 기관</h4><ul><li><a href="links.html#info">학회·질환 정보</a></li><li><a href="links.html#emergency">응급·심폐소생술</a></li><li><a href="links.html#checkup">검진 결과·병원 정보</a></li><li><a href="links.html#drug">약 정보</a></li><li><a href="links.html#global">해외 공식 자료</a></li></ul></div>
+      <div><h4>연구소</h4><ul><li><a href="about.html">연구소 소개</a></li><li><a href="about.html#editorial">편집 및 검수 원칙</a></li><li><a href="community.html">커뮤니티</a></li><li><a href="contact.html">문의·정정 요청</a></li></ul></div>
     </div>
-    <div class="foot-note"><b>의료 면책</b> — 본 사이트의 콘텐츠와 도구는 교육·정보 목적이며 의학적 진단·처방을 대체하지 않습니다. 가슴 통증이 20분 이상 이어지거나 식은땀·호흡곤란이 함께 오면 즉시 119에 연락하세요.<br>© 2026 튼튼혈관연구소 (ttvessellab.com). All rights reserved.</div>
+    <div class="fpol"><a href="privacy.html">개인정보처리방침</a><a href="terms.html">이용약관</a><a href="contact.html">문의</a></div>
+    <div class="finfo">
+      <div class="fbrand"><img src="assets/logo.svg" alt="" width="26" height="26">튼튼혈관연구소</div>
+      심혈관조영실 17년차 방사선사가 운영하는 심혈관 건강 정보 사이트 · 문의 <a href="mailto:molezzang@gmail.com">molezzang@gmail.com</a> · 호스팅 GitHub Pages (GitHub, Inc.)<br>
+      이 사이트의 글과 도구는 교육과 정보 제공을 위한 것으로 진료를 대신하지 않습니다. 가슴 통증이 20분 넘게 이어지거나 식은땀, 숨찬 증상이 함께 오면 바로 119에 연락하세요.<br>
+      © 2026 튼튼혈관연구소 (ttvessellab.com)
+    </div>
   </div>
 </footer>
 
@@ -287,8 +274,8 @@ function calcLDL() {
     show("bad",
       "<b class='level'>중성지방이 " + tg + "으로 너무 높아 LDL을 계산할 수 없어요</b>" +
       "중성지방 400 이상에서는 프리드왈드 공식의 오차가 커져서, 병원에서도 계산값을 쓰지 않습니다. 대신 <b>non-HDL 콜레스테롤</b>로 볼 수 있어요." +
-      "<div class='item'><span>non-HDL 콜레스테롤 (총콜레스테롤 − HDL) — <b>" + nonHDL + " mg/dL</b></span>" + badge(nonHDL < 160 ? (nonHDL < 130 ? 0 : 1) : 2) + "</div>" +
-      (nhTarget ? "<div class='item'><span>선택하신 위험군의 non-HDL 목표 — <b>" + nhTarget + " 미만</b></span>" + badge(nonHDL < nhTarget ? 0 : 2) + "</div>" : "") +
+      "<div class='item'><span>non-HDL 콜레스테롤 (총콜레스테롤 − HDL), <b>" + nonHDL + " mg/dL</b></span>" + badge(nonHDL < 160 ? (nonHDL < 130 ? 0 : 1) : 2) + "</div>" +
+      (nhTarget ? "<div class='item'><span>선택하신 위험군의 non-HDL 목표, <b>" + nhTarget + " 미만</b></span>" + badge(nonHDL < nhTarget ? 0 : 2) + "</div>" : "") +
       "<p style='margin:10px 0 0;'>그리고 중성지방 500 이상은 췌장염 위험까지 있는 수치입니다. 미루지 말고 내과 진료를 받아보세요. 공복(8~12시간) 상태에서 재검사하면 수치가 달라질 수 있습니다.</p>" +
       "<a href='posts/cholesterol-ldl-hdl.html'>→ 콜레스테롤 수치 읽는 법 자세히 보기</a>");
     lastResultText = "[튼튼혈관연구소 LDL 계산기]\n중성지방 " + tg + " → LDL 계산 불가(TG 400↑)\nnon-HDL: " + nonHDL + " mg/dL\nttvessellab.com/ldl.html";
@@ -311,12 +298,12 @@ function calcLDL() {
     "</div>" +
     "<div class='gauge'><div class='bar'><div class='marker' style='left:calc(" + pos + "% - 2px);'></div></div>" +
     "<div class='scale'><span>0</span><span>적정 &lt;130</span><span>경계 130~159</span><span>높음 160+</span><span>250</span></div></div>" +
-    "<div class='item'><span>non-HDL 콜레스테롤 — <b>" + nonHDL + " mg/dL</b></span>" + badge(nonHDL < 160 ? (nonHDL < 130 ? 0 : 1) : 2) + "</div>";
+    "<div class='item'><span>non-HDL 콜레스테롤, <b>" + nonHDL + " mg/dL</b></span>" + badge(nonHDL < 160 ? (nonHDL < 130 ? 0 : 1) : 2) + "</div>";
 
   var advice;
   if (!isNaN(target)) {
     var ok = ldl < target;
-    html += "<div class='item'><span>선택하신 위험군의 LDL 목표 — <b>" + target + " 미만</b></span>" +
+    html += "<div class='item'><span>선택하신 위험군의 LDL 목표, <b>" + target + " 미만</b></span>" +
       (ok ? "<span class='badge g'>목표 달성 👏</span>" : "<span class='badge r'>목표 초과 +" + (ldl - target) + "</span>") + "</div>";
     advice = ok
       ? "지금 위험군 기준 목표 안에 들어와 있습니다. 습관을 유지하면서 정기 검진으로 확인해주세요."
@@ -325,8 +312,8 @@ function calcLDL() {
     advice = gr.g === 0
       ? "적정 범위입니다. 지금 습관이 최고의 예방약이에요. 1년에 한 번 검진으로 확인해주세요."
       : (gr.g === 1
-        ? "경계 구간입니다. 아직 약보다 습관으로 되돌릴 수 있는 시기 — 포화지방 줄이기, 주 3회 걷기부터 시작해보세요."
-        : "주의가 필요한 수치입니다. 당뇨·가족력 등에 따라 개인별 목표는 더 낮아질 수 있으니 진료 상담을 권합니다. 운영자도 LDL 250에서 시작해 관리 중입니다 — 같이 해봐요.");
+        ? "경계 구간입니다. 아직 약보다 습관으로 되돌릴 수 있는 시기, 포화지방 줄이기, 주 3회 걷기부터 시작해보세요."
+        : "주의가 필요한 수치입니다. 당뇨·가족력 등에 따라 개인별 목표는 더 낮아질 수 있으니 진료 상담을 권합니다. 운영자도 LDL 250에서 시작해 관리 중입니다. 같이 해봐요.");
     if (tg >= 200) advice += " 참고로 중성지방이 200 이상이라 계산값의 오차가 다소 있을 수 있습니다. 공복 재검사 수치로 다시 계산해보세요.";
   }
 

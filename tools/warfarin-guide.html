@@ -302,9 +302,9 @@ main { max-width: 720px; margin: 0 auto; padding: 16px 16px 120px; }
 </div>
 <div class="tip-box" style="margin-top:12px">
   <h3>⚡ 절대 피해야 할 것</h3>
-  <p><strong>① 농축 한약·녹즙·건강기능식품</strong> — 성분이 수십 배 농축되어 약효를 예측 불가능하게 만듭니다.<br>
-  <strong>② 자몽·크랜베리</strong> — 와파린 분해 효소를 막아 출혈을 유발합니다.<br>
-  <strong>③ 과음</strong> — 와파린 대사를 방해하고 출혈 위험을 크게 높입니다.</p>
+  <p><strong>① 농축 한약·녹즙·건강기능식품</strong>: 성분이 수십 배 농축되어 약효를 예측 불가능하게 만듭니다.<br>
+  <strong>② 자몽·크랜베리</strong>: 와파린 분해 효소를 막아 출혈을 유발합니다.<br>
+  <strong>③ 과음</strong>: 와파린 대사를 방해하고 출혈 위험을 크게 높입니다.</p>
 </div>
 
 <!-- INR 섹션 -->
@@ -317,11 +317,11 @@ main { max-width: 720px; margin: 0 auto; padding: 16px 16px 120px; }
   <table class="inr-table">
     <thead><tr><th>INR 수치</th><th>의미</th><th>조치</th></tr></thead>
     <tbody>
-      <tr class="inr-danger"><td><strong>&lt; 1.5</strong></td><td>너무 낮음 — 혈전 위험</td><td>즉시 의사 연락</td></tr>
+      <tr class="inr-danger"><td><strong>&lt; 1.5</strong></td><td>너무 낮음, 혈전 위험</td><td>즉시 의사 연락</td></tr>
       <tr class="inr-warn"><td><strong>1.5 ~ 2.0</strong></td><td>목표보다 낮음</td><td>가까운 시일 내 재확인</td></tr>
       <tr class="inr-safe"><td><strong>2.0 ~ 3.0</strong></td><td>✅ 목표 범위 (일반적)</td><td>현재 복용량 유지</td></tr>
       <tr class="inr-warn"><td><strong>3.0 ~ 4.0</strong></td><td>목표보다 높음</td><td>용량 감소 검토</td></tr>
-      <tr class="inr-danger"><td><strong>&gt; 4.0</strong></td><td>너무 높음 — 출혈 위험</td><td>즉시 의사 연락</td></tr>
+      <tr class="inr-danger"><td><strong>&gt; 4.0</strong></td><td>너무 높음, 출혈 위험</td><td>즉시 의사 연락</td></tr>
     </tbody>
   </table>
 </div>
@@ -521,7 +521,7 @@ function buildCards(type, list) {
   if (!list.length) { container.innerHTML = ''; countEl.textContent = ''; return; }
   countEl.textContent = list.length + '개';
   container.innerHTML = list.map(f => {
-    const doses = f.dose.map(d => `<span class="dose-tag ${d.type}">${d.label}${d.note?' — '+d.note:''}</span>`).join('');
+    const doses = f.dose.map(d => `<span class="dose-tag ${d.type}">${d.label}${d.note?', '+d.note:''}</span>`).join('');
     return `<div class="food-card ${type}" onclick="toggleCard(this)">
       <div class="fc-top">
         <span class="fc-emoji">${f.icon}</span>

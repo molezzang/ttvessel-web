@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.ttvessellab.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://www.ttvessellab.com/archive.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.ttvessellab.com/tools.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.ttvessellab.com/</loc><lastmod>2026-10-09</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.ttvessellab.com/archive.html</loc><lastmod>2026-10-09</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.ttvessellab.com/ranges.html</loc><lastmod>2026-10-09</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.ttvessellab.com/links.html</loc><lastmod>2026-10-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.ttvessellab.com/tools.html</loc><lastmod>2026-10-09</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.ttvessellab.com/ldl.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.ttvessellab.com/afib.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.ttvessellab.com/medtime.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
@@ -11,8 +13,8 @@
   <url><loc>https://www.ttvessellab.com/community.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.ttvessellab.com/about.html</loc><priority>0.7</priority></url>
   <url><loc>https://www.ttvessellab.com/contact.html</loc><priority>0.5</priority></url>
-  <url><loc>https://www.ttvessellab.com/privacy.html</loc><priority>0.3</priority></url>
-  <url><loc>https://www.ttvessellab.com/terms.html</loc><priority>0.3</priority></url>
+  <url><loc>https://www.ttvessellab.com/privacy.html</loc><lastmod>2026-10-09</lastmod><priority>0.3</priority></url>
+  <url><loc>https://www.ttvessellab.com/terms.html</loc><lastmod>2026-10-09</lastmod><priority>0.3</priority></url>
   <url><loc>https://www.ttvessellab.com/posts/coronary-angiography.html</loc><lastmod>2026-01-12</lastmod><priority>0.8</priority></url>
   <url><loc>https://www.ttvessellab.com/posts/heart-attack-warning.html</loc><lastmod>2026-01-15</lastmod><priority>0.8</priority></url>
   <url><loc>https://www.ttvessellab.com/posts/angina-types.html</loc><lastmod>2026-02-03</lastmod><priority>0.8</priority></url>
